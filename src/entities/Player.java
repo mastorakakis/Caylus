@@ -1,14 +1,13 @@
 package entities;
 
 import enums.Color;
-import secondaryclasses.Resource;
 
 public abstract class Player {
 
     protected Color color;
     protected int points = 0; // player starts with zero points
     protected int money;
-    protected Resource playerResources = new Resource(2, 1, 0, 0, 0); // player starts with two food cubes and one wood
+    protected Resources playerResources = new Resources(2, 1, 0, 0, 0); // player starts with two food cubes and one wood
     protected int workers = 6; // player has six workers;
 
     //constructor

@@ -1,17 +1,18 @@
-package utilities;
+package caylus;
 
 import entities.ComPlayer;
 import entities.Player;
 import entities.UserPlayer;
 import enums.Color;
-import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
+import utilities.Functions;
 
 public class SetUpGame {
 
+    private static final int MIN_PLAYERS = 2;
     private static final int MIN_USER_PLAYERS = 0;
     private static final int MAX_PLAYERS = 5;
 
@@ -20,7 +21,7 @@ public class SetUpGame {
         List<Player> players = new ArrayList();
         int numberOfComPlayers = 0;
         int numberOfUserPlayers = numberOfUserPlayers(sc);
-        if (numberOfUserPlayers != 5) {
+        if (numberOfUserPlayers != MAX_PLAYERS) {
             numberOfComPlayers = numberOfComPlayers(sc, numberOfUserPlayers);
         }
         addUserPlayers(numberOfUserPlayers, players);
@@ -53,7 +54,7 @@ public class SetUpGame {
 
     // returns number of user players
     private static int numberOfUserPlayers(Scanner sc) {
-        int userPlayers = inputValidation(MIN_USER_PLAYERS, MAX_PLAYERS,
+        int userPlayers = Functions.inputValidation(MIN_USER_PLAYERS, MAX_PLAYERS,
                 "Select number of user players", "Invalid option.", sc);
         return userPlayers;
     }
@@ -61,8 +62,8 @@ public class SetUpGame {
     // returns number of com players.
     private static int numberOfComPlayers(Scanner sc, int numberOfUserPlayers) {
         int max = MAX_PLAYERS - numberOfUserPlayers;
-        int min = numberOfUserPlayers < 2 ? 2 - numberOfUserPlayers : 0;
-        int players = inputValidation(min, max,
+        int min = numberOfUserPlayers < MIN_PLAYERS ? MIN_PLAYERS - numberOfUserPlayers : 0;
+        int players = Functions.inputValidation(min, max,
                 "Select number of COM players", "Invalid option.", sc);
         return players;
     }
@@ -80,10 +81,10 @@ public class SetUpGame {
                 Player blackPlayer = new UserPlayer(Color.BLACK);
                 players.add(blackPlayer);
             case 2:
-                Player redPlayer = new UserPlayer(Color.RED);
+                Player redPlayer = new UserPlayer(Color.GREEN);
                 players.add(redPlayer);
             case 1:
-                Player greenPlayer = new UserPlayer(Color.GREEN);
+                Player greenPlayer = new UserPlayer(Color.RED);
                 players.add(greenPlayer);
         }
     }
@@ -110,23 +111,4 @@ public class SetUpGame {
         return players;
     }
 
-    // validates user input
-    public static int inputValidation(int min, int max, String message,
-            String warning, Scanner sc) {
-        String input = String.valueOf(min - 1);
-        do {
-            try {
-                System.out.printf("%s (%d-%d): ", message, min, max);
-                input = sc.nextLine();
-                if (parseInt(input) < min || parseInt(input) > max) {
-                    System.out.println(warning);
-                }
-            } catch (NumberFormatException e) {
-                System.out.println(warning);
-                input = String.valueOf(min - 1);
-            }
-        } while (parseInt(input) < min || parseInt(input) > max);
-        return parseInt(input);
-    }
-    // transfer inputValidation elsewhere
 }

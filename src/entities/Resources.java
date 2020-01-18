@@ -1,6 +1,6 @@
-package secondaryclasses;
+package entities;
 
-public class Resource {
+public class Resources {
 
     private int food;
     private int wood;
@@ -8,7 +8,7 @@ public class Resource {
     private int cloth;
     private int gold;
 
-    public Resource(int food, int wood, int stone, int cloth, int gold) {
+    public Resources(int food, int wood, int stone, int cloth, int gold) {
         this.food = food;
         this.wood = wood;
         this.stone = stone;

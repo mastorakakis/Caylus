@@ -1,8 +1,9 @@
 package caylus;
 
+import entities.Player;
+import entities.UserPlayer;
+import java.util.List;
 import java.util.Scanner;
-import utilities.Game;
-import utilities.SetUpGame;
 
 /**
  * @author Παναγιώτης Μαστορακάκης
@@ -14,7 +15,11 @@ public class Main {
     public static void main(String[] args) {
         Game game = new Game();
         game.setPlayers(SetUpGame.createPlayerList(sc));
-
+        List<Player> players = game.getPlayers();
+        for (Player player : players) {
+            if (player instanceof UserPlayer) {
+                System.out.println(player);
+            }
+        }
     }
-
 }

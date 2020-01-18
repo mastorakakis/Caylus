@@ -1,4 +1,4 @@
-package utilities;
+package caylus;
 
 import entities.Player;
 import java.util.List;
