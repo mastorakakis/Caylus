@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
         Game game = new Game();
-        game.setPlayers(SetUpGame.createPlayerList(sc));
+        game.createPlayerList(sc);
         List<Player> players = game.getPlayers();
         for (Player player : players) {
             if (player instanceof UserPlayer) {
