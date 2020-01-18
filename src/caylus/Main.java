@@ -1,16 +1,20 @@
 package caylus;
 
-import entities.Player;
-import enums.Color;
+import java.util.Scanner;
+import utilities.Game;
+import utilities.SetUpGame;
 
 /**
  * @author Παναγιώτης Μαστορακάκης
  */
 public class Main {
 
+    public static final Scanner sc = new Scanner(System.in);
+
     public static void main(String[] args) {
-        Player p1 = new Player(Color.BLUE, 0);
-        System.out.println(p1);
+        Game game = new Game();
+        game.setPlayers(SetUpGame.createPlayerList(sc));
+
     }
 
 }

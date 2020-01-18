@@ -61,4 +61,5 @@ public class Resource {
         return "Resource{" + "food=" + food + ", wood=" + wood + ", stone="
                 + stone + ", cloth=" + cloth + ", gold=" + gold + '}';
     }
+    //TODO validate getters setters
 }

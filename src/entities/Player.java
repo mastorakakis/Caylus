@@ -3,29 +3,26 @@ package entities;
 import enums.Color;
 import secondaryclasses.Resource;
 
-public class Player {
+public abstract class Player {
 
-    private Color color;
-    private int points = 0; // player starts with zero points
-    private int money;
-    // player starts with two food cubes and one wood
-    private Resource playerResources = new Resource(2, 1, 0, 0, 0);
-    private int workers = 6; // player has six workers;
-
-    private int favors;
-    private int houses;
+    protected Color color;
+    protected int points = 0; // player starts with zero points
+    protected int money;
+    protected Resource playerResources = new Resource(2, 1, 0, 0, 0); // player starts with two food cubes and one wood
+    protected int workers = 6; // player has six workers;
 
     //constructor
-    public Player(Color color, int money) {
+    public Player(Color color) {
         this.color = color;
-        this.money = money; // initial amount depends on turn order
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
     }
 
     @Override
     public String toString() {
-        return "player{" + "color=" + color + ", points=" + points + ", money="
-                + money + ", playerResources=" + playerResources + ", workers="
-                + workers + ", favors=" + favors + ", houses=" + houses + '}';
+        return "Player{" + "color=" + color + ", points=" + points + ", money=" + money + ", playerResources=" + playerResources + ", workers=" + workers + '}';
     }
-
+    //TODO getters, setters, validate setters
 }
