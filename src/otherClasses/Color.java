@@ -1,6 +1,6 @@
-package enums;
+package otherClasses;
 
-// available colors for the player
+// available colors for the players
 public enum Color {
     BLUE, RED, GREEN, ORANGE, BLACK;
 }

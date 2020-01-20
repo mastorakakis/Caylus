@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Functions {
 
-    // validates user input
+    // validate and return user input
     // min: minimum choice
     // max: maximum choice
     // message: prompt message to user
@@ -15,7 +15,7 @@ public class Functions {
         String input = String.valueOf(min - 1);
         do {
             try {
-                System.out.printf("%s (%d-%d): ", message, min, max);
+                System.out.printf("%s (Select %d-%d): ", message, min, max);
                 input = sc.nextLine();
                 if (parseInt(input) < min || parseInt(input) > max) {
                     System.out.println(warning);
@@ -27,5 +27,4 @@ public class Functions {
         } while (parseInt(input) < min || parseInt(input) > max);
         return parseInt(input);
     }
-    // transfer inputValidation elsewhere
 }

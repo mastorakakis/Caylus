@@ -1,9 +1,9 @@
 package caylus;
 
-import entities.ComPlayer;
-import entities.Player;
-import entities.UserPlayer;
-import enums.Color;
+import entities.players.ComPlayer;
+import entities.players.Player;
+import entities.players.UserPlayer;
+import otherClasses.Color;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
@@ -11,12 +11,12 @@ import utilities.Functions;
 
 public class SetUpGame {
 
-    protected static final int MIN_PLAYERS = 2;
-    protected static final int MIN_USER_PLAYERS = 0;
-    protected static final int MAX_PLAYERS = 5;
+    public static final int MIN_PLAYERS = 2;
+    public static final int MIN_USER_PLAYERS = 0;
+    public static final int MAX_PLAYERS = 5;
 
-    // shuffles the list and initializes the players amount of money
-    protected static List<Player> randomOrderList(List<Player> players) {
+    // shuffles the player list and initializes the players' amount of money
+    protected static void randomOrderList(List<Player> players) {
         Collections.shuffle(players);
         for (int i = 0; i < players.size(); i++) {
             switch (i) {
@@ -32,7 +32,6 @@ public class SetUpGame {
                     break;
             }
         }
-        return players;
     }
 
     // returns number of user players

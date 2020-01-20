@@ -1,11 +1,11 @@
-package entities;
+package entities.players;
 
-import enums.Color;
+import otherClasses.Color;
 
 public class UserPlayer extends Player {
 
     public UserPlayer(Color color) {
         super(color);
     }
-    // TODO
+//    TODO
 }
