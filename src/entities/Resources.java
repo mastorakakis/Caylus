@@ -1,7 +1,7 @@
-package otherClasses;
+package entities;
 
 import java.util.Scanner;
-import utilities.Functions;
+import enums.SelectAction;
 
 public class Resources implements Comparable {
 
@@ -77,23 +77,23 @@ public class Resources implements Comparable {
     }// end of getters setters
 
     // modifying Resourses +-1 depending on SelectAction used in build method
-    public void modifyResources(SelectAction a, int selection, Scanner sc) {
-        int modifier = (a == SelectAction.ADD ? 1 : -1);
+    public void modifyResources(SelectAction s, int selection, Scanner sc) {
+        int modifier = (s == SelectAction.ADD ? 1 : -1);
         switch (selection) {
             case 1:
-                food += modifier;
+                this.setFood(food += modifier);
                 break;
             case 2:
-                wood += modifier;
+                this.setWood(wood += modifier);
                 break;
             case 3:
-                stone += modifier;
+                this.setStone(stone += modifier);
                 break;
             case 4:
-                cloth += modifier;
+                this.setCloth(cloth += modifier);
                 break;
             case 5:
-                gold += modifier;
+                this.setGold(gold += modifier);
                 break;
             default:
                 break;
@@ -119,8 +119,8 @@ public class Resources implements Comparable {
 
     @Override
     public String toString() {
-        return "Resources: Food=" + food + ", Wood=" + wood + " Stone="
+        return "Resources: Food=" + food + " Wood=" + wood + " Stone="
                 + stone + " Cloth=" + cloth + " Gold=" + gold;
     }
-    // assign values with set in modify
+
 }

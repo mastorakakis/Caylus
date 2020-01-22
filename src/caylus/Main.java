@@ -1,8 +1,9 @@
 package caylus;
 
-import entities.buildings.Building;
-import entities.buildings.WoodBuilding;
+import static caylus.CreateBuildings.gate;
+import entities.Block;
 import entities.players.Player;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,16 +16,22 @@ public class Main {
 
     public static void main(String[] args) {
         Game game = new Game();
-        game.createPlayerList(sc);
+        game.setPlayerList(SetUpGame.players(sc));
+        game.setRoad(SetUpGame.road());
+
         List<Player> players = game.getPlayerList();
-        Player p = players.get(0);
-        Building f = WoodBuilding.MARKET_PLACE;
+        for (Player player : players) {
+            System.out.println(player);
+        }
+        System.out.println("");
 
-        System.out.println(p);
-        System.out.println(f.getCostResources());
-
-        f.activation(p, sc);
-        System.out.println(p);
-        System.out.println(f.getCostResources());
+        game.phase1();
+        for (Player player : players) {
+            System.out.println(player);
+        }
+        game.phase2(sc);
+        for (Player player : players) {
+            System.out.println(player);
+        }
     }
 }

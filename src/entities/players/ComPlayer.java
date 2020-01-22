@@ -1,6 +1,6 @@
 package entities.players;
 
-import otherClasses.Color;
+import enums.Color;
 
 public class ComPlayer extends Player {
 

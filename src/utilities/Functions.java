@@ -27,4 +27,5 @@ public class Functions {
         } while (parseInt(input) < min || parseInt(input) > max);
         return parseInt(input);
     }
+
 }

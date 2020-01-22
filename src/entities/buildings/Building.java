@@ -1,18 +1,26 @@
 package entities.buildings;
 
-import entities.players.Player;
-import java.util.Scanner;
-import otherClasses.Resources;
+public abstract class Building {
 
-public interface Building {
+    private String name;
 
-    int getPoints();
+    // constructor
+    public Building() {
+    }
 
-    Resources getCostResources();
+    // constructor
+    public Building(String name) {
+        this.name = name;
 
-    Resources getProductionResources();
+    }
 
-    public void activation(Player player, Scanner sc);
+    // getters setters
+    public String getName() {
+        return name;
+    }
 
-//    TODO
+    public void setName(String name) {
+        this.name = name;
+    }// end of getters setters
 }
+//    TODO
