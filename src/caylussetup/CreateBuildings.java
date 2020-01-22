@@ -1,4 +1,4 @@
-package caylus;
+package caylussetup;
 
 import entities.buildings.FixedBuilding;
 import entities.buildings.SpecialBuilding;

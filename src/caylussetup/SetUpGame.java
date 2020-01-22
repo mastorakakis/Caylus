@@ -1,6 +1,7 @@
-package caylus;
+package caylussetup;
 
-import static caylus.CreateBuildings.*;
+import caylussetup.CreatePlayers;
+import static caylussetup.CreateBuildings.*;
 import entities.Block;
 import entities.players.Player;
 import java.util.ArrayList;

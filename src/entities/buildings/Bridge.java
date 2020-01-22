@@ -4,17 +4,13 @@ import entities.players.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Bridge extends Building {
+public class Bridge {
 
+    private static final String name = "Bridge";
     private static List<Player> positionList = new ArrayList();
     private static int activationMoney;
-    private static final String name = "Bridge";
 
     public Bridge() {
-    }
-
-    public Bridge(String name) {
-        super(name);
     }
 
     public static List<Player> getPositionList() {

@@ -1,16 +1,14 @@
 package caylus;
 
-import static caylus.CreateBuildings.gate;
-import entities.Block;
+import caylussetup.SetUpGame;
 import entities.players.Player;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 /**
  * @author Παναγιώτης Μαστορακάκης
  */
-public class Main {
+public class CaylusMain {
 
     public static final Scanner sc = new Scanner(System.in);
 
@@ -25,13 +23,14 @@ public class Main {
         }
         System.out.println("");
 
-        game.phase1();
+        Phase1.play();
         for (Player player : players) {
             System.out.println(player);
         }
-        game.phase2(sc);
+        Phase2.play(sc);
         for (Player player : players) {
             System.out.println(player);
         }
+
     }
 }

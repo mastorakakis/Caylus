@@ -1,8 +1,9 @@
-package caylus;
+package caylussetup;
 
-import static caylus.SetUpGame.MAX_PLAYERS;
-import static caylus.SetUpGame.MIN_PLAYERS;
-import static caylus.SetUpGame.MIN_USER_PLAYERS;
+import caylus.Game;
+import static caylussetup.SetUpGame.MAX_PLAYERS;
+import static caylussetup.SetUpGame.MIN_PLAYERS;
+import static caylussetup.SetUpGame.MIN_USER_PLAYERS;
 import entities.players.ComPlayer;
 import entities.players.Player;
 import entities.players.UserPlayer;
