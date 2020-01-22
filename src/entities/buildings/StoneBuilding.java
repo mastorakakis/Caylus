@@ -2,23 +2,33 @@ package entities.buildings;
 
 import entities.Resources;
 
-public class WoodBuilding extends Building {
+public class StoneBuilding extends Building {
 
     private int buildPoints;
+    private int buildFavors;
     private Resources buildResources;
     private int activationMoney;
+    private int activationPoints;
     private Resources activationResources;
+    private Resources activationRentResources;
 
-    public WoodBuilding() {
+    // constructor
+    public StoneBuilding() {
     }
 
-    public WoodBuilding(int buildPoints, Resources buildResources,
-            int activationMoney, Resources activationResources, String name) {
+    // constructor
+    public StoneBuilding(int buildPoints, int buildFavors, Resources buildResources,
+            int activationMoney, int activationPoints, Resources activationResources,
+            Resources activationRentResources, String name) {
         super(name);
         this.buildPoints = buildPoints;
+        this.buildFavors = buildFavors;
         this.buildResources = buildResources;
         this.activationMoney = activationMoney;
+        this.activationPoints = activationPoints;
         this.activationResources = activationResources;
+        this.activationRentResources = activationRentResources;
+
     }
 
     // getters setters
@@ -52,6 +62,14 @@ public class WoodBuilding extends Building {
 
     public void setActivationResources(Resources activationResources) {
         this.activationResources = activationResources;
+    }
+
+    public int getBuildFavors() {
+        return buildFavors;
+    }
+
+    public void setBuildFavors(int buildFavors) {
+        this.buildFavors = buildFavors;
     } // end of getters setters
 
 }

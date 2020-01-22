@@ -5,19 +5,22 @@ import entities.Resources;
 public class PrestigeBuilding extends Building {
 
     private int buildPoints;
-    private Resources buildResources;
     private int buildFavors;
+    private Resources buildResources;
+    private int activationMoney;
 
     // constructor
     public PrestigeBuilding() {
     }
 
     // constructor
-    public PrestigeBuilding(int buildPoints, Resources buildResources, int buildFavors, String name) {
+    public PrestigeBuilding(int buildPoints, int buildFavors, Resources buildResources,
+            int activationMoney, String name) {
         super(name);
         this.buildPoints = buildPoints;
-        this.buildResources = buildResources;
         this.buildFavors = buildFavors;
+        this.buildResources = buildResources;
+        this.activationMoney = activationMoney;
     }
 
     // getters setters

@@ -23,4 +23,3 @@ public abstract class Building {
         this.name = name;
     }// end of getters setters
 }
-//    TODO

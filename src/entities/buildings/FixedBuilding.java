@@ -20,11 +20,15 @@ public class FixedBuilding extends Building implements BoardBulding {
         this.activationResources = activationResources;
     }
 
+    // getters setters
     public int getActivationMoney() {
         return activationMoney;
     }
 
     public void setActivationMoney(int activationMoney) {
+        if (activationMoney < 0) {
+            throw new IllegalArgumentException("Amount of money cannot be negative");
+        }
         this.activationMoney = activationMoney;
     }
 
@@ -34,6 +38,6 @@ public class FixedBuilding extends Building implements BoardBulding {
 
     public void setActivationResources(Resources activationResources) {
         this.activationResources = activationResources;
-    }
+    } //  end of getters setters
 
 }
