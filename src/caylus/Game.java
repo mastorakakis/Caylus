@@ -6,11 +6,11 @@ import java.util.List;
 
 public class Game {
 
-    public static final String warning = "--Invalid input--";
-    public static Player[] innPosition = new Player[2];
+    public static final String WARNING = "--Invalid input--";
+    public Player[] innPosition = new Player[2];
 
-    protected static List<Player> playerList;
-    protected static List<Block> road;
+    protected List<Player> playerList;
+    protected List<Block> road;
 
     // getters setters
     public List<Player> getPlayerList() {
@@ -30,5 +30,13 @@ public class Game {
             throw new IllegalArgumentException("The game is for 2-5 players");
         }
         this.playerList = playerList;
+    }
+
+    public String getWARNING() {
+        return WARNING;
+    }
+
+    public Player[] getInnPosition() {
+        return innPosition;
     }// end of getters setters
 }

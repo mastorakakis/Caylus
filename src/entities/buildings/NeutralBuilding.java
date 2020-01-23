@@ -1,6 +1,7 @@
 package entities.buildings;
 
 import entities.Resources;
+import entities.players.Player;
 
 public class NeutralBuilding extends Building {
 
@@ -16,6 +17,11 @@ public class NeutralBuilding extends Building {
         super(name);
         this.activationMoney = activationMoney;
         this.activationResources = activationResources;
+    }
+
+    @Override
+    public void activate(Player player) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

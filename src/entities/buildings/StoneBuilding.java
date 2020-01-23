@@ -1,6 +1,7 @@
 package entities.buildings;
 
 import entities.Resources;
+import entities.players.Player;
 
 public class StoneBuilding extends Building {
 
@@ -71,5 +72,10 @@ public class StoneBuilding extends Building {
     public void setBuildFavors(int buildFavors) {
         this.buildFavors = buildFavors;
     } // end of getters setters
+
+    @Override
+    public void activate(Player player) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

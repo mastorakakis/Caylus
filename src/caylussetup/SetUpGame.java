@@ -1,6 +1,5 @@
 package caylussetup;
 
-import caylussetup.CreatePlayers;
 import static caylussetup.CreateBuildings.*;
 import entities.Block;
 import entities.buildings.Building;

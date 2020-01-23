@@ -1,5 +1,7 @@
 package entities.buildings;
 
+import entities.players.Player;
+
 public abstract class Building {
 
     private String name = "";
@@ -22,4 +24,7 @@ public abstract class Building {
     public void setName(String name) {
         this.name = name;
     }// end of getters setters
+
+    public abstract void activate(Player player);
+
 }

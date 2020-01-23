@@ -1,6 +1,7 @@
 package entities.buildings;
 
 import entities.Resources;
+import entities.players.Player;
 
 public class PrestigeBuilding extends Building {
 
@@ -55,5 +56,10 @@ public class PrestigeBuilding extends Building {
     public void setActivationMoney(int activationMoney) {
         this.activationMoney = activationMoney;
     }// end of getters setters
+
+    @Override
+    public void activate(Player player) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

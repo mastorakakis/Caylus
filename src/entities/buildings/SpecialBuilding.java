@@ -2,6 +2,7 @@ package entities.buildings;
 
 import interfaces.BoardBulding;
 import entities.Resources;
+import entities.players.Player;
 
 public class SpecialBuilding extends Building implements BoardBulding {
 
@@ -24,4 +25,8 @@ public class SpecialBuilding extends Building implements BoardBulding {
         this.activationFavors = activationFavors;
     }
 
+    @Override
+    public void activate(Player player) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

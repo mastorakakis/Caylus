@@ -4,9 +4,9 @@ import entities.players.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Castle {
+public class Castle extends Building {
 
-    private static final String name = "Castle";
+    private String name = "Castle";
     private static List<Player> positionList = new ArrayList();
 
     // constructor
@@ -22,4 +22,8 @@ public class Castle {
         Castle.positionList = positionList;
     }// end of getters setters
 
+    @Override
+    public void activate(Player player) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

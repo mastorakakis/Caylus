@@ -1,6 +1,7 @@
 package entities.buildings;
 
 import entities.Resources;
+import entities.players.Player;
 
 public class WoodBuilding extends Building {
 
@@ -53,5 +54,10 @@ public class WoodBuilding extends Building {
     public void setActivationResources(Resources activationResources) {
         this.activationResources = activationResources;
     } // end of getters setters
+
+    @Override
+    public void activate(Player player) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

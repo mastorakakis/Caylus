@@ -5,16 +5,17 @@ import static caylussetup.CreateBuildings.library;
 import entities.Block;
 import entities.buildings.Building;
 import entities.players.Player;
+import java.util.Scanner;
 
-public class Phase1 extends Game {
+public class Phase1 {
 
     // select income
-    public static void play() {
-        for (Player p : playerList) {
+    public static void play(Game game, Scanner sc) {
+        for (Player p : game.getPlayerList()) {
             p.setMoney(p.getMoney() + 2); // each player collects income
         }
         Player player;
-        for (Block block : road) { // for every block of the setUpRoad
+        for (Block block : game.getRoad()) { // for every block of the setUpRoad
             if (block.getBuilding() != null) { // if block is not empty
                 Building building = block.getBuilding(); // take the building
                 if (building.getName().equals(library.getName())) { // if it's the library
