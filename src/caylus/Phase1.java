@@ -15,14 +15,15 @@ public class Phase1 extends Game {
         }
         Player player;
         for (Block block : road) { // for every block of the setUpRoad
-            Building building = block.getBuilding(); // take the building
-            if (building.getName().equals(library.getName())) { // if it's the library
-                player = block.getHouse(); // the owner of the house
-                player.setMoney(player.getMoney() + 1); // collects income
-            }
-            if (building.getName().equals(hotel.getName())) { // if it's the hotel
-                player = block.getHouse(); // the owner of the house
-                player.setMoney(player.getMoney() + 2); // collects income
+            if (block.getBuilding() != null) { // if block is not empty
+                Building building = block.getBuilding(); // take the building
+                if (building.getName().equals(library.getName())) { // if it's the library
+                    player = block.getHouse(); // the owner of the house
+                    player.setMoney(player.getMoney() + library.getActivationMoney()); // collects income
+                } else if (building.getName().equals(hotel.getName())) { // if it's the hotel
+                    player = block.getHouse(); // the owner of the house
+                    player.setMoney(player.getMoney() + hotel.getActivationMoney()); // collects income
+                }
             }
         }
     }

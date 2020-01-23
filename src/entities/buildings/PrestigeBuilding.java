@@ -46,6 +46,14 @@ public class PrestigeBuilding extends Building {
 
     public void setBuildFavors(int buildFavors) {
         this.buildFavors = buildFavors;
+    }
+
+    public int getActivationMoney() {
+        return activationMoney;
+    }
+
+    public void setActivationMoney(int activationMoney) {
+        this.activationMoney = activationMoney;
     }// end of getters setters
 
 }

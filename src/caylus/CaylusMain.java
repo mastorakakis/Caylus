@@ -23,14 +23,14 @@ public class CaylusMain {
         }
         System.out.println("");
 
-        Phase1.play();
-        for (Player player : players) {
-            System.out.println(player);
-        }
-        Phase2.play(sc);
-        for (Player player : players) {
-            System.out.println(player);
-        }
-
+//        Phase1.play();
+//        for (Player player : players) {
+//            System.out.println(player);
+//        }
+//        Phase2.play(sc);
+//        for (Player player : players) {
+//            System.out.println(player);
+//        }
+        System.out.println(game.getRoad().get(18).getHouse());
     }
 }

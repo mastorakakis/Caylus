@@ -2,7 +2,7 @@ package entities.buildings;
 
 public abstract class Building {
 
-    private String name;
+    private String name = "";
 
     // constructor
     public Building() {
