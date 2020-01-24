@@ -1,10 +1,14 @@
 package entities.buildings;
 
+import caylus.Game;
 import entities.players.Player;
+import java.util.List;
+import java.util.Scanner;
 
 public abstract class Building {
 
-    private String name = "";
+//    private String name = "";
+    private String name;
 
     // constructor
     public Building() {
@@ -25,6 +29,6 @@ public abstract class Building {
         this.name = name;
     }// end of getters setters
 
-    public abstract void activate(Player player);
-
+    public abstract Building activate(List<Player> players, Scanner sc, Game game);
+    // TODO change oreder of activate parameters
 }

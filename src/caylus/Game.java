@@ -1,16 +1,21 @@
 package caylus;
 
 import entities.Block;
+import entities.buildings.Bridge;
+import entities.buildings.Castle;
+import entities.buildings.Inn;
 import entities.players.Player;
 import java.util.List;
 
 public class Game {
 
     public static final String WARNING = "--Invalid input--";
-    public Player[] innPosition = new Player[2];
 
     protected List<Player> playerList;
     protected List<Block> road;
+    public Castle castle = Castle.getCastleInstance();
+    public Bridge bridge = Bridge.getBridgeInstance();
+    public static Inn inn = Inn.getInnInstance();
 
     // getters setters
     public List<Player> getPlayerList() {
@@ -34,9 +39,5 @@ public class Game {
 
     public String getWARNING() {
         return WARNING;
-    }
-
-    public Player[] getInnPosition() {
-        return innPosition;
     }// end of getters setters
 }

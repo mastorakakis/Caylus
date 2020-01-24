@@ -1,14 +1,17 @@
 package entities.buildings;
 
+import caylus.Game;
 import entities.Resources;
 import entities.players.Player;
+import java.util.List;
+import java.util.Scanner;
 
 public class PrestigeBuilding extends Building {
 
     private int buildPoints;
     private int buildFavors;
     private Resources buildResources;
-    private int activationMoney;
+    private int incomeMoney;
 
     // constructor
     public PrestigeBuilding() {
@@ -21,7 +24,7 @@ public class PrestigeBuilding extends Building {
         this.buildPoints = buildPoints;
         this.buildFavors = buildFavors;
         this.buildResources = buildResources;
-        this.activationMoney = activationMoney;
+        this.incomeMoney = activationMoney;
     }
 
     // getters setters
@@ -49,17 +52,17 @@ public class PrestigeBuilding extends Building {
         this.buildFavors = buildFavors;
     }
 
-    public int getActivationMoney() {
-        return activationMoney;
+    public int getIncomeMoney() {
+        return incomeMoney;
     }
 
-    public void setActivationMoney(int activationMoney) {
-        this.activationMoney = activationMoney;
+    public void setIncomeMoney(int incomeMoney) {
+        this.incomeMoney = incomeMoney;
     }// end of getters setters
 
     @Override
-    public void activate(Player player) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Building activate(List<Player> players, Scanner sc, Game game) {
+        return this;
     }
 
 }

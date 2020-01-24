@@ -1,7 +1,10 @@
 package entities.buildings;
 
+import caylus.Game;
 import entities.Resources;
 import entities.players.Player;
+import java.util.List;
+import java.util.Scanner;
 
 public class WoodBuilding extends Building {
 
@@ -39,7 +42,7 @@ public class WoodBuilding extends Building {
         this.buildResources = buildResources;
     }
 
-    public int getActivationMoney() {
+    public int getIncomeMoney() {
         return activationMoney;
     }
 
@@ -56,7 +59,7 @@ public class WoodBuilding extends Building {
     } // end of getters setters
 
     @Override
-    public void activate(Player player) {
+    public Building activate(List<Player> players, Scanner sc, Game game) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

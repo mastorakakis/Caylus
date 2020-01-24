@@ -1,6 +1,6 @@
 package caylussetup;
 
-import static caylussetup.CreateBuildings.*;
+import caylus.Game;
 import entities.Block;
 import entities.buildings.Building;
 import entities.players.Player;
@@ -21,13 +21,14 @@ public class SetUpGame {
         int numberOfComPlayers = 0;
         // selecy number of user players
         int numberOfUserPlayers = 3; // CreatePlayers.numberOfUserPlayers(sc);
-        if (numberOfUserPlayers != SetUpGame.MAX_PLAYERS) {// if number of players is not max ask for com players
+        // if number of players is not max ask for com players
+        if (numberOfUserPlayers != SetUpGame.MAX_PLAYERS) {
             numberOfComPlayers = 0;// CreatePlayers.numberOfComPlayers(sc, numberOfUserPlayers);
-        }
-        if (numberOfUserPlayers != 0) { // add user players to the list if there are any
+        }// add user players to the list if there are any
+        if (numberOfUserPlayers != 0) {
             CreatePlayers.addUserPlayers(numberOfUserPlayers, playerList);
-        }
-        if (numberOfComPlayers != 0) { // add com players to the list if there are any
+        }// add com players to the list if there are any
+        if (numberOfComPlayers != 0) {
             CreatePlayers.addComPlayers(numberOfComPlayers, playerList);
         }
         CreatePlayers.randomOrderList(playerList); // randomize order
@@ -37,33 +38,35 @@ public class SetUpGame {
     public static List<Block> road() {
 
         List<Block> road = new ArrayList(34);
-        List<Building> neutralBuildings = new ArrayList(); //List of neutral buildings
-        neutralBuildings.add(neutralQuarry);
-        neutralBuildings.add(neutralSawmill);
-        neutralBuildings.add(neutralFarm);
-        neutralBuildings.add(forest);
-        neutralBuildings.add(neutralMarketPlace);
-        neutralBuildings.add(neutralCarpenter);
-        Collections.shuffle(neutralBuildings); // shuffle neutral buildings
-        // add special buildings
-        road.add(new Block(gate));
-        road.add(new Block(tradingPost));
-        road.add(new Block(merchantsGuild));
-        road.add(new Block(joustField));
-        road.add(new Block(stables));
-        road.add(new Block(inn));
-        road.add(new Block(fixedPeddler));
-        road.add(new Block(fixedCarpenter));
-        // add neutral buildings to road
+        //Neutral buildings
+        List<Building> neutralBuildings = new ArrayList();
+        neutralBuildings.add(BuildingObjects.neutralQuarry);
+        neutralBuildings.add(BuildingObjects.neutralSawmill);
+        neutralBuildings.add(BuildingObjects.neutralFarm);
+        neutralBuildings.add(BuildingObjects.forest);
+        neutralBuildings.add(BuildingObjects.neutralMarketPlace);
+        neutralBuildings.add(BuildingObjects.neutralCarpenter);
+        Collections.shuffle(neutralBuildings); // Shuffle neutral buildings
+        // Add special buildings to road
+        road.add(new Block(BuildingObjects.gate));
+        road.add(new Block(BuildingObjects.tradingPost));
+        road.add(new Block(BuildingObjects.merchantsGuild));
+        road.add(new Block(BuildingObjects.joustField));
+        road.add(new Block(BuildingObjects.stables));
+        road.add(new Block(Game.inn));
+        road.add(new Block(BuildingObjects.fixedPeddler));
+        road.add(new Block(BuildingObjects.fixedCarpenter));
+        // Add neutral buildings to road
         for (Building neutralBuilding : neutralBuildings) {
             road.add(new Block(neutralBuilding));
-        }
-        for (int i = 0; i < 7; i++) { // add 7 empty blocks
+        }// add 7 empty blocks
+        for (int i = 0; i < 7; i++) {
             road.add(new Block());
-        }
-        road.add(new Block(goldMine)); // add gold mine
+        }// Add 7 empty blocks
+        road.add(new Block(BuildingObjects.goldMine)); // add gold mine
+        // Add 12 empty blocks
         for (int i = 0; i < 12; i++) {
-            road.add(new Block()); // add 12 empty blocks
+            road.add(new Block());
         }
         return road;
     }

@@ -1,20 +1,28 @@
 package entities.buildings;
 
+import caylus.Game;
 import entities.players.Player;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
-public class Bridge {
+// Singleton pattern
+public class Bridge extends Building {
 
-    private static final String name = "Bridge";
+    private static Bridge bridgeInstance = new Bridge("Bridge");
     private static List<Player> positionList = new ArrayList();
-    private static int activationMoney;
+    private static int activationMoney = Bridge.getPositionList().size() + 1;
 
-    // constructor
-    public Bridge() {
+    // constructor private
+    private Bridge(String name) {
+        super(name);
     }
 
     // getters setters
+    public static Bridge getBridgeInstance() {
+        return bridgeInstance;
+    }
+
     public static List<Player> getPositionList() {
         return positionList;
     }
@@ -42,5 +50,10 @@ public class Bridge {
         }
         Bridge.activationMoney = activationMoney;
     }// end of getters setters
+
+    @Override
+    public Building activate(List<Player> players, Scanner sc, Game game) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

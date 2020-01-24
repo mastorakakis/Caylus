@@ -1,11 +1,8 @@
 package caylus;
 
-import static caylussetup.CreateBuildings.inn;
-import static caylussetup.CreateBuildings.stables;
 import entities.Block;
 import entities.buildings.Bridge;
 import entities.buildings.Building;
-import entities.buildings.Castle;
 import entities.buildings.PrestigeBuilding;
 import entities.buildings.ResidentialBuilding;
 import entities.players.Player;
@@ -17,75 +14,103 @@ import utilities.Functions;
 public class Phase2 {
 
     public static void play(Game game, Scanner sc) {
-        while (Bridge.getPositionList().size() < game.getPlayerList().size()) { // untill all player pass
+        // untill all player pass
+        while (Bridge.getPositionList().size() < game.getPlayerList().size()) {
             for (Player player : game.getPlayerList()) {
-                if (Bridge.getPositionList().contains(player)) { // if player has passed
-                    continue; // continue to next player
+                // if player has passed
+                if (Bridge.getPositionList().contains(player)) { // continue
+                }// if player has not enough money
+                else if (player.getMoney() < Bridge.getActivationMoney()) {
+                    // add player to bridge ( = pass)
+                    Bridge.getPositionList().add(player);
+                    // increase activation amount of bridge
+                    Bridge.setActivationMoney(Bridge.getPositionList().size() + 1);
+                    System.out.println(player.getColor() + " doesn't have enough"
+                            + " money and passes");
+                } else {
+                    placeWorker(game, player, sc);
                 }
-                placeWorker(game, player, sc);
             }
         }
     }
 
     // place worker
-    protected static void placeWorker(Game game, Player player, Scanner sc) {
+    public static void placeWorker(Game game, Player player, Scanner sc) {
+        // get available buildings to place workers
         List<Integer> availableBuildingsList
-                = getAvailableBuildings(game.getRoad(), player, game); // available buildings to place workers
-        String message
-                = printOptions(availableBuildingsList, game.getRoad(), player); // get availabale options for the user
-        int max = availableBuildingsList.size() + 1; // plus one for -pass-
-        if (!Castle.getPositionList().contains(player)) { // if worker not placed in the castle
+                = getAvailableBuildings(game.getRoad(), player, game);
+        String message // string of availabale options for the user
+                = printOptions(availableBuildingsList, game.getRoad(), player, game);
+        int max = availableBuildingsList.size() + 1 + 1; // plus one for pass
+        // if worker not placed in the castle
+        if (!game.castle.getPositionList().contains(player)) {
             max++; // plus one for -castle-
-        }
-        if (player.getMoney() < Bridge.getActivationMoney()) { // if player has not enough money
-            Bridge.getPositionList().add(player); // add player to bridge ( = pass)
-            Bridge.setActivationMoney(Bridge.getPositionList().size() + 1); // increase activation amount of bridge
-            System.out.println(player.getColor() + " doesn't have enough money and passes");
-            return; // continue to next player
-        }
-        int choice = Functions.inputValidation(1, max, // player choice
+        }// player choice
+        int choice = Functions.inputValidation(1, max,
                 player.getColor() + " place a worker or pass\n" + message,
                 Game.WARNING, sc); // print complete message
-
-        if (choice == max) { // if choose to -pass-
+        // if choose to -pass-
+        if (choice == max) {
             Bridge.getPositionList().add(player); // add player to bridge
-            if (Bridge.getPositionList().size() == 1) { // if he is the first player
+            // if he is the first player
+            if (Bridge.getPositionList().size() == 1) {
                 player.setMoney(player.getMoney() + 1); // player gets 1 denier
-            }
-            Bridge.setActivationMoney(Bridge.getPositionList().size() + 1); // increase activation amount of bridge
+            }// increase activation amount of bridge
+            Bridge.setActivationMoney(Bridge.getPositionList().size() + 1);
             System.out.println(player.getColor() + " passes");
-            return;
-        } else if (!Castle.getPositionList().contains(player) && choice == max - 1) { // if worker not placed in castle and choose castle
-            Castle.getPositionList().add(player); // add worker to castle
-        } else if (game.getRoad().get(availableBuildingsList.get(choice - 1)).getBuilding() == inn) { // if choose inn
-            game.getInnPosition()[0] = player; // add worker to left position of inn
-        } else { // if player chooses a building
-            Block block = game.getRoad().get(availableBuildingsList.get(choice - 1));
+            return; // to not pay according to the last line
+        } // if worker not placed in castle and choose castle
+        else if ((!game.castle.getPositionList().contains(player)
+                && choice == max - 1)) {
+            game.castle.getPositionList().add(player); // add worker to castle
+        } // if choose inn
+        else if (game.getRoad().get(availableBuildingsList.get(choice - 1))
+                .getBuilding().getName().equals("Inn")) {
+            game.inn.getInnPosition()[0] = player; // add worker to left inn position
+        } // if player chooses a building
+        else {
+            Block block = game.getRoad()
+                    .get(availableBuildingsList.get(choice - 1));
             block.getWorkers().add(player); // add player worker to block
-            if (block.getHouse() != null && block.getHouse() != player) { // if house belongs to other player
+            // if house belongs to other player he gets a point
+            if (block.getHouse() != null && block.getHouse() != player) {
                 block.getHouse().setPoints(block.getHouse().getPoints() + 1);
-            } else if (block.getHouse() != null && block.getHouse() == player) { // if house belongs to player
-                int newBalance = player.getMoney() + Bridge.getPositionList().size(); // player will pay 1 denier total considering last line of the method
+            } // if house belongs to player
+            else if (block.getHouse() != null && block.getHouse() == player) {
+                // player pays 1 denier total with last line of the method
+                int newBalance = player.getMoney()
+                        + Bridge.getPositionList().size();
                 player.setMoney(newBalance); // set new money balance
             }
-        }
-        int newBalance = player.getMoney() - (Bridge.getPositionList().size() + 1); // pay proper amount
-        player.setMoney(newBalance); // set new money balance
+        } // if player hasn't passed and not coming from gate pay proper amount
+        if (!Bridge.getPositionList().contains(player)) {
+            int newBalance = player.getMoney()
+                    - (Bridge.getPositionList().size() + 1);
+            player.setMoney(newBalance); // set new money balance
+        } // reduce number of workers
+        player.setWorkers(player.getWorkers() - 1);
+
     }
 
 // Return index list with available buildings for the player to place workers
-    protected static List<Integer> getAvailableBuildings(List<Block> road, Player player, Game game) {
+    protected static List<Integer> getAvailableBuildings(List<Block> road,
+            Player player, Game game) {
         List<Integer> indexList = new ArrayList();
         for (int i = 0; i < road.size(); i++) { // for every block of the road
             Block block = road.get(i);
             Building building = road.get(i).getBuilding();
+            // residential-prestige  buildings and empty blocks are not available
             if (building != null || (!(building instanceof PrestigeBuilding)
-                    && !(building instanceof ResidentialBuilding))) { // residential-prestige  buildings and empty blocks are not available
-                if (building == stables
-                        && block.getWorkers().size() < 3 && !block.getWorkers().contains(player)) { // if stables don't have player or is full
+                    && !(building instanceof ResidentialBuilding))) {
+                // if stables don't have player or is full
+                if (building.getName().equals("Stables")
+                        && block.getWorkers().size() < 3
+                        // TODO change 3 to variable
+                        && !block.getWorkers().contains(player)) {
                     indexList.add(i);
-                } else if (building == inn) {
-                    if (game.getInnPosition()[0] == null) {  // if left position is empty in inn
+                } // if left position is empty in inn
+                else if (building.getName().equals("Inn")) {
+                    if (game.inn.getInnPosition()[0] == null) {
                         indexList.add(i);
                     }
                 } else {
@@ -100,20 +125,23 @@ public class Phase2 {
 
     // create a string with available options (from a list) for the user
     protected static String printOptions(List<Integer> index, List<Block> road,
-            Player player) {
+            Player player, Game game) {
         StringBuilder message = new StringBuilder();
         int i;
         for (i = 0; i < index.size(); i++) { // for every index
-            Building building = road.get(index.get(i)).getBuilding(); // get the building according to index
+            // get the building according to index
+            Building building = road.get(index.get(i)).getBuilding();
             if (building != null) { // if building is not empty
-                message.append(String.format("%02d)%-20s\t", i + 1, building.getName()));
+                message.append(String.format("%02d)%-20s\t", i + 1,
+                        building.getName()));
                 if ((i + 1) % 4 == 0) {
                     message.append("\n");
                 }
             }
-        }
-        if (!Castle.getPositionList().contains(player)) { // if player not in the castle already
-            message.append(String.format("%d)%s\n", ++i, "-Castle-")); // add castle to the message
+        }// if player not in the castle already
+        // add castle to the message
+        if (!game.castle.getPositionList().contains(player)) {
+            message.append(String.format("%d)%s\n", ++i, "-Castle-"));
         }
         message.append(String.format("%d)%s", ++i, "-Pass-"));
         return message.toString();

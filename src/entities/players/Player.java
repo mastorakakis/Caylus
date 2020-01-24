@@ -6,7 +6,7 @@ import enums.Color;
 public abstract class Player {
 
     private Color color;
-    private int points = 0; // player begins with zero points
+    private int points;
     private int money; // players initial amount depends on order of play
     private Resources resources = new Resources(2, 1, 0, 0, 0); // player starts with two food cubes and one wood
     private int favors;
@@ -32,6 +32,14 @@ public abstract class Player {
 
     public void setResources(Resources resources) {
         this.resources = resources;
+    }
+
+    public int getFavors() {
+        return favors;
+    }
+
+    public void setFavors(int favors) {
+        this.favors = favors;
     }
 
     public void setMoney(int money) {
@@ -105,13 +113,13 @@ public abstract class Player {
 //        }
 //    }
 // pay by subtracting resources one by one
-//    public void payResources(Resources resources) {
-//        this.resources.setFood(this.resources.getFood() - resources.getFood());
-//        this.resources.setWood(this.resources.getWood() - resources.getWood());
-//        this.resources.setStone(this.resources.getStone() - resources.getStone());
-//        this.resources.setCloth(this.resources.getCloth() - resources.getCloth());
-//        this.resources.setGold(this.resources.getGold() - resources.getGold());
-//    }
+    public void payResources(Resources resources) {
+        this.resources.setFood(this.resources.getFood() - resources.getFood());
+        this.resources.setWood(this.resources.getWood() - resources.getWood());
+        this.resources.setStone(this.resources.getStone() - resources.getStone());
+        this.resources.setCloth(this.resources.getCloth() - resources.getCloth());
+        this.resources.setGold(this.resources.getGold() - resources.getGold());
+    }
 // select resources from production by adding one by one
 //    public void selectFromBuilding(Resources resources, int money) {
 //        this.resources.setFood(this.resources.getFood() + resources.getFood());
@@ -121,6 +129,7 @@ public abstract class Player {
 //        this.resources.setGold(this.resources.getGold() + resources.getGold());
 //        this.money += money;
 //    }
+
     @Override
     public String toString() {
         return "Player " + color + ": Points=" + points + " Money=" + money + "\n\t"
