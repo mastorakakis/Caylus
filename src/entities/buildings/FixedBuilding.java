@@ -45,7 +45,7 @@ public class FixedBuilding extends Building implements BoardBulding {
     } //  end of getters setters
 
     @Override
-    public Building activate(List<Player> players, Scanner sc, Game game) {
+    public Building activate(Game game, List<Player> players, Scanner sc) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

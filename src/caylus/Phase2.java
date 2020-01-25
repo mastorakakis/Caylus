@@ -21,7 +21,8 @@ public class Phase2 {
                 // if player has passed
                 if (Bridge.getPositionList().contains(player)) { // continue
                 }// if player has not enough money or workers
-                else if (player.getMoney() < Bridge.getActivationMoney()
+                else if ((Game.inn.getInnPosition()[1] == player && player.getMoney() < 1)
+                        || player.getMoney() < Bridge.getActivationMoney()
                         || player.getWorkers() == 0) {
                     // add player to bridge ( = pass)
                     Bridge.getPositionList().add(player);
@@ -43,7 +44,8 @@ public class Phase2 {
                 = getAvailableBuildings(game.getRoad(), player, game);
         String message // string of availabale options for the user
                 = printOptions(availableBuildingsList, game.getRoad(), player, game);
-        int max = availableBuildingsList.size() + 1 + 1; // plus one for pass TODO wrong max
+        int size = availableBuildingsList.size();
+        int max = availableBuildingsList.size() + 1; // plus one for pass
         // if worker not placed in the castle
         if (!game.castle.getPositionList().contains(player)) {
             max++; // plus one for -castle-
@@ -52,7 +54,7 @@ public class Phase2 {
                 player.getColor() + " place a worker or pass\n" + message,
                 Game.WARNING, sc); // print complete message
         // if choose to -pass-
-        if (choice == max - 1) {
+        if (choice == max) {
             Bridge.getPositionList().add(player); // add player to bridge
             // if he is the first player
             if (Bridge.getPositionList().size() == 1) {
@@ -61,9 +63,9 @@ public class Phase2 {
             Bridge.setActivationMoney(Bridge.getPositionList().size() + 1);
             System.out.println(player.getColor() + " passes");
             return; // to not pay according to the last line
-        } // if worker not placed in castle and choose castle
+        } // if worker not placed in castle and chooses castle
         else if ((!game.castle.getPositionList().contains(player)
-                && choice == max - 2)) {
+                && choice == max - 1)) {
             game.castle.getPositionList().add(player); // add worker to castle
         } // if choose inn
         else if (game.getRoad().get(availableBuildingsList.get(choice - 1))
@@ -81,6 +83,8 @@ public class Phase2 {
             // if house belongs to other player he gets a point
             if (block.getHouse() != null && block.getHouse() != player) {
                 block.getHouse().setPoints(block.getHouse().getPoints() + 1);
+                System.out.println(block.getHouse().getColor()
+                        + " Points=" + block.getHouse().getPoints());
             } // if house belongs to player
             else if (block.getHouse() != null && block.getHouse() == player) {
                 // player pays 1 denier total with last line of the method
@@ -117,7 +121,6 @@ public class Phase2 {
                 // if stables don't have player or is full
                 if (building.getName().equals("Stables")
                         && block.getWorkers().size() < 3
-                        // TODO change 3 to variable
                         && !block.getWorkers().contains(player)) {
                     indexList.add(i);
                 } // if left position is empty in inn

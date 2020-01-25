@@ -32,4 +32,5 @@ public class Castle {
     public void activate(List<Player> players) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    // remove static members from singletons
 }

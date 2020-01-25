@@ -32,7 +32,7 @@ public class SpecialBuilding extends Building implements BoardBulding {
     }
 
     @Override
-    public Building activate(List<Player> workers, Scanner sc, Game game) {
+    public Building activate(Game game, List<Player> workers, Scanner sc) {
         Player player = workers.get(0);
         if (this.getName().equals("Trading Post")) {
             player.setMoney(player.getMoney() + this.activationMoney);

@@ -2,6 +2,7 @@ package caylus;
 
 import entities.Block;
 import entities.buildings.Building;
+import entities.buildings.PrestigeBuilding;
 import entities.players.Player;
 import java.util.Scanner;
 
@@ -21,14 +22,16 @@ public class Phase1 {
                 Building building = block.getBuilding(); // take the building
                 // if it's the library
                 if (building.getName().equals("Library")) {
+                    PrestigeBuilding pb = (PrestigeBuilding) building;
                     player = block.getHouse(); // the owner of the house
-                    player.setMoney(player.getMoney() + 1); // collects income
-                    // TODO change 1 to variable
+                    // collect income
+                    player.setMoney(player.getMoney() + pb.getIncomeMoney());
                 } // if it's the hotel
                 else if (building.getName().equals("Hotel")) {
+                    PrestigeBuilding pb = (PrestigeBuilding) building;
                     player = block.getHouse(); // the owner of the house
-                    player.setMoney(player.getMoney() + 2); // collects income
-                    // TODO change 2 to variable
+                    // collect income
+                    player.setMoney(player.getMoney() + pb.getIncomeMoney());
                 }
             }
         }

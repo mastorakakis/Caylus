@@ -61,7 +61,7 @@ public class PrestigeBuilding extends Building {
     }// end of getters setters
 
     @Override
-    public Building activate(List<Player> players, Scanner sc, Game game) {
+    public Building activate(Game game, List<Player> players, Scanner sc) {
         return this;
     }
 

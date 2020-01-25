@@ -29,6 +29,5 @@ public abstract class Building {
         this.name = name;
     }// end of getters setters
 
-    public abstract Building activate(List<Player> players, Scanner sc, Game game);
-    // TODO change oreder of activate parameters
+    public abstract Building activate(Game game, List<Player> players, Scanner sc);
 }

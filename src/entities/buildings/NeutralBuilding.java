@@ -23,7 +23,7 @@ public class NeutralBuilding extends Building {
     }
 
     @Override
-    public Building activate(List<Player> players, Scanner sc, Game game) {
+    public Building activate(Game game, List<Player> players, Scanner sc) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

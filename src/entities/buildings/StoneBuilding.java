@@ -77,7 +77,7 @@ public class StoneBuilding extends Building {
     } // end of getters setters
 
     @Override
-    public Building activate(List<Player> players, Scanner sc, Game game) {
+    public Building activate(Game game, List<Player> players, Scanner sc) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

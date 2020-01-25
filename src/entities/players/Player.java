@@ -132,8 +132,9 @@ public abstract class Player {
 
     @Override
     public String toString() {
-        return "Player " + color + ": Points=" + points + " Money=" + money + "\n\t"
-                + resources + "\n\tFavors=" + favors;
+        return "Player " + color + ": Points=" + points + " Money=" + money
+                + " Favors=" + favors + " Workers=" + workers + "\n\t"
+                + resources;
     }
-//TODO select resource for market place & peddler, toString()
+//TODO select resource for market place & peddler
 }
