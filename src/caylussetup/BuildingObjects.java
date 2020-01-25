@@ -20,7 +20,7 @@ public class BuildingObjects {
     protected static SpecialBuilding merchantsGuild = new SpecialBuilding(0,
             new Resources(0, 0, 0, 0, 0), 0, 0, "Merchant's Guild");
     protected static SpecialBuilding joustField = new SpecialBuilding(1,
-            new Resources(0, 0, 0, 1, 0), 0, 0, "Joust Field");
+            new Resources(0, 0, 0, 1, 0), 0, 1, "Joust Field");
     protected static SpecialBuilding stables = new SpecialBuilding(0,
             new Resources(0, 0, 0, 0, 0), 0, 0, "Stables");
 

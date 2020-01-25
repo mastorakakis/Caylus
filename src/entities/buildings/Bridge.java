@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Bridge extends Building {
 
     private static Bridge bridgeInstance = new Bridge("Bridge");
-    private static List<Player> positionList = new ArrayList();
+    public static List<Player> positionList = new ArrayList(); // TODO change to private
     private static int activationMoney = Bridge.getPositionList().size() + 1;
 
     // constructor private

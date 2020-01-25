@@ -1,6 +1,8 @@
 package caylus;
 
+import entities.Bailiff;
 import entities.Block;
+import entities.Provost;
 import entities.buildings.Bridge;
 import entities.buildings.Castle;
 import entities.buildings.Inn;
@@ -16,6 +18,8 @@ public class Game {
     public Castle castle = Castle.getCastleInstance();
     public Bridge bridge = Bridge.getBridgeInstance();
     public static Inn inn = Inn.getInnInstance();
+    public Bailiff bailiff = Bailiff.getBailiffInstance();
+    public Provost provost = Provost.getProvostInstance();
 
     // getters setters
     public List<Player> getPlayerList() {
