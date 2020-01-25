@@ -54,16 +54,17 @@ public class SetUpGame {
         road.add(new Block(BuildingObjects.joustField));
         road.add(new Block(BuildingObjects.stables));
         road.add(new Block(Game.inn));
-        road.add(new Block(BuildingObjects.fixedPeddler));
-        road.add(new Block(BuildingObjects.fixedCarpenter));
         // Add neutral buildings to road
         for (Building neutralBuilding : neutralBuildings) {
             road.add(new Block(neutralBuilding));
-        }// add 7 empty blocks
+        }// Add 2 fixed buildings
+        road.add(new Block(BuildingObjects.fixedPeddler));
+        road.add(new Block(BuildingObjects.fixedCarpenter));
+        // add 7 empty blocks
         for (int i = 0; i < 7; i++) {
             road.add(new Block());
-        }// Add 7 empty blocks
-        road.add(new Block(BuildingObjects.goldMine)); // add gold mine
+        }// Add gold mine
+        road.add(new Block(BuildingObjects.goldMine));
         // Add 12 empty blocks
         for (int i = 0; i < 12; i++) {
             road.add(new Block());

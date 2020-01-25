@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Scanner;
 import utilities.Functions;
 
+// Place workers
 public class Phase2 {
 
     public static void play(Game game, Scanner sc) {

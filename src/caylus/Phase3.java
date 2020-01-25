@@ -7,6 +7,7 @@ import interfaces.Phases;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+// Activate special buildings
 public class Phase3 {
 
     public static void play(Game game, Scanner sc) {
@@ -15,6 +16,7 @@ public class Phase3 {
             Block block = game.getRoad().get(i);
             // if building is not null and has worker
             if ((block.getBuilding() != null && block.getWorkers().size() > 0)
+                    // or Inn has a worker in any position
                     || (block.getBuilding() == game.inn && game.inn.getInnPosition().length > 0)) {
                 Building building = block.getBuilding();
                 // activate building

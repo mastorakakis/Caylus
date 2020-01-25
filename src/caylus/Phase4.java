@@ -8,6 +8,7 @@ import utilities.Functions;
 
 public class Phase4 {
 
+    // Move Provost
     public static void play(Game game, Scanner sc) {
         List<Player> playerList = game.bridge.getPositionList();
         for (Player player : playerList) {

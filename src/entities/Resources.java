@@ -12,6 +12,10 @@ public class Resources implements Comparable {
     private int gold;
 
     // constructor
+    public Resources() {
+    }
+
+    // constructor
     public Resources(int food, int wood, int stone, int cloth, int gold) {
         this.food = food;
         this.wood = wood;
@@ -77,25 +81,22 @@ public class Resources implements Comparable {
     }// end of getters setters
 
     // modifying Resourses +-1 depending on SelectAction used in build method
-    public void modifyResources(SelectAction s, int selection, Scanner sc) {
-        int modifier = (s == SelectAction.ADD ? 1 : -1);
+    public void modifyResources(int selection, Scanner sc) {
         switch (selection) {
             case 1:
-                this.setFood(food += modifier);
+                this.setFood(++food);
                 break;
             case 2:
-                this.setWood(wood += modifier);
+                this.setWood(++wood);
                 break;
             case 3:
-                this.setStone(stone += modifier);
+                this.setStone(++stone);
                 break;
             case 4:
-                this.setCloth(cloth += modifier);
+                this.setCloth(++cloth);
                 break;
             case 5:
-                this.setGold(gold += modifier);
-                break;
-            default:
+                this.setGold(++gold);
                 break;
         }
     }

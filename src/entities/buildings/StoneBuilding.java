@@ -1,10 +1,13 @@
 package entities.buildings;
 
 import caylus.Game;
+import static caylus.Game.WARNING;
 import entities.Resources;
 import entities.players.Player;
+import enums.SelectAction;
 import java.util.List;
 import java.util.Scanner;
+import utilities.Functions;
 
 public class StoneBuilding extends Building {
 
@@ -72,13 +75,186 @@ public class StoneBuilding extends Building {
         return buildFavors;
     }
 
+    public Resources getActivationRentResources() {
+        return activationRentResources;
+    }
+
+    public void setActivationRentResources(Resources activationRentResources) {
+        this.activationRentResources = activationRentResources;
+    }
+
     public void setBuildFavors(int buildFavors) {
         this.buildFavors = buildFavors;
     } // end of getters setters
 
     @Override
-    public Building activate(Game game, List<Player> players, Scanner sc) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Building activate(Game game, List<Player> workers, Scanner sc) {
+        Player player = workers.get(0);
+        if (this.getName().equals("Park")) {
+            player.collectFromBuilding(activationResources, activationMoney,
+                    SelectAction.ADD);
+        }
+        if (this.getName().equals("Stone Farm")) {
+            player.collectFromBuilding(activationResources, activationMoney,
+                    SelectAction.ADD);
+        }
+        if (this.getName().equals("Workshop")) {
+            player.collectFromBuilding(activationResources, activationMoney,
+                    SelectAction.ADD);
+        }
+        if (this.getName().equals("Bank")) {
+            boolean askAgain = false;
+            do {
+                String message = player.getColor() + " select amount of money "
+                        + "to trade\n1)2 deniers\n2)5 deniers\n3)Don't trade";
+                int choice = Functions.inputValidation(1, 3, message, WARNING, sc);
+                if (choice != 3) {
+                    activationMoney = 2;
+                    activationResources.modifyResources(5, sc);
+                    if (choice == 2) {
+                        activationResources.modifyResources(5, sc);
+                        activationMoney = 5;
+                    }
+                    if (player.getMoney() < activationMoney) {
+                        System.out.println("Not enough money to trade");
+                        askAgain = true;
+                    } else {
+                        player.collectFromBuilding(activationResources,
+                                activationMoney, SelectAction.ADD);
+                        askAgain = false;
+                    }
+                    this.activationResources = new Resources();
+                } else {
+                    askAgain = false;
+                }
+            } while (askAgain == true);
+        }
+        if (this.getName().equals("Church")) {
+            boolean askAgain = false;
+            do {
+                String message = player.getColor() + " select amount of money "
+                        + "to trade\n1)2 deniers\n2)4 deniers\n3)Don't trade";
+                int choice = Functions.inputValidation(1, 3, message, WARNING, sc);
+                if (choice != 3) {
+                    int points = 3;
+                    activationMoney = 2;
+                    if (choice == 2) {
+                        points = 5;
+                        activationMoney = 4;
+                    }
+                    if (player.getMoney() < activationMoney) {
+                        System.out.println("Not enough money to trade");
+                        askAgain = true;
+                    } else {
+                        player.setMoney(player.getMoney() - activationMoney);
+                        player.setPoints(player.getPoints() + points);
+                        askAgain = false;
+                    }
+                } else {
+                    askAgain = false;
+                }
+            } while (askAgain == true);
+        }
+        if (this.getName().equals("Alchemist")) {
+            boolean askAgain = false;
+            do {
+                String message = player.getColor() + " select number of resources "
+                        + "to trade\n1)2 resources\n2)4 resources\n3)Don't trade";
+                int choice = Functions.inputValidation(1, 3, message, WARNING, sc);
+                if (choice != 3) {
+                    choice = choice == 1 ? 2 : 4;
+                    int gold = choice == 2 ? 1 : 2;
+                    for (int i = 0; i < choice; i++) {
+                        String message2 = player.getColor() + " select one Resource "
+                                + "to trade\n1)Food\n2)Wood\n3)Stone\n4)Cloth";
+                        int choice2 = Functions.inputValidation(1, 4, message2,
+                                WARNING, sc);
+                        this.activationResources.modifyResources(choice2, sc);
+                    }
+                    if (player.getResources().compareTo(activationResources) < 0) {
+                        System.out.println("Not enough resources to trade");
+                        askAgain = true;
+                    } else {
+                        player.collectFromBuilding(activationResources,
+                                activationMoney, SelectAction.SUBTRACT);
+                        this.activationResources = new Resources();
+                        activationResources.modifyResources(5, sc);
+                        if (gold == 2) {
+                            activationResources.modifyResources(5, sc);
+                        }
+                        player.collectFromBuilding(activationResources,
+                                activationMoney, SelectAction.ADD);
+                        askAgain = false;
+                    }
+                    this.activationResources = new Resources();
+                } else {
+                    askAgain = false;
+                }
+            } while (askAgain == true);
+        }
+        if (this.getName().equals("Jeweler")) {
+            boolean askAgain = false;
+            do {
+                String message = player.getColor() + " select number of resources "
+                        + "to trade\n1)1 Gold\n2)2 Gold\n3)Don't trade";
+                int choice = Functions.inputValidation(1, 3, message, WARNING, sc);
+                if (choice != 3) {
+                    int points = 5;
+                    activationResources.modifyResources(5, sc);
+                    if (choice == 2) {
+                        activationResources.modifyResources(5, sc);
+                        points = 9;
+                    }
+                    if (player.getResources().compareTo(activationResources) < 0) {
+                        System.out.println("Not enough resources to trade");
+                        askAgain = true;
+                    } else {
+                        player.collectFromBuilding(activationResources,
+                                activationMoney, SelectAction.SUBTRACT);
+                        player.setPoints(player.getPoints() + points);
+                        askAgain = false;
+                    }
+                    this.activationResources = new Resources();
+                } else {
+                    askAgain = false;
+                }
+            } while (askAgain == true);
+        }
+        if (this.getName().equals("Tailor")) {
+            boolean askAgain = false;
+            do {
+                String message = player.getColor() + " select number of resources "
+                        + "to trade\n1)2 Cloth\n2)3 Cloth\n3)Don't trade";
+                int choice = Functions.inputValidation(1, 3, message, WARNING, sc);
+                if (choice != 3) {
+                    int points = 4;
+                    activationResources.modifyResources(4, sc);
+                    activationResources.modifyResources(4, sc);
+                    if (choice == 2) {
+                        activationResources.modifyResources(4, sc);
+                        points = 6;
+                    }
+                    if (player.getResources().compareTo(activationResources) < 0) {
+                        System.out.println("Not enough resources to trade");
+                        askAgain = true;
+                    } else {
+                        player.collectFromBuilding(activationResources,
+                                activationMoney, SelectAction.SUBTRACT);
+                        player.setPoints(player.getPoints() + points);
+                        askAgain = false;
+                    }
+                    this.activationResources = new Resources();
+                } else {
+                    askAgain = false;
+                }
+            } while (askAgain == true);
+        }
+        if (this.getName().equals("Architect A")) {
+        }
+        if (this.getName().equals("Architect B")) {
+        }
+
+        return this;
     }
 
 }

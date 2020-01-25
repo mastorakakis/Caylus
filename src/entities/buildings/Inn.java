@@ -34,11 +34,13 @@ public class Inn extends Building {
         if (innPosition[0] != null) {
             innPosition[1] = innPosition[0];
             innPosition[0] = null;
-        } else {
+        } else { // ask player to remove worker
             String message = innPosition[1].getColor() + " remove worker from Inn:"
                     + " 1)Yes 2)No";
             int choice = Functions.inputValidation(1, 2, message, WARNING, sc);
             if (choice == 1) {
+                // return worker to player
+                innPosition[1].setWorkers(innPosition[1].getWorkers() + 1);
                 innPosition[1] = null;
             }
         }

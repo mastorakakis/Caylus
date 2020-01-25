@@ -2,6 +2,7 @@ package entities.players;
 
 import entities.Resources;
 import enums.Color;
+import enums.SelectAction;
 
 public abstract class Player {
 
@@ -30,10 +31,9 @@ public abstract class Player {
         return money;
     }
 
-    public void setResources(Resources resources) {
-        this.resources = resources;
-    }
-
+//    public void setResources(Resources resources) {
+//        this.resources = resources;
+//    }
     public int getFavors() {
         return favors;
     }
@@ -112,7 +112,7 @@ public abstract class Player {
 //            this.favors += b.getFavors(); // get the favors
 //        }
 //    }
-// pay by subtracting resources one by one
+    // pay by subtracting resources one by one
     public void payResources(Resources resources) {
         this.resources.setFood(this.resources.getFood() - resources.getFood());
         this.resources.setWood(this.resources.getWood() - resources.getWood());
@@ -120,15 +120,19 @@ public abstract class Player {
         this.resources.setCloth(this.resources.getCloth() - resources.getCloth());
         this.resources.setGold(this.resources.getGold() - resources.getGold());
     }
-// select resources from production by adding one by one
-//    public void selectFromBuilding(Resources resources, int money) {
-//        this.resources.setFood(this.resources.getFood() + resources.getFood());
-//        this.resources.setWood(this.resources.getWood() + resources.getWood());
-//        this.resources.setStone(this.resources.getStone() + resources.getStone());
-//        this.resources.setCloth(this.resources.getCloth() + resources.getCloth());
-//        this.resources.setGold(this.resources.getGold() + resources.getGold());
-//        this.money += money;
-//    }
+
+    // select resources from production by adding one by one
+    public void collectFromBuilding(Resources resources, int money, SelectAction s) {
+        int modifier = (s == SelectAction.ADD ? 1 : -1);
+        int number = modifier * resources.getGold(); // TODO delete
+        this.resources.setFood(this.resources.getFood() + modifier * resources.getFood());
+        this.resources.setWood(this.resources.getWood() + modifier * resources.getWood());
+        this.resources.setStone(this.resources.getStone() + modifier * resources.getStone());
+        this.resources.setCloth(this.resources.getCloth() + modifier * resources.getCloth());
+        this.resources.setGold(this.resources.getGold() + modifier * resources.getGold());
+        int amount = -1 * modifier * money; //TODO delete
+        this.money += -1 * modifier * money;
+    }
 
     @Override
     public String toString() {
@@ -136,5 +140,5 @@ public abstract class Player {
                 + " Favors=" + favors + " Workers=" + workers + "\n\t"
                 + resources;
     }
-//TODO select resource for market place & peddler
+//TODO maybe replace select resources with setResources
 }

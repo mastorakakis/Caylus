@@ -47,7 +47,8 @@ public class SpecialBuilding extends Building implements BoardBulding {
             } else {
                 game.provost.setPosition(game.provost.getPosition() - choice2);
             }
-            System.out.println("Provost new position = " + (game.provost.getPosition() + 1));
+            System.out.println("Provost new position = "
+                    + (game.provost.getPosition() + 1));
         } else if (this.getName().equals("Joust Field")) {
             // if player has  money and resources
             if (player.getMoney() >= this.activationMoney
@@ -77,5 +78,5 @@ public class SpecialBuilding extends Building implements BoardBulding {
         player.setWorkers(player.getWorkers() + 1);
         return this;
     }
-
+// TODO delete activation points
 }
