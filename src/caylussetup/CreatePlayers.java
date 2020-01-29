@@ -37,7 +37,7 @@ public class CreatePlayers {
     // returns number of user players
     protected static int numberOfUserPlayers(Scanner sc) {
         int userPlayers = Functions.inputValidation(MIN_USER_PLAYERS, MAX_PLAYERS,
-                "Select number of user players", Game.WARNING, sc);
+                "Select number of user players", null, sc);
         return userPlayers;
     }
 
@@ -46,7 +46,7 @@ public class CreatePlayers {
         int max = MAX_PLAYERS - numberOfUserPlayers;
         int min = numberOfUserPlayers < MIN_PLAYERS ? MIN_PLAYERS - numberOfUserPlayers : 0;
         int players = Functions.inputValidation(min, max,
-                "Select number of COM players", Game.WARNING, sc);
+                "Select number of COM players", null, sc);
         return players;
     }
 

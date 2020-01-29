@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Phase3 {
 
     public static void play(Game game, Scanner sc) {
-        System.out.println("Phase 3: Activating Special Buildings");
+        System.out.println("\nPhase 3: Activating Special Buildings");
         // for every block
         for (int i = 1; i <= 6; i++) {
             Block block = game.getRoad().get(i);

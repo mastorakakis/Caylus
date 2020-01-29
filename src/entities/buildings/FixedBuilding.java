@@ -60,7 +60,7 @@ public class FixedBuilding extends Building implements BoardBulding {
                         + " select one Resource to collect\n"
                         + "1)Food\n2)Wood\n3)Stone\n4)Cloth";
                 int choice = Functions.inputValidation(1, 4, message,
-                        WARNING, sc);
+                        player, sc);
                 activationResources.modifyResources(choice, sc);
             }
             player.tradeMoneyResources(activationResources,

@@ -71,17 +71,17 @@ public class Phase5 {
         if (block.getBuilding().getName().equals("Stone Farm")) {
             String message = block.getHouse().getColor()
                     + " select resource1\n1)1 Food\n2)1 Cloth";
-            choice = Functions.inputValidation(1, 2, message, WARNING, sc);
+            choice = Functions.inputValidation(1, 2, message, null, sc); // TODO null
             choice = choice == 2 ? 4 : 1;
         } else if (block.getBuilding().getName().equals("Workshop")) {
             String message = block.getHouse().getColor()
                     + " select resource\n1)1 Stone\n2)1 Cloth";
-            choice = Functions.inputValidation(1, 2, message, WARNING, sc);
+            choice = Functions.inputValidation(1, 2, message, null, sc);// TODO null
             choice = choice == 2 ? 4 : 3;
         } else if (block.getBuilding().getName().equals("Park")) {
             String message = block.getHouse().getColor()
                     + " select resource1\n1)1 Food\n2)1 Wood";
-            choice = Functions.inputValidation(1, 2, message, WARNING, sc);
+            choice = Functions.inputValidation(1, 2, message, null, sc);// TODO null
         }
         rentResources.modifyResources(choice, sc);
         block.getHouse().tradeMoneyResources(rentResources, 0,

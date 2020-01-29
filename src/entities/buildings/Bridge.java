@@ -37,11 +37,13 @@ public class Bridge implements Serializable {
     }// end of getters setters
 
     public static void playerPass(Player player) {
-        Bridge.getPositionList().add(player); // add player to bridge
-        if (Bridge.getPositionList().size() == 1) { // if player is first
-            player.setMoney(player.getMoney() + 1); // player earns 1 denier
+        // if coming from gate player already passed
+        if (!Bridge.getPositionList().contains(player)) {
+            Bridge.getPositionList().add(player); // add player to bridge
+            if (Bridge.getPositionList().size() == 1) { // if player is first
+                player.setMoney(player.getMoney() + 1); // player earns 1 denier
+            }
         }
         System.out.println(player.getColor() + " passes");
     }
-
 }

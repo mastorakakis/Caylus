@@ -48,4 +48,11 @@ public class LoadGame {
             }
         }
     }
+
+    public static Game load(Game game) {
+        LoadGame.openFile();
+        game = readRecords();
+        LoadGame.close();
+        return game;
+    }
 }

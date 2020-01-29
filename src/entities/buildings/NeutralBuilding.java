@@ -38,7 +38,7 @@ public class NeutralBuilding extends Building {
         } else if (this.getName().equals("Neutral Farm")) {
             String message = player.getColor()
                     + " select resource\n1)1 Food\n2)1 Cloth";
-            int choice = Functions.inputValidation(1, 2, message, WARNING, sc);
+            int choice = Functions.inputValidation(1, 2, message, player, sc);
             choice = choice == 2 ? 4 : 1;
             activationResources.modifyResources(choice, sc);
             player.tradeMoneyResources(activationResources, activationMoney,
@@ -47,7 +47,7 @@ public class NeutralBuilding extends Building {
         } else if (this.getName().equals("Forest")) {
             String message = player.getColor()
                     + " select resource\n1)1 Food\n2)1 Wood";
-            int choice = Functions.inputValidation(1, 2, message, WARNING, sc);
+            int choice = Functions.inputValidation(1, 2, message, player, sc);
             activationResources.modifyResources(choice, sc);
             player.tradeMoneyResources(activationResources, activationMoney,
                     Action.ADD);
@@ -57,7 +57,7 @@ public class NeutralBuilding extends Building {
             do {
                 String message = player.getColor() + " select one Resource to trade\n"
                         + "1)Food\n2)Wood\n3)Stone\n4)Cloth\n5)Don't trade";
-                int choice = Functions.inputValidation(1, 5, message, WARNING, sc);
+                int choice = Functions.inputValidation(1, 5, message, player, sc);
                 if (choice != 5) {
                     this.activationResources.modifyResources(choice, sc);
                     if (player.getResources().compareTo(this.activationResources) < 0) {

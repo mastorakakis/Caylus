@@ -95,7 +95,7 @@ public abstract class Player implements Serializable {
             String message = this.color + "select building\n"
                     + Functions.printOptions(buildings);
             int max = buildings.size() + 1;
-            choice = Functions.inputValidation(1, max, message, Game.WARNING, sc);
+            choice = Functions.inputValidation(1, max, message, this, sc);
             // if don't build
             if (choice == max) {
                 return null;
@@ -106,8 +106,7 @@ public abstract class Player implements Serializable {
                 int choice2 = Functions.inputValidation(1, 5, "Building a "
                         + buildings.get(choice - 1).getName()
                         + " costs 1 wood plus 1 resource of choice\n"
-                        + "1)Food\n2Wood\n3)Stone\n4)Cloth\n5)Gold",
-                        "Invalid input.", sc);
+                        + "1)Food\n2Wood\n3)Stone\n4)Cloth\n5)Gold", this, sc);
                 // increase selected building resource cost
                 buildings.get(choice - 1).getBuildResources().modifyResources(choice2, sc);
             }// check if resources are enough
@@ -133,7 +132,7 @@ public abstract class Player implements Serializable {
             String message = this.color + "select building\n"
                     + Functions.printOptions(buildings);
             int max = buildings.size() + 1;
-            choice = Functions.inputValidation(1, max, message, Game.WARNING, sc);
+            choice = Functions.inputValidation(1, max, message, this, sc);
             // if don't build
             if (choice == max) {
                 return null;
@@ -159,7 +158,7 @@ public abstract class Player implements Serializable {
                 game.getRoad());
         int max = availableBuildingsList.size() + 1; // plus one for pass
         int choice = Functions.inputValidation(1, max, color
-                + " select building or pass\n" + message, Game.WARNING, sc);
+                + " select building or pass\n" + message, this, sc);
         if (choice != max) {
             Block block = game.getRoad()
                     .get(availableBuildingsList.get(choice - 1));
@@ -183,7 +182,7 @@ public abstract class Player implements Serializable {
             String message = this.color + "select Prestige building\n"
                     + Functions.printOptions(buildings);
             int max = buildings.size() + 1;
-            choice = Functions.inputValidation(1, max, message, Game.WARNING, sc);
+            choice = Functions.inputValidation(1, max, message, this, sc);
             // if don't build
             if (choice == max) {
                 return null;
@@ -208,7 +207,7 @@ public abstract class Player implements Serializable {
                 game.getRoad());
         int max = availableBuildingsList.size() + 1; // plus one for pass
         int choice2 = Functions.inputValidation(1, max, color
-                + " select building or pass\n" + message, Game.WARNING, sc);
+                + " select building or pass\n" + message, this, sc);
         if (choice2 != max) {
             Block block = game.getRoad()
                     .get(availableBuildingsList.get(choice2 - 1));

@@ -73,7 +73,7 @@ public class WoodBuilding extends Building {
         if (this.getName().equals("Wood Farm A")) {
             String message = player.getColor()
                     + " select resources\n1)2 Food\n2)1 Cloth";
-            int choice = Functions.inputValidation(1, 2, message, WARNING, sc);
+            int choice = Functions.inputValidation(1, 2, message, player, sc);
             choice = choice == 2 ? 4 : 1;
             activationResources.modifyResources(choice, sc);
             if (choice == 1) {
@@ -86,7 +86,7 @@ public class WoodBuilding extends Building {
         if (this.getName().equals("Wood Farm B")) {
             String message = player.getColor()
                     + " select resources\n1)1 Food\n2)2 Cloth";
-            int choice = Functions.inputValidation(1, 2, message, WARNING, sc);
+            int choice = Functions.inputValidation(1, 2, message, player, sc);
             choice = choice == 2 ? 4 : 1;
             activationResources.modifyResources(choice, sc);
             if (choice == 4) {
@@ -101,7 +101,7 @@ public class WoodBuilding extends Building {
             do {
                 String message = player.getColor() + " select one Resource to trade\n"
                         + "1)Food\n2)Wood\n3)Stone\n4)Cloth\n5)Don't trade";
-                int choice = Functions.inputValidation(1, 5, message, WARNING, sc);
+                int choice = Functions.inputValidation(1, 5, message, player, sc);
                 if (choice != 5) {
                     this.activationResources.modifyResources(choice, sc);
                     if (player.getResources().compareTo(this.activationResources) < 0) {
@@ -123,7 +123,7 @@ public class WoodBuilding extends Building {
             do {
                 String message = player.getColor() + " select how amount of money "
                         + "to spend\n1)1 denier\n2)2 deniers\n3)Don't trade";
-                int choice = Functions.inputValidation(1, 3, message, WARNING, sc);
+                int choice = Functions.inputValidation(1, 3, message, player, sc);
                 if (choice != 3) {
                     activationMoney = choice;
                     if (player.getMoney() < activationMoney) {
@@ -135,7 +135,7 @@ public class WoodBuilding extends Building {
                                     + " select one Resource to collect\n"
                                     + "1)Food\n2)Wood\n3)Stone\n4)Cloth";
                             int choice2 = Functions.inputValidation(1, 4, message2,
-                                    WARNING, sc);
+                                    player, sc);
                             activationResources.modifyResources(choice2, sc);
                         }
                         player.tradeMoneyResources(activationResources,

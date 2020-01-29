@@ -108,7 +108,7 @@ public class StoneBuilding extends Building {
             do {
                 String message = player.getColor() + " select amount of money "
                         + "to trade\n1)2 deniers\n2)5 deniers\n3)Don't trade";
-                int choice = Functions.inputValidation(1, 3, message, WARNING, sc);
+                int choice = Functions.inputValidation(1, 3, message, player, sc);
                 if (choice != 3) {
                     activationMoney = 2;
                     activationResources.modifyResources(5, sc);
@@ -135,7 +135,7 @@ public class StoneBuilding extends Building {
             do {
                 String message = player.getColor() + " select amount of money "
                         + "to trade\n1)2 deniers\n2)4 deniers\n3)Don't trade";
-                int choice = Functions.inputValidation(1, 3, message, WARNING, sc);
+                int choice = Functions.inputValidation(1, 3, message, player, sc);
                 if (choice != 3) {
                     int points = 3;
                     activationMoney = 2;
@@ -161,7 +161,7 @@ public class StoneBuilding extends Building {
             do {
                 String message = player.getColor() + " select number of resources "
                         + "to trade\n1)2 resources\n2)4 resources\n3)Don't trade";
-                int choice = Functions.inputValidation(1, 3, message, WARNING, sc);
+                int choice = Functions.inputValidation(1, 3, message, player, sc);
                 if (choice != 3) {
                     choice = choice == 1 ? 2 : 4;
                     int gold = choice == 2 ? 1 : 2;
@@ -169,7 +169,7 @@ public class StoneBuilding extends Building {
                         String message2 = player.getColor() + " select one Resource "
                                 + "to trade\n1)Food\n2)Wood\n3)Stone\n4)Cloth";
                         int choice2 = Functions.inputValidation(1, 4, message2,
-                                WARNING, sc);
+                                player, sc);
                         this.activationResources.modifyResources(choice2, sc);
                     }
                     if (player.getResources().compareTo(activationResources) < 0) {
@@ -198,7 +198,7 @@ public class StoneBuilding extends Building {
             do {
                 String message = player.getColor() + " select number of resources "
                         + "to trade\n1)1 Gold\n2)2 Gold\n3)Don't trade";
-                int choice = Functions.inputValidation(1, 3, message, WARNING, sc);
+                int choice = Functions.inputValidation(1, 3, message, player, sc);
                 if (choice != 3) {
                     int points = 5;
                     activationResources.modifyResources(5, sc);
@@ -226,7 +226,7 @@ public class StoneBuilding extends Building {
             do {
                 String message = player.getColor() + " select number of resources "
                         + "to trade\n1)2 Cloth\n2)3 Cloth\n3)Don't trade";
-                int choice = Functions.inputValidation(1, 3, message, WARNING, sc);
+                int choice = Functions.inputValidation(1, 3, message, player, sc);
                 if (choice != 3) {
                     int points = 4;
                     activationResources.modifyResources(4, sc);

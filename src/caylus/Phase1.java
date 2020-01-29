@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class Phase1 {
 
     public static void play(Game game, Scanner sc) {
-        System.out.println("Phase 1: Collecting Income\nAll players earn 2 deniers");
+        System.out.println("\nPhase 1: Collecting Income\nAll players earn 2 deniers");
         // collect income from library and hotel
         for (Block block : game.getRoad()) {
             Player player;
@@ -41,9 +41,11 @@ public class Phase1 {
                     System.out.println(player.getColor() + " earns 1 denier");
                 }
             }
-        }// Each player collects income
+        }
+        // Each player collects income
         for (Player player : game.getPlayerList()) {
             player.setMoney(player.getMoney() + 2);
+            System.out.println(player);
         }
     }
 

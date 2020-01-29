@@ -6,7 +6,10 @@ import entities.buildings.Building;
 import entities.buildings.Inn;
 import entities.buildings.PrestigeBuilding;
 import entities.buildings.ResidentialBuilding;
+import entities.players.ComPlayer;
 import entities.players.Player;
+import entities.players.UserPlayer;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -28,11 +31,14 @@ public class Phase2 {
                         || player.getWorkers() == 0) {
                     // add player to bridge ( = pass)
                     Bridge.playerPass(player);
-                    System.out.println("(Not enough workers or money");
+                    System.out.println("(Not enough workers or money)");
                 } else {
                     placeWorker(game, player, sc);
                 }
             }
+        }
+        for (Player player : game.getPlayerList()) {
+            System.out.println(player);
         }
     }
 
@@ -44,15 +50,15 @@ public class Phase2 {
         String message // string of availabale options for the user
                 = Functions.printIndexedOptions(availableBuildingsList, game.getRoad());
         int max = availableBuildingsList.size() + 1; // plus one for pass
-        System.out.println(player.getColor() + " Money=" + player.getMoney());
+        System.out.println("\n" + player.getColor() + " Money=" + player.getMoney());
         int choice = Functions.inputValidation(1, max, player.getColor()
-                + " place a worker or pass\n" + message, Game.WARNING, sc);
-        // if choose to -pass-
+                + " place a worker or pass\n" + message, player, sc);
+        // if -pass-
         if (choice == max) {
             // add player to bridge ( = pass)
             Bridge.playerPass(player);
             return; // to not pay according to end of method
-        } // if choose castle and has no worker there
+        } // if Inn and has no worker there
         else if (game.getRoad().get(availableBuildingsList.get(choice - 1))
                 .getBuilding().getName().equals("Inn")) {
             Block block = game.getRoad().get(availableBuildingsList.get(choice - 1));
@@ -60,7 +66,6 @@ public class Phase2 {
             ((Inn) block.getBuilding()).getInnPosition()[0] = player;
             System.out.println(player.getColor() + " places worker in "
                     + block.getBuilding().getName());
-
         } // if player chooses a building
         else {
             Block block = game.getRoad()
@@ -74,7 +79,6 @@ public class Phase2 {
                 block.getHouse().setPoints(block.getHouse().getPoints() + 1);
                 System.out.println(block.getHouse().getColor() + " earns 1 point");
             }
-
         } // if player hasn't passed thus not coming from gate pay proper amount
         if (!game.getBridge().getPositionList().contains(player)) {
             Block block = game.getRoad()
@@ -89,7 +93,7 @@ public class Phase2 {
                         - game.getBridge().getPositionList().size() - 1;
                 player.setMoney(newBalance);
             }
-        } // increase number of workers when coming from gate
+        }
         // reduce number of workers
         player.setWorkers(player.getWorkers() - 1);
         System.out.println(player.getColor() + " Money=" + player.getMoney());
@@ -120,7 +124,6 @@ public class Phase2 {
                 } else if (building == game.getCastle()
                         && !block.getWorkers().contains(player)) {
                     indexList.add(i);
-                    continue; // go to next
                     // if building is epmtpy
                 } else {
                     if (block.getWorkers().isEmpty()) {

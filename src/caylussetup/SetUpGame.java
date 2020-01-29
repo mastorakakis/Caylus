@@ -19,10 +19,10 @@ public class SetUpGame {
         List<Player> playerList = new ArrayList();
         int numberOfComPlayers = 0;
         // select number of user players
-        int numberOfUserPlayers = 3; // CreatePlayers.numberOfUserPlayers(sc);
+        int numberOfUserPlayers = 0; // CreatePlayers.numberOfUserPlayers(sc);
         // if number of players is not max ask for com players
         if (numberOfUserPlayers != SetUpGame.MAX_PLAYERS) {
-            numberOfComPlayers = 0;// CreatePlayers.numberOfComPlayers(sc, numberOfUserPlayers);
+            numberOfComPlayers = 3;// CreatePlayers.numberOfComPlayers(sc, numberOfUserPlayers);
         }// add user players to the list if there are any
         if (numberOfUserPlayers != 0) {
             CreatePlayers.addUserPlayers(numberOfUserPlayers, playerList);
@@ -107,4 +107,4 @@ public class SetUpGame {
         return road;
     }
 }
-// delete number of user players 5 and com players 3
+// TODO delete number of user players 5 and com players 3

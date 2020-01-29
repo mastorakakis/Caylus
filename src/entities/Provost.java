@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Provost implements Serializable {
 
     private static Provost provostInstance = new Provost();
-    private static int position = 11;
+    private static int position = 12;
 
     // constructor private
     private Provost() {

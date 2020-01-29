@@ -1,8 +1,13 @@
 package utilities;
 
+import static caylus.Game.WARNING;
 import entities.Block;
 import entities.buildings.Building;
+import entities.players.ComPlayer;
+import entities.players.Player;
+import entities.players.UserPlayer;
 import static java.lang.Integer.parseInt;
+import java.security.SecureRandom;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,17 +19,23 @@ public class Functions {
     // message: prompt message to user
     // warning: warning message in case of invalid input
     public static int inputValidation(int min, int max, String message,
-            String warning, Scanner sc) {
+            Player player, Scanner sc) {
         String input = String.valueOf(min - 1);
         do {
             try {
                 System.out.printf("%s (Select %d-%d): ", message, min, max);
-                input = sc.nextLine();
+                if (player == null || player instanceof UserPlayer) {
+                    input = sc.nextLine();
+                } else if (player instanceof ComPlayer) {
+                    SecureRandom randomNumber = new SecureRandom();
+                    input = String.valueOf(min + randomNumber.nextInt(max));
+                    System.out.println(input);
+                }
                 if (parseInt(input) < min || parseInt(input) > max) {
-                    System.out.println(warning);
+                    System.out.println(WARNING);
                 }
             } catch (NumberFormatException e) {
-                System.out.println(warning);
+                System.out.println(WARNING);
                 input = String.valueOf(min - 1);
             }
         } while (parseInt(input) < min || parseInt(input) > max);
