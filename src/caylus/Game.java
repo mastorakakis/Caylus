@@ -4,6 +4,7 @@ import entities.Bailiff;
 import entities.Block;
 import entities.Provost;
 import entities.buildings.Bridge;
+import entities.buildings.Building;
 import entities.buildings.Castle;
 import entities.buildings.Inn;
 import entities.players.Player;
@@ -13,13 +14,13 @@ public class Game {
 
     public static final String WARNING = "--Invalid input--";
 
-    protected List<Player> playerList;
-    protected List<Block> road;
-    public Castle castle = Castle.getCastleInstance();
-    public Bridge bridge = Bridge.getBridgeInstance();
-    public static Inn inn = Inn.getInnInstance();
-    public Bailiff bailiff = Bailiff.getBailiffInstance();
-    public Provost provost = Provost.getProvostInstance();
+    private List<Player> playerList;
+    private List<Block> road;
+    private List<Building> buildingList;
+    private Castle castle = Castle.getCastleInstance();
+    private Bridge bridge = Bridge.getBridgeInstance();
+    private Bailiff bailiff = Bailiff.getBailiffInstance();
+    private Provost provost = Provost.getProvostInstance();
 
     // getters setters
     public List<Player> getPlayerList() {
@@ -41,7 +42,31 @@ public class Game {
         this.playerList = playerList;
     }
 
-    public String getWARNING() {
-        return WARNING;
+    public Castle getCastle() {
+        return castle;
+    }
+
+    public Bridge getBridge() {
+        return bridge;
+    }
+
+    public Provost getProvost() {
+        return provost;
+    }
+
+    public Inn getInn() {
+        if (road.get(6).getBuilding() instanceof Inn) {
+            return (Inn) road.get(6).getBuilding();
+        } else {
+            throw new NullPointerException("Inn not found");
+        }
+    }
+
+    public List<Building> getBuildingList() {
+        return buildingList;
+    }
+
+    public void setBuildingList(List<Building> buildingList) {
+        this.buildingList = buildingList;
     }// end of getters setters
 }

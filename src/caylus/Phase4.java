@@ -6,11 +6,12 @@ import java.util.List;
 import java.util.Scanner;
 import utilities.Functions;
 
+// the provost's move
 public class Phase4 {
 
-    // Move Provost
     public static void play(Game game, Scanner sc) {
-        List<Player> playerList = game.bridge.getPositionList();
+        System.out.println("Phase 4: The Provost's Move");
+        List<Player> playerList = game.getBridge().getPositionList();
         for (Player player : playerList) {
             boolean askAgain = true;
             while (askAgain == true) {
@@ -20,21 +21,21 @@ public class Phase4 {
                     String message2 = "How many steps\n1)1 2)2 3)3";
                     int choice = Functions.inputValidation(1, 3, message,
                             WARNING, sc);
-                    // if move provost
+                    // if don't move provost
                     if (choice != 3) {
                         int choice2 = Functions.inputValidation(1, 3, message2,
                                 WARNING, sc);
-                        // if doensn't have enough money
+                        // if not enough money
                         if (choice2 > player.getMoney()) {
                             System.out.println(player.getColor()
                                     + " doen't have enough money");
                             continue; // ask again
-                        }// move provost
+                        }// if move provost
                         if (choice == 1) {
-                            game.provost.setPosition(game.provost.getPosition()
+                            game.getProvost().setPosition(game.getProvost().getPosition()
                                     + choice2);
                         } else {
-                            game.provost.setPosition(game.provost.getPosition()
+                            game.getProvost().setPosition(game.getProvost().getPosition()
                                     - choice2);
                         }// pay money
                         player.setMoney(player.getMoney() - choice2);
@@ -46,7 +47,7 @@ public class Phase4 {
                 }
             }
             System.out.println("Provost new position = "
-                    + (game.provost.getPosition() + 1));
+                    + (game.getProvost().getPosition() + 1));
         }
     }
 }

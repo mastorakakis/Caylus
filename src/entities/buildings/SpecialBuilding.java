@@ -5,6 +5,7 @@ import static caylus.Game.WARNING;
 import interfaces.BoardBulding;
 import entities.Resources;
 import entities.players.Player;
+import enums.Action;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
@@ -19,6 +20,10 @@ public class SpecialBuilding extends Building implements BoardBulding {
 
     // constructor
     public SpecialBuilding() {
+    }
+
+    public SpecialBuilding(String name) {
+        super(name);
     }
 
     // constructor
@@ -43,19 +48,19 @@ public class SpecialBuilding extends Building implements BoardBulding {
             int choice = Functions.inputValidation(1, 2, message, WARNING, sc);
             int choice2 = Functions.inputValidation(0, 3, message2, WARNING, sc);
             if (choice == 1) {
-                game.provost.setPosition(game.provost.getPosition() + choice2);
+                game.getProvost().setPosition(game.getProvost().getPosition() + choice2);
             } else {
-                game.provost.setPosition(game.provost.getPosition() - choice2);
+                game.getProvost().setPosition(game.getProvost().getPosition() - choice2);
             }
             System.out.println("Provost new position = "
-                    + (game.provost.getPosition() + 1));
+                    + (game.getProvost().getPosition() + 1));
         } else if (this.getName().equals("Joust Field")) {
             // if player has  money and resources
             if (player.getMoney() >= this.activationMoney
                     && player.getResources().compareTo(activationResources) >= 0) {
                 // pay money
-                player.setMoney(player.getMoney() - this.activationMoney);
-                player.payResources(this.activationResources);
+//                player.setMoney(player.getMoney() - this.activationMoney);
+                player.tradeMoneyResources(this.activationResources, -this.activationMoney, Action.SUBTRACT); // check if right
                 player.setFavors(player.getFavors() + this.activationFavors);
                 // TODO Go to favors table
             }
@@ -73,10 +78,10 @@ public class SpecialBuilding extends Building implements BoardBulding {
             for (Player p : workers) {
                 p.setWorkers(p.getWorkers() + 1);
             }
-            return this;
+            return null;
         } // increase player's available workers
         player.setWorkers(player.getWorkers() + 1);
-        return this;
+        return null;
     }
 // TODO delete activation points
 }

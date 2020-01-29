@@ -8,6 +8,8 @@ import java.util.List;
 public class Block {
 
     private Building building;
+    private Building tempBuilding;
+
     private List<Player> workers = new ArrayList();
     private Player house;
 
@@ -35,6 +37,14 @@ public class Block {
 
     public void setWorkers(List<Player> workers) {
         this.workers = workers;
+    }
+
+    public Building getTempBuilding() {
+        return tempBuilding;
+    }
+
+    public void setTempBuilding(Building tempBuilding) {
+        this.tempBuilding = tempBuilding;
     }
 
     public Player getHouse() {

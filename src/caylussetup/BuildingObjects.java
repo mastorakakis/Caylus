@@ -3,7 +3,9 @@ package caylussetup;
 import entities.buildings.FixedBuilding;
 import entities.buildings.SpecialBuilding;
 import entities.Resources;
+import entities.buildings.Castle;
 import entities.buildings.Gate;
+import entities.buildings.Inn;
 import entities.buildings.NeutralBuilding;
 import entities.buildings.PrestigeBuilding;
 import entities.buildings.StoneBuilding;
@@ -12,7 +14,9 @@ import entities.buildings.WoodBuilding;
 public class BuildingObjects {
 
     // Unique Buildings
-    public static Gate gate = Gate.getGateInstance();
+    protected static Castle castle = Castle.getCastleInstance();
+    protected static Gate gate = Gate.getGateInstance();
+    protected static Inn inn = Inn.getInnInstance();
 
     // Special Buildings
     protected static SpecialBuilding tradingPost = new SpecialBuilding(3,
@@ -26,7 +30,7 @@ public class BuildingObjects {
 
     // Fixed Buildings
     protected static FixedBuilding fixedPeddler = new FixedBuilding(2,
-            new Resources(0, 0, 0, 0, 0), "Peddler");
+            new Resources(0, 0, 0, 0, 0), "Fixed Peddler");
     protected static FixedBuilding fixedCarpenter = new FixedBuilding(0,
             new Resources(0, 0, 0, 0, 0), "Fixed Carpenter");
     protected static FixedBuilding goldMine = new FixedBuilding(0,
@@ -53,8 +57,8 @@ public class BuildingObjects {
             0, new Resources(0, 0, 0, 0, 0), "Wood Farm B");
     protected static WoodBuilding woodMarketPlace = new WoodBuilding(4, new Resources(0, 1, 0, 0, 0),
             6, new Resources(0, 0, 0, 0, 0), "Wood Market Place");
-    protected static WoodBuilding peddler = new WoodBuilding(4, new Resources(0, 4, 0, 0, 0),
-            0, new Resources(0, 0, 0, 0, 0), "Peddler");
+    protected static WoodBuilding peddler = new WoodBuilding(4, new Resources(0, 1, 0, 0, 0),
+            0, new Resources(0, 0, 0, 0, 0), "Wood Peddler");
     protected static WoodBuilding woodQuarry = new WoodBuilding(2, new Resources(1, 1, 0, 0, 0),
             0, new Resources(0, 0, 2, 0, 0), "Wood Quarry");
     protected static WoodBuilding woodSawmill = new WoodBuilding(2, new Resources(1, 1, 0, 0, 0),
@@ -96,8 +100,8 @@ public class BuildingObjects {
             new Resources(1, 0, 1, 0, 0), 0, 0, new Resources(0, 0, 0, 0, 0),
             new Resources(0, 0, 0, 0, 0), "Architect B");
 
-    // Residential buildings are not limited
-    // They all have the same attributes
+    // Residential buildings are not limited and all have same attributes
+    //
     // Prestige Buildings
     protected static PrestigeBuilding statue = new PrestigeBuilding(7, 1,
             new Resources(0, 0, 2, 0, 1), 0, "Statue");

@@ -1,5 +1,5 @@
 package enums;
 
-public enum SelectAction {
+public enum Action {
     ADD, SUBTRACT;
 }

@@ -4,7 +4,8 @@ import caylus.Game;
 import static caylus.Game.WARNING;
 import entities.Resources;
 import entities.players.Player;
-import enums.SelectAction;
+import enums.Action;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import utilities.Functions;
@@ -91,16 +92,16 @@ public class StoneBuilding extends Building {
     public Building activate(Game game, List<Player> workers, Scanner sc) {
         Player player = workers.get(0);
         if (this.getName().equals("Park")) {
-            player.collectFromBuilding(activationResources, activationMoney,
-                    SelectAction.ADD);
+            player.tradeMoneyResources(activationResources, activationMoney,
+                    Action.ADD);
         }
         if (this.getName().equals("Stone Farm")) {
-            player.collectFromBuilding(activationResources, activationMoney,
-                    SelectAction.ADD);
+            player.tradeMoneyResources(activationResources, activationMoney,
+                    Action.ADD);
         }
         if (this.getName().equals("Workshop")) {
-            player.collectFromBuilding(activationResources, activationMoney,
-                    SelectAction.ADD);
+            player.tradeMoneyResources(activationResources, activationMoney,
+                    Action.ADD);
         }
         if (this.getName().equals("Bank")) {
             boolean askAgain = false;
@@ -119,8 +120,8 @@ public class StoneBuilding extends Building {
                         System.out.println("Not enough money to trade");
                         askAgain = true;
                     } else {
-                        player.collectFromBuilding(activationResources,
-                                activationMoney, SelectAction.ADD);
+                        player.tradeMoneyResources(activationResources,
+                                activationMoney, Action.ADD);
                         askAgain = false;
                     }
                     this.activationResources = new Resources();
@@ -175,15 +176,15 @@ public class StoneBuilding extends Building {
                         System.out.println("Not enough resources to trade");
                         askAgain = true;
                     } else {
-                        player.collectFromBuilding(activationResources,
-                                activationMoney, SelectAction.SUBTRACT);
+                        player.tradeMoneyResources(activationResources,
+                                activationMoney, Action.SUBTRACT);
                         this.activationResources = new Resources();
                         activationResources.modifyResources(5, sc);
                         if (gold == 2) {
                             activationResources.modifyResources(5, sc);
                         }
-                        player.collectFromBuilding(activationResources,
-                                activationMoney, SelectAction.ADD);
+                        player.tradeMoneyResources(activationResources,
+                                activationMoney, Action.ADD);
                         askAgain = false;
                     }
                     this.activationResources = new Resources();
@@ -209,8 +210,8 @@ public class StoneBuilding extends Building {
                         System.out.println("Not enough resources to trade");
                         askAgain = true;
                     } else {
-                        player.collectFromBuilding(activationResources,
-                                activationMoney, SelectAction.SUBTRACT);
+                        player.tradeMoneyResources(activationResources,
+                                activationMoney, Action.SUBTRACT);
                         player.setPoints(player.getPoints() + points);
                         askAgain = false;
                     }
@@ -238,8 +239,8 @@ public class StoneBuilding extends Building {
                         System.out.println("Not enough resources to trade");
                         askAgain = true;
                     } else {
-                        player.collectFromBuilding(activationResources,
-                                activationMoney, SelectAction.SUBTRACT);
+                        player.tradeMoneyResources(activationResources,
+                                activationMoney, Action.SUBTRACT);
                         player.setPoints(player.getPoints() + points);
                         askAgain = false;
                     }
@@ -250,11 +251,25 @@ public class StoneBuilding extends Building {
             } while (askAgain == true);
         }
         if (this.getName().equals("Architect A")) {
+            List<PrestigeBuilding> buildings = new ArrayList();
+            for (Building building : game.getBuildingList()) {
+                if (building instanceof PrestigeBuilding) {
+                    buildings.add((PrestigeBuilding) building);
+                }
+            }
+            return player.buildPrestige(game, buildings, sc);
+
         }
         if (this.getName().equals("Architect B")) {
+            List<PrestigeBuilding> buildings = new ArrayList();
+            for (Building building : game.getBuildingList()) {
+                if (building instanceof PrestigeBuilding) {
+                    buildings.add((PrestigeBuilding) building);
+                }
+            }
+            return player.buildPrestige(game, buildings, sc);
         }
-
-        return this;
+        return null;
     }
 
 }

@@ -12,7 +12,10 @@ public class ResidentialBuilding extends Building {
     private final int buildPoints = 2;
     private final int buildMoney = 1;
     private final Resources buildResources = new Resources(0, 0, 0, 1, 0);
-    private final int activationMoney = 1;
+    private final int incomeMoney = 1;
+
+    public ResidentialBuilding() {
+    }
 
     // getters setters
     public int getBuildPoints() {
@@ -27,13 +30,18 @@ public class ResidentialBuilding extends Building {
         return buildResources;
     }
 
+    @Override
+    public String getName() {
+        return name;
+    }
+
     public int getIncomeMoney() {
-        return activationMoney;
+        return incomeMoney;
     } // end of getters setters
 
     @Override
     public Building activate(Game game, List<Player> players, Scanner sc) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Residential buildings do not activate");
     }
 
 }

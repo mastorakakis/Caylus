@@ -19,8 +19,8 @@ public class Bailiff {
     }
 
     public static void setPosition(int position) {
-        if (position < 6 || position > 33) {
-            throw new IllegalArgumentException("Bailiff can't move any further");
+        if (position < 7 || position > 34) {
+            throw new IllegalArgumentException("Bailiff's movement if out of limits");
         }
         Bailiff.position = position;
     } // end of getters setters

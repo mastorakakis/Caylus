@@ -62,7 +62,7 @@ public class PrestigeBuilding extends Building {
 
     @Override
     public Building activate(Game game, List<Player> players, Scanner sc) {
-        return this;
+        return null;
     }
 
 }

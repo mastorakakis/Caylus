@@ -1,6 +1,5 @@
 package caylussetup;
 
-import caylus.Game;
 import entities.Block;
 import entities.buildings.Building;
 import entities.players.Player;
@@ -19,7 +18,7 @@ public class SetUpGame {
     public static List<Player> players(Scanner sc) {
         List<Player> playerList = new ArrayList();
         int numberOfComPlayers = 0;
-        // selecy number of user players
+        // select number of user players
         int numberOfUserPlayers = 3; // CreatePlayers.numberOfUserPlayers(sc);
         // if number of players is not max ask for com players
         if (numberOfUserPlayers != SetUpGame.MAX_PLAYERS) {
@@ -35,10 +34,43 @@ public class SetUpGame {
         return playerList;
     }
 
+    public static List<Building> buildingsList() {
+        // buildings list available for building
+        List<Building> buildingsList = new ArrayList();
+        buildingsList.add(BuildingObjects.woodFarmA);
+        buildingsList.add(BuildingObjects.woodFarmB);
+        buildingsList.add(BuildingObjects.woodMarketPlace);
+        buildingsList.add(BuildingObjects.peddler);
+        buildingsList.add(BuildingObjects.woodQuarry);
+        buildingsList.add(BuildingObjects.woodSawmill);
+        buildingsList.add(BuildingObjects.mason);
+        buildingsList.add(BuildingObjects.lawyer);
+        buildingsList.add(BuildingObjects.park);
+        buildingsList.add(BuildingObjects.stoneFarm);
+        buildingsList.add(BuildingObjects.workshop);
+        buildingsList.add(BuildingObjects.bank);
+        buildingsList.add(BuildingObjects.church);
+        buildingsList.add(BuildingObjects.alchemisth);
+        buildingsList.add(BuildingObjects.jeweler);
+        buildingsList.add(BuildingObjects.tailor);
+        buildingsList.add(BuildingObjects.architectA);
+        buildingsList.add(BuildingObjects.architectB);
+        buildingsList.add(BuildingObjects.statue);
+        buildingsList.add(BuildingObjects.library);
+        buildingsList.add(BuildingObjects.hotel);
+        buildingsList.add(BuildingObjects.theater);
+        buildingsList.add(BuildingObjects.granary);
+        buildingsList.add(BuildingObjects.weaver);
+        buildingsList.add(BuildingObjects.college);
+        buildingsList.add(BuildingObjects.cathredal);
+        buildingsList.add(BuildingObjects.monument);
+        return buildingsList;
+    }
+
     public static List<Block> road() {
 
         List<Block> road = new ArrayList(34);
-        //Neutral buildings
+        //neutral buildings
         List<Building> neutralBuildings = new ArrayList();
         neutralBuildings.add(BuildingObjects.neutralQuarry);
         neutralBuildings.add(BuildingObjects.neutralSawmill);
@@ -47,13 +79,16 @@ public class SetUpGame {
         neutralBuildings.add(BuildingObjects.neutralMarketPlace);
         neutralBuildings.add(BuildingObjects.neutralCarpenter);
         Collections.shuffle(neutralBuildings); // Shuffle neutral buildings
-        // Add special buildings to road
+
+        // add castle
+        road.add(new Block(BuildingObjects.castle));
+        // add special buildings to road
         road.add(new Block(BuildingObjects.gate));
         road.add(new Block(BuildingObjects.tradingPost));
         road.add(new Block(BuildingObjects.merchantsGuild));
         road.add(new Block(BuildingObjects.joustField));
         road.add(new Block(BuildingObjects.stables));
-        road.add(new Block(Game.inn));
+        road.add(new Block(BuildingObjects.inn));
         // Add neutral buildings to road
         for (Building neutralBuilding : neutralBuildings) {
             road.add(new Block(neutralBuilding));

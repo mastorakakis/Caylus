@@ -1,21 +1,19 @@
 package entities.buildings;
 
-import caylus.Game;
 import entities.players.Player;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 // Singleton pattern
-public class Bridge extends Building {
+public class Bridge {
 
     private static Bridge bridgeInstance = new Bridge("Bridge");
-    public static List<Player> positionList = new ArrayList(); // TODO change to private
-    private static int activationMoney = Bridge.getPositionList().size() + 1;
+    private String name; // TODO maybe delete name
+    private static List<Player> positionList = new ArrayList();
 
     // constructor private
     private Bridge(String name) {
-        super(name);
+        this.name = name;
     }
 
     // getters setters
@@ -35,25 +33,14 @@ public class Bridge extends Building {
             throw new IllegalArgumentException("Bridge position list cannot be over 5");
         }
         Bridge.positionList = positionList;
-    }
-
-    public static int getActivationMoney() {
-        return activationMoney;
-    }
-
-    public static void setActivationMoney(int activationMoney) {
-        if (activationMoney < 0) {
-            throw new IllegalArgumentException("Bridge activation ammount cannot be negative");
-        }
-        if (activationMoney > 5) {
-            throw new IllegalArgumentException("Bridge activation ammount cannot be over 5");
-        }
-        Bridge.activationMoney = activationMoney;
     }// end of getters setters
 
-    @Override
-    public Building activate(Game game, List<Player> players, Scanner sc) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static void playerPass(Player player) {
+        Bridge.getPositionList().add(player); // add player to bridge
+        if (Bridge.getPositionList().size() == 1) { // if player is first
+            player.setMoney(player.getMoney() + 1); // player earns 1 denier
+        }
+        System.out.println(player.getColor() + " passes");
     }
 
 }

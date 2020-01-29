@@ -9,7 +9,7 @@ import java.util.Scanner;
 import utilities.Functions;
 
 // Singleton pattern
-public class Inn extends Building {
+public class Inn extends SpecialBuilding {
 
     private static Inn innInstance = new Inn("Inn");
     private static Player[] innPosition = new Player[2];
@@ -31,10 +31,12 @@ public class Inn extends Building {
 
     @Override
     public Building activate(Game game, List<Player> players, Scanner sc) {
+        // move left worker right
         if (innPosition[0] != null) {
             innPosition[1] = innPosition[0];
             innPosition[0] = null;
-        } else { // ask player to remove worker
+        } // ask player to remove worker
+        else {
             String message = innPosition[1].getColor() + " remove worker from Inn:"
                     + " 1)Yes 2)No";
             int choice = Functions.inputValidation(1, 2, message, WARNING, sc);
@@ -44,7 +46,7 @@ public class Inn extends Building {
                 innPosition[1] = null;
             }
         }
-        return this;
+        return null; // TODO check this
 
     }
 }

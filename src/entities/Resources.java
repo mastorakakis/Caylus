@@ -1,7 +1,6 @@
 package entities;
 
 import java.util.Scanner;
-import enums.SelectAction;
 
 public class Resources implements Comparable {
 
@@ -80,7 +79,7 @@ public class Resources implements Comparable {
         this.gold = gold;
     }// end of getters setters
 
-    // modifying Resourses +-1 depending on SelectAction used in build method
+    // modifying resourses +1
     public void modifyResources(int selection, Scanner sc) {
         switch (selection) {
             case 1:
@@ -101,8 +100,7 @@ public class Resources implements Comparable {
         }
     }
 
-    // compare resources
-    // if any of the resources is less, return -1
+    // compare resources - if any is less, return -1
     @Override
     public int compareTo(Object o) {
         if (this.food < ((Resources) o).getFood() || this.wood < ((Resources) o).getWood()

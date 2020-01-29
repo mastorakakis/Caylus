@@ -4,7 +4,8 @@ import caylus.Game;
 import static caylus.Game.WARNING;
 import entities.Resources;
 import entities.players.Player;
-import enums.SelectAction;
+import enums.Action;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import utilities.Functions;
@@ -29,27 +30,27 @@ public class NeutralBuilding extends Building {
     public Building activate(Game game, List<Player> workers, Scanner sc) {
         Player player = workers.get(0);
         if (this.getName().equals("Neutral Quarry")) {
-            player.collectFromBuilding(activationResources, activationMoney,
-                    SelectAction.ADD);
+            player.tradeMoneyResources(activationResources, activationMoney,
+                    Action.ADD);
         } else if (this.getName().equals("Neutral Sawmill")) {
-            player.collectFromBuilding(activationResources, activationMoney,
-                    SelectAction.ADD);
+            player.tradeMoneyResources(activationResources, activationMoney,
+                    Action.ADD);
         } else if (this.getName().equals("Neutral Farm")) {
             String message = player.getColor()
                     + " select resource\n1)1 Food\n2)1 Cloth";
             int choice = Functions.inputValidation(1, 2, message, WARNING, sc);
             choice = choice == 2 ? 4 : 1;
             activationResources.modifyResources(choice, sc);
-            player.collectFromBuilding(activationResources, activationMoney,
-                    SelectAction.ADD);
+            player.tradeMoneyResources(activationResources, activationMoney,
+                    Action.ADD);
             this.activationResources = new Resources();
         } else if (this.getName().equals("Forest")) {
             String message = player.getColor()
                     + " select resource\n1)1 Food\n2)1 Wood";
             int choice = Functions.inputValidation(1, 2, message, WARNING, sc);
             activationResources.modifyResources(choice, sc);
-            player.collectFromBuilding(activationResources, activationMoney,
-                    SelectAction.ADD);
+            player.tradeMoneyResources(activationResources, activationMoney,
+                    Action.ADD);
             this.activationResources = new Resources();
         } else if (this.getName().equals("Neutral Market Place")) {
             boolean askAgain = true;
@@ -63,17 +64,23 @@ public class NeutralBuilding extends Building {
                         System.out.println("Not enough resources to trade.");
                         askAgain = true;
                     } else {
-                        player.collectFromBuilding(this.activationResources,
-                                activationMoney, SelectAction.SUBTRACT);
+                        player.tradeMoneyResources(this.activationResources,
+                                activationMoney, Action.SUBTRACT);
                         askAgain = false;
                     }
                     this.activationResources = new Resources();
                 }
             } while (askAgain == true);
         } else if (this.getName().equals("Neutral Carpenter")) {
-            //TODO
+            List<WoodBuilding> woodList = new ArrayList();
+            for (Building building : game.getBuildingList()) {
+                if (building instanceof WoodBuilding) {
+                    woodList.add((WoodBuilding) building);
+                }
+            }
+            return player.buildWood(woodList, sc);
         }
-        return this;
+        return null;
     }
 
 }

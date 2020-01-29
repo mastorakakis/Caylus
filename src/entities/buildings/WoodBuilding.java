@@ -2,9 +2,11 @@ package entities.buildings;
 
 import caylus.Game;
 import static caylus.Game.WARNING;
+import entities.Block;
 import entities.Resources;
 import entities.players.Player;
-import enums.SelectAction;
+import enums.Action;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import utilities.Functions;
@@ -65,8 +67,8 @@ public class WoodBuilding extends Building {
     public Building activate(Game game, List<Player> workers, Scanner sc) {
         Player player = workers.get(0);
         if (this.getName().equals("Wood Quarry")) {
-            player.collectFromBuilding(activationResources, activationMoney,
-                    SelectAction.ADD);
+            player.tradeMoneyResources(activationResources, activationMoney,
+                    Action.ADD);
         }
         if (this.getName().equals("Wood Farm A")) {
             String message = player.getColor()
@@ -77,8 +79,8 @@ public class WoodBuilding extends Building {
             if (choice == 1) {
                 activationResources.modifyResources(choice, sc);
             }
-            player.collectFromBuilding(activationResources, activationMoney,
-                    SelectAction.ADD);
+            player.tradeMoneyResources(activationResources, activationMoney,
+                    Action.ADD);
             this.activationResources = new Resources();
         }
         if (this.getName().equals("Wood Farm B")) {
@@ -90,8 +92,8 @@ public class WoodBuilding extends Building {
             if (choice == 4) {
                 activationResources.modifyResources(choice, sc);
             }
-            player.collectFromBuilding(activationResources, activationMoney,
-                    SelectAction.ADD);
+            player.tradeMoneyResources(activationResources, activationMoney,
+                    Action.ADD);
             this.activationResources = new Resources();
         }
         if (this.getName().equals("Wood Market Place")) {
@@ -106,8 +108,8 @@ public class WoodBuilding extends Building {
                         System.out.println("Not enough resources to trade");
                         askAgain = true;
                     } else {
-                        player.collectFromBuilding(this.activationResources,
-                                activationMoney, SelectAction.SUBTRACT);
+                        player.tradeMoneyResources(this.activationResources,
+                                activationMoney, Action.SUBTRACT);
                         askAgain = false;
                     }
                     this.activationResources = new Resources();
@@ -116,11 +118,11 @@ public class WoodBuilding extends Building {
                 }
             } while (askAgain == true);
         }
-        if (this.getName().equals("Peddler")) {
+        if (this.getName().equals("Wood Peddler")) {
             boolean askAgain = false;
             do {
-                String message = player.getColor() + " select how amount of money to spend\n"
-                        + "1)1 denier\n2)2 deniers\n3)Don't trade";
+                String message = player.getColor() + " select how amount of money "
+                        + "to spend\n1)1 denier\n2)2 deniers\n3)Don't trade";
                 int choice = Functions.inputValidation(1, 3, message, WARNING, sc);
                 if (choice != 3) {
                     activationMoney = choice;
@@ -130,14 +132,14 @@ public class WoodBuilding extends Building {
                     } else {
                         for (int i = 0; i < choice; i++) {
                             String message2 = player.getColor()
-                                    + " select one Resource to trade\n"
+                                    + " select one Resource to collect\n"
                                     + "1)Food\n2)Wood\n3)Stone\n4)Cloth";
                             int choice2 = Functions.inputValidation(1, 4, message2,
                                     WARNING, sc);
                             activationResources.modifyResources(choice2, sc);
                         }
-                        player.collectFromBuilding(activationResources,
-                                activationMoney, SelectAction.ADD);
+                        player.tradeMoneyResources(activationResources,
+                                activationMoney, Action.ADD);
                         this.activationResources = new Resources();
                         askAgain = false;
                     }
@@ -146,18 +148,31 @@ public class WoodBuilding extends Building {
                 }
             } while (askAgain == true);
         }
-
         if (this.getName().equals("Wood Sawmill")) {
-            player.collectFromBuilding(activationResources, activationMoney,
-                    SelectAction.ADD);
+            player.tradeMoneyResources(activationResources, activationMoney,
+                    Action.ADD);
         }
         if (this.getName().equals("Mason")) {
-//TODO
+            List<StoneBuilding> stoneList = new ArrayList();
+            for (Building building : game.getBuildingList()) {
+                if (building instanceof StoneBuilding) {
+                    stoneList.add((StoneBuilding) building);
+                }
+            }
+            return player.buildStone(stoneList, sc);
         }
         if (this.getName().equals("Lawyer")) {
-//TODO
+            ResidentialBuilding building = new ResidentialBuilding();
+            if (player.getMoney() >= building.getBuildMoney()
+                    && player.getResources().compareTo(building
+                            .getBuildResources()) >= 0) {
+                player.tradeMoneyResources(player.getResources(),
+                        -building.getBuildMoney(), Action.SUBTRACT);
+                player.setPoints(player.getPoints() + building.getBuildPoints());
+                player.buildResidential(game, building, sc);
+            }
         }
-        return this;
+        return null;
     }
 
 }

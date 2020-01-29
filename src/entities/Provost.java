@@ -19,8 +19,8 @@ public class Provost {
     }
 
     public static void setPosition(int position) {
-        if (position < 6 || position > 33) {
-            throw new IllegalArgumentException("Provost is movement is out of limit");
+        if (position < 7 || position > 34) {
+            throw new IllegalArgumentException("Provost's movement is out of limits");
         }
         Provost.position = position;
     } // end of getters setters
