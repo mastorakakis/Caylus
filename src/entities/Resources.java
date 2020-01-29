@@ -1,8 +1,9 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class Resources implements Comparable {
+public class Resources implements Comparable, Serializable {
 
     private int food;
     private int wood;

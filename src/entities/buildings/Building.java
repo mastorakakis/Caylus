@@ -2,10 +2,11 @@ package entities.buildings;
 
 import caylus.Game;
 import entities.players.Player;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Scanner;
 
-public abstract class Building {
+public abstract class Building implements Serializable {
 
 //    private String name = "";
     private String name;

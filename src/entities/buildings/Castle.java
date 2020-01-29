@@ -2,12 +2,13 @@ package entities.buildings;
 
 import caylus.Game;
 import entities.players.Player;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 // Singleton Pattern
-public class Castle extends Building {
+public class Castle extends Building implements Serializable {
 
     private static Castle castleInstance = new Castle("Castle");
 //    private List<Player> positionList = new ArrayList();

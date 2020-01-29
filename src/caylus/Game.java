@@ -8,9 +8,10 @@ import entities.buildings.Building;
 import entities.buildings.Castle;
 import entities.buildings.Inn;
 import entities.players.Player;
+import java.io.Serializable;
 import java.util.List;
 
-public class Game {
+public class Game implements Serializable {
 
     public static final String WARNING = "--Invalid input--";
 

@@ -4,12 +4,13 @@ package entities.buildings;
 import caylus.Game;
 import static caylus.Game.WARNING;
 import entities.players.Player;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Scanner;
 import utilities.Functions;
 
 // Singleton pattern
-public class Inn extends SpecialBuilding {
+public class Inn extends SpecialBuilding implements Serializable {
 
     private static Inn innInstance = new Inn("Inn");
     private static Player[] innPosition = new Player[2];

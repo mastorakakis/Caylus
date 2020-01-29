@@ -2,10 +2,11 @@ package entities;
 
 import entities.buildings.Building;
 import entities.players.Player;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Block {
+public class Block implements Serializable {
 
     private Building building;
     private Building tempBuilding;

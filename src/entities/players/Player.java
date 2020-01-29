@@ -11,12 +11,13 @@ import entities.buildings.StoneBuilding;
 import entities.buildings.WoodBuilding;
 import enums.Color;
 import enums.Action;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import utilities.Functions;
 
-public abstract class Player {
+public abstract class Player implements Serializable {
 
     private Color color;
     private int points;

@@ -1,6 +1,8 @@
 package entities;
 
-public class Provost {
+import java.io.Serializable;
+
+public class Provost implements Serializable {
 
     private static Provost provostInstance = new Provost();
     private static int position = 11;

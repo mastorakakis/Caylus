@@ -3,12 +3,13 @@ package entities.buildings;
 import caylus.Game;
 import caylus.Phase2;
 import entities.players.Player;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 // Singleton Pattern
-public class Gate extends SpecialBuilding {
+public class Gate extends SpecialBuilding implements Serializable {
 
     private static Gate gateInstance = new Gate("Gate");
     private static List<Player> positionList = new ArrayList();

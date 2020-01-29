@@ -1,6 +1,8 @@
 package entities;
 
-public class Bailiff {
+import java.io.Serializable;
+
+public class Bailiff implements Serializable {
 
     private static Bailiff bailiffInstance = new Bailiff();
     private static int position = 11;

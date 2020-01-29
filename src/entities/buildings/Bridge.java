@@ -1,11 +1,12 @@
 package entities.buildings;
 
 import entities.players.Player;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 // Singleton pattern
-public class Bridge {
+public class Bridge implements Serializable {
 
     private static Bridge bridgeInstance = new Bridge("Bridge");
     private String name; // TODO maybe delete name
