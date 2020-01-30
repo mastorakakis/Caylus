@@ -91,21 +91,25 @@ public class StoneBuilding extends Building {
     @Override
     public Building activate(Game game, List<Player> workers, Scanner sc) {
         Player player = workers.get(0);
+        // if park get resources
         if (this.getName().equals("Park")) {
+            System.out.println("Activating Park");
             player.tradeMoneyResources(activationResources, activationMoney,
                     Action.ADD);
-        }
+        } // if stone farm get resources
         if (this.getName().equals("Stone Farm")) {
+            System.out.println("Activating Stone Farm");
             player.tradeMoneyResources(activationResources, activationMoney,
                     Action.ADD);
-        }
+        } // if workshop get resources
         if (this.getName().equals("Workshop")) {
+            System.out.println("Activating Workshop");
             player.tradeMoneyResources(activationResources, activationMoney,
                     Action.ADD);
-        }
+        } // if bank
         if (this.getName().equals("Bank")) {
-            boolean askAgain = false;
-            do {
+            System.out.println("Activating Bank");
+            do { // choose amount
                 String message = player.getColor() + " select amount of money "
                         + "to trade\n1)2 deniers\n2)5 deniers\n3)Don't trade";
                 int choice = Functions.inputValidation(1, 3, message, player, sc);
@@ -118,47 +122,45 @@ public class StoneBuilding extends Building {
                     }
                     if (player.getMoney() < activationMoney) {
                         System.out.println("Not enough money to trade");
-                        askAgain = true;
-                    } else {
-                        player.tradeMoneyResources(activationResources,
-                                activationMoney, Action.ADD);
-                        askAgain = false;
-                    }
+                        this.activationResources = new Resources();
+                        continue;
+                    } // trade
+                    player.tradeMoneyResources(activationResources,
+                            activationMoney, Action.ADD);
                     this.activationResources = new Resources();
-                } else {
-                    askAgain = false;
                 }
-            } while (askAgain == true);
-        }
+                break;
+            } while (true);
+        } // if church
         if (this.getName().equals("Church")) {
-            boolean askAgain = false;
-            do {
+            System.out.println("Activating Church");
+            do { // choose amount
                 String message = player.getColor() + " select amount of money "
                         + "to trade\n1)2 deniers\n2)4 deniers\n3)Don't trade";
                 int choice = Functions.inputValidation(1, 3, message, player, sc);
                 if (choice != 3) {
-                    int points = 3;
+                    activationPoints = 3;
                     activationMoney = 2;
                     if (choice == 2) {
-                        points = 5;
+                        activationPoints = 5;
                         activationMoney = 4;
                     }
                     if (player.getMoney() < activationMoney) {
                         System.out.println("Not enough money to trade");
-                        askAgain = true;
-                    } else {
+                        continue;
+                    } else { // trade
                         player.setMoney(player.getMoney() - activationMoney);
-                        player.setPoints(player.getPoints() + points);
-                        askAgain = false;
+                        player.setPoints(player.getPoints() + activationPoints);
+                        System.out.println(player.getColor() + " gets "
+                                + activationPoints + " points");
                     }
-                } else {
-                    askAgain = false;
                 }
-            } while (askAgain == true);
-        }
+                break;
+            } while (true);
+        } // if alchemist
         if (this.getName().equals("Alchemist")) {
-            boolean askAgain = false;
-            do {
+            System.out.println("Activating Alchemist");
+            do { // choose amount of resources
                 String message = player.getColor() + " select number of resources "
                         + "to trade\n1)2 resources\n2)4 resources\n3)Don't trade";
                 int choice = Functions.inputValidation(1, 3, message, player, sc);
@@ -174,8 +176,10 @@ public class StoneBuilding extends Building {
                     }
                     if (player.getResources().compareTo(activationResources) < 0) {
                         System.out.println("Not enough resources to trade");
-                        askAgain = true;
-                    } else {
+                        this.activationResources = new Resources();
+                        continue;
+                    } // trade
+                    else {
                         player.tradeMoneyResources(activationResources,
                                 activationMoney, Action.SUBTRACT);
                         this.activationResources = new Resources();
@@ -185,17 +189,15 @@ public class StoneBuilding extends Building {
                         }
                         player.tradeMoneyResources(activationResources,
                                 activationMoney, Action.ADD);
-                        askAgain = false;
                     }
                     this.activationResources = new Resources();
-                } else {
-                    askAgain = false;
                 }
-            } while (askAgain == true);
-        }
+                break;
+            } while (true);
+        } // if jewler
         if (this.getName().equals("Jeweler")) {
-            boolean askAgain = false;
-            do {
+            System.out.println("Activating Jeweler");
+            do { // choose amount of resources
                 String message = player.getColor() + " select number of resources "
                         + "to trade\n1)1 Gold\n2)2 Gold\n3)Don't trade";
                 int choice = Functions.inputValidation(1, 3, message, player, sc);
@@ -208,22 +210,21 @@ public class StoneBuilding extends Building {
                     }
                     if (player.getResources().compareTo(activationResources) < 0) {
                         System.out.println("Not enough resources to trade");
-                        askAgain = true;
-                    } else {
+                        this.activationResources = new Resources();
+                        continue;
+                    } else { // trade
                         player.tradeMoneyResources(activationResources,
                                 activationMoney, Action.SUBTRACT);
                         player.setPoints(player.getPoints() + points);
-                        askAgain = false;
                     }
                     this.activationResources = new Resources();
-                } else {
-                    askAgain = false;
                 }
-            } while (askAgain == true);
-        }
+                break;
+            } while (true);
+        } // if tailor
         if (this.getName().equals("Tailor")) {
-            boolean askAgain = false;
-            do {
+            System.out.println("Activating Tailor");
+            do { // choose amount of resources
                 String message = player.getColor() + " select number of resources "
                         + "to trade\n1)2 Cloth\n2)3 Cloth\n3)Don't trade";
                 int choice = Functions.inputValidation(1, 3, message, player, sc);
@@ -237,38 +238,42 @@ public class StoneBuilding extends Building {
                     }
                     if (player.getResources().compareTo(activationResources) < 0) {
                         System.out.println("Not enough resources to trade");
-                        askAgain = true;
-                    } else {
+                        this.activationResources = new Resources();
+                        continue;
+                    } else { // trade
                         player.tradeMoneyResources(activationResources,
                                 activationMoney, Action.SUBTRACT);
                         player.setPoints(player.getPoints() + points);
-                        askAgain = false;
                     }
                     this.activationResources = new Resources();
-                } else {
-                    askAgain = false;
                 }
-            } while (askAgain == true);
-        }
+                break;
+            } while (true);
+        } // if architect a
         if (this.getName().equals("Architect A")) {
+            System.out.println("Activating Architect A");
             List<PrestigeBuilding> buildings = new ArrayList();
             for (Building building : game.getBuildingList()) {
                 if (building instanceof PrestigeBuilding) {
                     buildings.add((PrestigeBuilding) building);
                 }
             }
+            player.setWorkers(player.getWorkers() + 1);
             return player.buildPrestige(game, buildings, sc);
 
-        }
+        } // if architect b
         if (this.getName().equals("Architect B")) {
+            System.out.println("Activating Architect B");
             List<PrestigeBuilding> buildings = new ArrayList();
             for (Building building : game.getBuildingList()) {
                 if (building instanceof PrestigeBuilding) {
                     buildings.add((PrestigeBuilding) building);
                 }
             }
+            player.setWorkers(player.getWorkers() + 1);
             return player.buildPrestige(game, buildings, sc);
         }
+        player.setWorkers(player.getWorkers() + 1);
         return null;
     }
 

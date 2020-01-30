@@ -18,13 +18,15 @@ public class Phase3 {
             if ((block.getBuilding() != null && block.getWorkers().size() > 0)
                     // or inn has a worker in any position
                     || (block.getBuilding() == game.getInn()
-                    && game.getInn().getInnPosition().length > 0)) {
-                Building building = block.getBuilding();
+                    && (game.getInn().getInnPosition()[0] != null || game.getInn().getInnPosition()[0] != null))) {
                 // activate building
-                building.activate(game, block.getWorkers(), sc);
+                block.getBuilding().activate(game, block.getWorkers(), sc);
                 // remove workers
                 block.setWorkers(new ArrayList<Player>());
             }
+        }
+        for (Player player : game.getPlayerList()) {
+            System.out.println(player);
         }
     }
 }

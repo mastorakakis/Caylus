@@ -6,10 +6,7 @@ import entities.buildings.Building;
 import entities.buildings.Inn;
 import entities.buildings.PrestigeBuilding;
 import entities.buildings.ResidentialBuilding;
-import entities.players.ComPlayer;
 import entities.players.Player;
-import entities.players.UserPlayer;
-import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -53,23 +50,21 @@ public class Phase2 {
         System.out.println("\n" + player.getColor() + " Money=" + player.getMoney());
         int choice = Functions.inputValidation(1, max, player.getColor()
                 + " place a worker or pass\n" + message, player, sc);
+
         // if -pass-
         if (choice == max) {
             // add player to bridge ( = pass)
             Bridge.playerPass(player);
             return; // to not pay according to end of method
         } // if Inn and has no worker there
-        else if (game.getRoad().get(availableBuildingsList.get(choice - 1))
-                .getBuilding().getName().equals("Inn")) {
-            Block block = game.getRoad().get(availableBuildingsList.get(choice - 1));
+        Block block = game.getRoad().get(availableBuildingsList.get(choice - 1));
+        if (block.getBuilding().getName().equals("Inn")) {
             // add worker to left position of inn
             ((Inn) block.getBuilding()).getInnPosition()[0] = player;
             System.out.println(player.getColor() + " places worker in "
                     + block.getBuilding().getName());
-        } // if player chooses a building
+        } // if other building
         else {
-            Block block = game.getRoad()
-                    .get(availableBuildingsList.get(choice - 1));
             block.getWorkers().add(player);
 //            }// add worker to block
             System.out.println(player.getColor() + " places worker in "
@@ -81,8 +76,6 @@ public class Phase2 {
             }
         } // if player hasn't passed thus not coming from gate pay proper amount
         if (!game.getBridge().getPositionList().contains(player)) {
-            Block block = game.getRoad()
-                    .get(availableBuildingsList.get(choice - 1));
             // if building belongs to player or player has worker in inn right side
             if (block.getHouse() != null && (block.getHouse() == player
                     || player == game.getInn().getInnPosition()[1])) {
@@ -93,6 +86,9 @@ public class Phase2 {
                         - game.getBridge().getPositionList().size() - 1;
                 player.setMoney(newBalance);
             }
+        } // if house belongs to other the owner gets one point
+        if (block.getHouse() != null && block.getHouse() != player) {
+            block.getHouse().setPoints(block.getHouse().getPoints() + 1);
         }
         // reduce number of workers
         player.setWorkers(player.getWorkers() - 1);

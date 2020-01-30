@@ -79,7 +79,8 @@ public class SpecialBuilding extends Building implements BoardBulding {
             } else {
                 System.out.println("Not enough money or resources");
             }
-        } else if (this.getName().equals("Stables")) {
+        } // if stables
+        else if (this.getName().equals("Stables")) {
             System.out.println("Activating Stables");
             System.out.println("Changing playing order");
             // remove all players in Stables from game playerList

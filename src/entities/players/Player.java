@@ -90,9 +90,9 @@ public abstract class Player implements Serializable {
 
     // build wood, collect resources & money, restore resources
     public Building buildWood(List<WoodBuilding> buildings, Scanner sc) {
-        int choice = 0;
+        int choice;
         do {
-            String message = this.color + "select building\n"
+            String message = this.color + " select building\n"
                     + Functions.printOptions(buildings);
             int max = buildings.size() + 1;
             choice = Functions.inputValidation(1, max, message, this, sc);
@@ -102,25 +102,27 @@ public abstract class Player implements Serializable {
             } // if "market place" or "peddler" and prompt
             else if (buildings.get(choice - 1).getName().equals("Wood Market Place")
                     || buildings.get(choice - 1).getName().equals("Wood Peddler")) {
+                // restore build resources
+                buildings.get(choice - 1).setBuildResources(new Resources(0, 1, 0, 0, 0));
                 // ask user for resource of choice to spend
                 int choice2 = Functions.inputValidation(1, 5, "Building a "
                         + buildings.get(choice - 1).getName()
                         + " costs 1 wood plus 1 resource of choice\n"
-                        + "1)Food\n2Wood\n3)Stone\n4)Cloth\n5)Gold", this, sc);
+                        + "1)Food\n2)Wood\n3)Stone\n4)Cloth\n5)Gold", this, sc);
                 // increase selected building resource cost
                 buildings.get(choice - 1).getBuildResources().modifyResources(choice2, sc);
             }// check if resources are enough
+            System.out.println(buildings.get(choice - 1).getName());
             if (resources.compareTo(buildings.get(choice - 1).getBuildResources()) < 0) {
                 System.out.println("Not enough resources to build.");
-                choice = 0;
-                // TODO continue;
+                continue;
             } else {// pay resources
                 tradeMoneyResources(buildings.get(choice - 1).getBuildResources(), 0,
                         Action.SUBTRACT);
                 // get the pointss
                 this.points += buildings.get(choice - 1).getBuildPoints();
-            }// restore building resources cost if changed
-            buildings.get(choice - 1).setBuildResources(new Resources(0, 1, 0, 0, 0));
+                break;
+            }
         } while (choice == 0);
         return buildings.get(choice - 1);
     }
@@ -153,27 +155,31 @@ public abstract class Player implements Serializable {
     }
 
     public Building buildResidential(Game game, ResidentialBuilding building, Scanner sc) {
+        // get available buildings
         List<Integer> availableBuildingsList = getAvailableBuildings(game.getRoad());
         String message = Functions.printIndexedOptions(availableBuildingsList,
                 game.getRoad());
+        // choose building to replace
         int max = availableBuildingsList.size() + 1; // plus one for pass
         int choice = Functions.inputValidation(1, max, color
                 + " select building or pass\n" + message, this, sc);
+        // if not pass
         if (choice != max) {
             Block block = game.getRoad()
                     .get(availableBuildingsList.get(choice - 1));
-            if (block.getWorkers() != null) {
+            if (block.getWorkers().size() > 0) {
+                // if building has a worker save it in temp to transform later
                 block.setTempBuilding(building);
             } else {
                 block.setBuilding(building);
             }
-        } else {
-            tradeMoneyResources(resources,
+        } // if pass get money and resources back
+        else {
+            tradeMoneyResources(building.getBuildResources(),
                     -building.getBuildMoney(), Action.ADD);
             setPoints(points - building.getBuildPoints());
-            return null;
         }
-        return building;
+        return null;
     }
 
     public Building buildPrestige(Game game, List<PrestigeBuilding> buildings, Scanner sc) {
@@ -212,9 +218,9 @@ public abstract class Player implements Serializable {
             Block block = game.getRoad()
                     .get(availableBuildingsList.get(choice2 - 1));
             block.setBuilding(prestigeBuilding);
-        } else {
+        } else { // take back resources
             tradeMoneyResources(prestigeBuilding.getBuildResources(), 0, Action.ADD); // pay resources
-            // get points and favors
+            // give back points and favors
             this.points -= prestigeBuilding.getBuildPoints();
             this.favors -= prestigeBuilding.getBuildFavors();
             return null;
@@ -227,13 +233,14 @@ public abstract class Player implements Serializable {
         List<Integer> indexList = new ArrayList();
         for (int i = 7; i < road.size(); i++) {
             Block block = road.get(i);
+            Building building = block.getBuilding();
             // if building neutral or craft not Lawyer and belongs to player
-            if (!road.get(i).getBuilding().getName().equals("Lawyer")
-                    && road.get(i).getBuilding() instanceof NeutralBuilding
-                    || ((road.get(i).getBuilding() instanceof WoodBuilding
-                    || road.get(i).getBuilding() instanceof StoneBuilding)
-                    && (block.getHouse() == this))) {
-                indexList.add(i);
+            if (building != null && !building.getName().equals("Lawyer")) {
+                if (building instanceof NeutralBuilding
+                        || ((building instanceof WoodBuilding || building instanceof StoneBuilding)
+                        && block.getHouse() == this)) {
+                    indexList.add(i);
+                }
             }
         }
         return indexList;
@@ -243,7 +250,8 @@ public abstract class Player implements Serializable {
         List<Integer> indexList = new ArrayList();
         for (int i = 7; i < road.size(); i++) {
             Block block = road.get(i);
-            if (road.get(i).getBuilding() instanceof ResidentialBuilding) {
+            if (block.getBuilding() instanceof ResidentialBuilding
+                    && block.getHouse() == this) {
                 indexList.add(i);
             }
         }

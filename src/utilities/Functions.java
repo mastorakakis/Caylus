@@ -50,7 +50,8 @@ public class Functions {
             // get the building according to index
             Building building = road.get(index.get(i)).getBuilding();
             if (building != null) { // if building is not empty
-                message.append(String.format("%02d)%-20s\t", i + 1, building.getName()));
+                message.append(String.format("%02d)%-20s\t", i + 1,
+                        building.getName()));
                 if ((i + 1) % 4 == 0) {
                     message.append("\n");
                 }

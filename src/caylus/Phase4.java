@@ -54,5 +54,8 @@ public class Phase4 {
             System.out.println("Provost new position = "
                     + (game.getProvost().getPosition()));
         }// end of for
+        for (Player player : game.getPlayerList()) {
+            System.out.println(player);
+        }
     }
 }

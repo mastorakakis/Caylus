@@ -22,7 +22,7 @@ public class SetUpGame {
         int numberOfUserPlayers = 0; // CreatePlayers.numberOfUserPlayers(sc);
         // if number of players is not max ask for com players
         if (numberOfUserPlayers != SetUpGame.MAX_PLAYERS) {
-            numberOfComPlayers = 3;// CreatePlayers.numberOfComPlayers(sc, numberOfUserPlayers);
+            numberOfComPlayers = 5;// CreatePlayers.numberOfComPlayers(sc, numberOfUserPlayers);
         }// add user players to the list if there are any
         if (numberOfUserPlayers != 0) {
             CreatePlayers.addUserPlayers(numberOfUserPlayers, playerList);
