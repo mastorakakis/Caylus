@@ -69,7 +69,6 @@ public class SpecialBuilding extends Building implements BoardBulding {
             if (player.getMoney() >= this.activationMoney
                     && player.getResources().compareTo(activationResources) >= 0) {
                 // pay money
-//                player.setMoney(player.getMoney() - this.activationMoney);
                 player.tradeMoneyResources(this.activationResources,
                         -this.activationMoney, Action.SUBTRACT);
                 player.setFavors(player.getFavors() + this.activationFavors);

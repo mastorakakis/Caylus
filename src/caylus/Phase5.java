@@ -64,9 +64,10 @@ public class Phase5 {
                 if (block.getTempBuilding() != null) {
                     block.setBuilding(block.getTempBuilding());
                     block.setTempBuilding(null);
-                }
+                } // retunr all workers if buildings not activated
                 player.setWorkers(player.getWorkers() + 1);
-                player = null;
+                // empty block workers
+                block.setWorkers(new ArrayList<Player>());
             }
         }
         System.out.println("");

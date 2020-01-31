@@ -56,6 +56,7 @@ public class FixedBuilding extends Building implements BoardBulding {
             // if not enough money
             if (player.getMoney() < activationMoney) {
                 System.out.println("Not enough money to trade");
+                player.setWorkers(player.getWorkers() + 1);
                 return null;
             } // if enough money
             else {

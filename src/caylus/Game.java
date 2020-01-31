@@ -14,6 +14,9 @@ import java.util.List;
 public class Game implements Serializable {
 
     public static final String WARNING = "--Invalid input--";
+    public static final int DUNGEON_SCORING = 18;
+    public static final int WALLS_SCORING = 24;
+    public static final int TOWERS_SCORING = 30;
 
     private List<Player> playerList;
     private List<Block> road;
@@ -53,6 +56,10 @@ public class Game implements Serializable {
 
     public Provost getProvost() {
         return provost;
+    }
+
+    public Bailiff getBailiff() {
+        return bailiff;
     }
 
     public Inn getInn() {

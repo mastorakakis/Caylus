@@ -37,6 +37,9 @@ public class Inn extends SpecialBuilding implements Serializable {
         System.out.println("Activating Inn");
         // move left worker to the right
         if (innPosition[0] != null) {
+            if (innPosition[1] != null) {
+                innPosition[1].setWorkers(innPosition[1].getWorkers() + 1);
+            }
             innPosition[1] = innPosition[0];
             innPosition[0] = null;
             System.out.println("Moving worker to the right position");
@@ -54,7 +57,6 @@ public class Inn extends SpecialBuilding implements Serializable {
                 System.out.println("Worker remains in Inn");
             }
         }
-        return null; // TODO check this
-
+        return null;
     }
 }

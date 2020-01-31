@@ -50,53 +50,53 @@ public class BuildingObjects {
     protected static NeutralBuilding neutralCarpenter = new NeutralBuilding(0,
             new Resources(0, 0, 0, 0, 0), "Neutral Carpenter");
 
-    // Wood Buildings //TODO make private
-    public static WoodBuilding woodFarmA = new WoodBuilding(2, new Resources(1, 1, 0, 0, 0),
+    // Wood Buildings
+    protected static WoodBuilding woodFarmA = new WoodBuilding(2, new Resources(1, 1, 0, 0, 0),
             0, new Resources(0, 0, 0, 0, 0), "Wood Farm A");
-    public static WoodBuilding woodFarmB = new WoodBuilding(2, new Resources(1, 1, 0, 0, 0),
+    protected static WoodBuilding woodFarmB = new WoodBuilding(2, new Resources(1, 1, 0, 0, 0),
             0, new Resources(0, 0, 0, 0, 0), "Wood Farm B");
-    public static WoodBuilding woodMarketPlace = new WoodBuilding(4, new Resources(0, 1, 0, 0, 0),
+    protected static WoodBuilding woodMarketPlace = new WoodBuilding(4, new Resources(0, 1, 0, 0, 0),
             6, new Resources(0, 0, 0, 0, 0), "Wood Market Place");
-    public static WoodBuilding peddler = new WoodBuilding(4, new Resources(0, 1, 0, 0, 0),
+    protected static WoodBuilding peddler = new WoodBuilding(4, new Resources(0, 1, 0, 0, 0),
             0, new Resources(0, 0, 0, 0, 0), "Wood Peddler");
-    public static WoodBuilding woodQuarry = new WoodBuilding(2, new Resources(1, 1, 0, 0, 0),
+    protected static WoodBuilding woodQuarry = new WoodBuilding(2, new Resources(1, 1, 0, 0, 0),
             0, new Resources(0, 0, 2, 0, 0), "Wood Quarry");
-    public static WoodBuilding woodSawmill = new WoodBuilding(2, new Resources(1, 1, 0, 0, 0),
+    protected static WoodBuilding woodSawmill = new WoodBuilding(2, new Resources(1, 1, 0, 0, 0),
             0, new Resources(0, 2, 0, 0, 0), "Wood Sawmill");
-    public static WoodBuilding mason = new WoodBuilding(4, new Resources(1, 1, 0, 0, 0),
+    protected static WoodBuilding mason = new WoodBuilding(4, new Resources(1, 1, 0, 0, 0),
             0, new Resources(0, 0, 0, 0, 0), "Mason");
-    public static WoodBuilding lawyer = new WoodBuilding(4, new Resources(0, 1, 0, 1, 0),
+    protected static WoodBuilding lawyer = new WoodBuilding(4, new Resources(0, 1, 0, 1, 0),
             0, new Resources(0, 0, 0, 0, 0), "Lawyer");
 
     // Stone Buildings
-    public static StoneBuilding park = new StoneBuilding(3, 0,
+    protected static StoneBuilding park = new StoneBuilding(3, 0,
             new Resources(1, 0, 1, 0, 0), 0, 0, new Resources(1, 2, 0, 0, 0),
             new Resources(0, 0, 0, 0, 0), "Park");
-    public static StoneBuilding stoneFarm = new StoneBuilding(3, 0,
+    protected static StoneBuilding stoneFarm = new StoneBuilding(3, 0,
             new Resources(1, 0, 1, 0, 0), 0, 0, new Resources(2, 0, 0, 1, 0),
             new Resources(0, 0, 0, 0, 0), "Stone Farm");
-    public static StoneBuilding workshop = new StoneBuilding(3, 0,
+    protected static StoneBuilding workshop = new StoneBuilding(3, 0,
             new Resources(1, 0, 1, 0, 0), 0, 0, new Resources(0, 0, 2, 1, 0),
             new Resources(0, 0, 0, 0, 0), "Workshop");
-    public static StoneBuilding bank = new StoneBuilding(6, 0,
+    protected static StoneBuilding bank = new StoneBuilding(6, 0,
             new Resources(0, 1, 1, 0, 0), 0, 0, new Resources(0, 0, 0, 0, 0),
             new Resources(0, 0, 0, 0, 0), "Bank");
-    public static StoneBuilding church = new StoneBuilding(3, 1,
+    protected static StoneBuilding church = new StoneBuilding(3, 1,
             new Resources(0, 0, 1, 1, 0), 1, 0, new Resources(0, 0, 0, 0, 0),
             new Resources(0, 0, 0, 0, 0), "Church");
-    public static StoneBuilding alchemisth = new StoneBuilding(6, 0,
+    protected static StoneBuilding alchemisth = new StoneBuilding(6, 0,
             new Resources(1, 0, 1, 0, 0), 0, 0, new Resources(0, 0, 0, 0, 0),
             new Resources(0, 0, 0, 0, 0), "Alchemist");
-    public static StoneBuilding jeweler = new StoneBuilding(6, 0,
+    protected static StoneBuilding jeweler = new StoneBuilding(6, 0,
             new Resources(0, 0, 1, 1, 0), 0, 0, new Resources(0, 0, 0, 0, 0),
             new Resources(0, 0, 0, 0, 0), "Jeweler");
-    public static StoneBuilding tailor = new StoneBuilding(6, 0,
+    protected static StoneBuilding tailor = new StoneBuilding(6, 0,
             new Resources(0, 1, 1, 0, 0), 0, 0, new Resources(0, 0, 0, 0, 0),
             new Resources(0, 0, 0, 0, 0), "Tailor");
-    public static StoneBuilding architectA = new StoneBuilding(6, 0,
+    protected static StoneBuilding architectA = new StoneBuilding(6, 0,
             new Resources(1, 0, 1, 0, 0), 0, 0, new Resources(0, 0, 0, 0, 0),
             new Resources(0, 0, 0, 0, 0), "Architect A");
-    public static StoneBuilding architectB = new StoneBuilding(6, 0,
+    protected static StoneBuilding architectB = new StoneBuilding(6, 0,
             new Resources(1, 0, 1, 0, 0), 0, 0, new Resources(0, 0, 0, 0, 0),
             new Resources(0, 0, 0, 0, 0), "Architect B");
 

@@ -8,13 +8,12 @@ import java.util.List;
 // Singleton pattern
 public class Bridge implements Serializable {
 
-    private static Bridge bridgeInstance = new Bridge("Bridge");
-    private String name; // TODO maybe delete name
+    private static Bridge bridgeInstance = new Bridge();
+
     private static List<Player> positionList = new ArrayList();
 
     // constructor private
-    private Bridge(String name) {
-        this.name = name;
+    private Bridge() {
     }
 
     // getters setters

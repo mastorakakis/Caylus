@@ -1,6 +1,7 @@
 package caylus;
 
 import caylussetup.SetUpGame;
+import entities.players.Player;
 import java.util.Scanner;
 
 /**
@@ -36,6 +37,38 @@ public class CaylusMain {
         Phase4.play(game, sc);
         System.out.println("");
         Phase5.play(game, sc);
+        System.out.println("");
+        Phase6.play(game, sc);
+        System.out.println("");
+
+//        Player player1 = game.getPlayerList().get(0);
+//        Player player2 = game.getPlayerList().get(1);
+//        Player player3 = game.getPlayerList().get(2);
+//
+//        player1.setPoints(5);
+//        player2.setPoints(5);
+//        player3.setPoints(5);
+//
+//        player1.setWorkers(5);
+//        player2.setWorkers(5);
+//        player3.setWorkers(5);
+//
+//        player2.getResources().setFood(3);
+//        player2.getResources().setWood(2);
+//        player2.getResources().setStone(2);
+//        player2.getResources().setCloth(2);
+//        player2.getResources().setGold(1);
+//        player1.getResources().setFood(2);
+//        player1.getResources().setWood(3);
+//        player1.getResources().setCloth(3);
+//
+//        game.getRoad().get(0).getWorkers().add(player1);
+//        game.getRoad().get(0).getWorkers().add(player2);
+//        game.getRoad().get(0).getWorkers().add(player3);
+//
+//        game.getCastle().getDungeon().getBuildSpaces().add(player1);
+//        game.getCastle().getDungeon().getBuildSpaces().add(player1);
+//        game.getCastle().getDungeon().getBuildSpaces().add(player1);
 //        choice = Functions.inputValidation(1, 2, "Save game\n1)Yes\n2)No",
 //                Game.WARNING, sc);
 //        if (choice == 1) {

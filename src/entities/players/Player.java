@@ -167,10 +167,15 @@ public abstract class Player implements Serializable {
         if (choice != max) {
             Block block = game.getRoad()
                     .get(availableBuildingsList.get(choice - 1));
+            // if building has a worker save it in temp to transform later
             if (block.getWorkers().size() > 0) {
-                // if building has a worker save it in temp to transform later
                 block.setTempBuilding(building);
-            } else {
+            } else { // wood and stone buildings go back to the list
+                if (!(block.getBuilding() instanceof NeutralBuilding)) {
+                    // add craft building to building list
+                    game.getBuildingList().add(block.getBuilding());
+                }
+                // transform block building
                 block.setBuilding(building);
             }
         } // if pass get money and resources back

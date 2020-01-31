@@ -42,22 +42,21 @@ public class Phase2 {
     // place worker
     public static void placeWorker(Game game, Player player, Scanner sc) {
         // get available buildings to place workers
-        List<Integer> availableBuildingsList
+        List<Integer> availableBuildingList
                 = getAvailableBuildings(game.getRoad(), player, game);
         String message // string of availabale options for the user
-                = Functions.printIndexedOptions(availableBuildingsList, game.getRoad());
-        int max = availableBuildingsList.size() + 1; // plus one for pass
+                = Functions.printIndexedOptions(availableBuildingList, game.getRoad());
+        int max = availableBuildingList.size() + 1; // plus one for pass
         System.out.println("\n" + player.getColor() + " Money=" + player.getMoney());
         int choice = Functions.inputValidation(1, max, player.getColor()
                 + " place a worker or pass\n" + message, player, sc);
-
         // if -pass-
         if (choice == max) {
             // add player to bridge ( = pass)
             Bridge.playerPass(player);
             return; // to not pay according to end of method
         } // if Inn and has no worker there
-        Block block = game.getRoad().get(availableBuildingsList.get(choice - 1));
+        Block block = game.getRoad().get(availableBuildingList.get(choice - 1));
         if (block.getBuilding().getName().equals("Inn")) {
             // add worker to left position of inn
             ((Inn) block.getBuilding()).getInnPosition()[0] = player;
@@ -105,7 +104,6 @@ public class Phase2 {
             // residential & prestige buildings and empty blocks are not available
             if (building != null && (!(building instanceof PrestigeBuilding)
                     || !(building instanceof ResidentialBuilding))) {
-                boolean a = !block.getWorkers().contains(player);// TODO delete
                 // if stables don't have player or full
                 if (building.getName().equals("Stables")
                         && block.getWorkers().size() < 3

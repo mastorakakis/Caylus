@@ -2,6 +2,7 @@ package utilities;
 
 import static caylus.Game.WARNING;
 import entities.Block;
+import entities.Resources;
 import entities.buildings.Building;
 import entities.players.ComPlayer;
 import entities.players.Player;

@@ -18,7 +18,7 @@ public class Phase3 {
             if ((block.getBuilding() != null && block.getWorkers().size() > 0)
                     // or inn has a worker in any position
                     || (block.getBuilding() == game.getInn()
-                    && (game.getInn().getInnPosition()[0] != null || game.getInn().getInnPosition()[0] != null))) {
+                    && (game.getInn().getInnPosition()[0] != null || game.getInn().getInnPosition()[1] != null))) {
                 // activate building
                 block.getBuilding().activate(game, block.getWorkers(), sc);
                 // remove workers
