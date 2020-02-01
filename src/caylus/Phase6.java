@@ -13,6 +13,8 @@ public class Phase6 {
         Block castleBlock = game.getRoad().get(0);
         Building castle = game.getRoad().get(0).getBuilding();
         castle.activate(game, castleBlock.getWorkers(), sc);
+        // check if building of castle is finished
+        EndOfGame.checkSectionScoring(game);
         for (Player player : game.getPlayerList()) {
             System.out.println(player);
         }

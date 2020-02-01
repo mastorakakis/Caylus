@@ -49,21 +49,31 @@ public class SpecialBuilding extends Building implements BoardBulding {
         } // if merchant's guild
         else if (this.getName().equals("Merchant's Guild")) {
             System.out.println("Activating Merchant's Guild");
-            // move provost
-            String message = player.getColor()
-                    + " move Provost\n1)Forward 2)Backwards";
-            String message2 = "How many steps\n0)0\n1)1\n2)2\n3)3";
-            int choice = Functions.inputValidation(1, 2, message, player, sc);
-            int choice2 = Functions.inputValidation(0, 3, message2, player, sc);
-            if (choice == 1) {
-                game.getProvost().setPosition(game.getProvost().getPosition() + choice2);
-            } else {
-                game.getProvost().setPosition(game.getProvost().getPosition() - choice2);
+            while (true) {
+                int provostPosition = game.getProvost().getPosition();
+                try {
+                    // move provost
+                    String message = player.getColor()
+                            + " move Provost\n1)Forward 2)Backwards";
+                    String message2 = "How many steps\n0)0\n1)1\n2)2\n3)3";
+                    int choice = Functions.inputValidation(1, 2, message, player, sc);
+                    int choice2 = Functions.inputValidation(0, 3, message2, player, sc);
+                    if (choice == 1) {
+                        game.getProvost().setPosition(game.getProvost().getPosition() + choice2);
+                    } else {
+                        game.getProvost().setPosition(game.getProvost().getPosition() - choice2);
+                    }
+                    break;
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                    // cancel provost movement
+                    game.getProvost().setPosition(provostPosition);
+                }
             }
-            System.out.println("Provost new position = "
-                    + (game.getProvost().getPosition() + 1));
+            System.out.println("Provost new position = " + game.getProvost().getPosition());
         }// if joust field
-        else if (this.getName().equals("Joust Field")) {
+        else if (this.getName()
+                .equals("Joust Field")) {
             System.out.println("Activating Joust Field");
             // if player has  money and resources
             if (player.getMoney() >= this.activationMoney
@@ -79,7 +89,8 @@ public class SpecialBuilding extends Building implements BoardBulding {
                 System.out.println("Not enough money or resources");
             }
         } // if stables
-        else if (this.getName().equals("Stables")) {
+        else if (this.getName()
+                .equals("Stables")) {
             System.out.println("Activating Stables");
             System.out.println("Changing playing order");
             // remove all players in Stables from game playerList
@@ -97,7 +108,9 @@ public class SpecialBuilding extends Building implements BoardBulding {
             }
             return null;
         } // increase player's available workers
+
         player.setWorkers(player.getWorkers() + 1);
+
         return null;
     }
 }

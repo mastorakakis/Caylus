@@ -82,8 +82,11 @@ public abstract class Player implements Serializable {
     }
 
     public void setWorkers(int workers) {
-        if (workers < 0 || workers > 6) {
-            throw new IllegalArgumentException("Workers must be 0-6");
+        if (workers < 0) {
+            throw new IllegalArgumentException(this.color + "Negative number of workers");
+        }
+        if (workers > 6) {
+            throw new IllegalArgumentException(this.color + "Workers maximun number 6");
         }
         this.workers = workers;
     }// end of getters setters

@@ -49,9 +49,9 @@ public class LoadGame {
         }
     }
 
-    public static Game load(Game game) {
+    public static Game load() {
         LoadGame.openFile();
-        game = readRecords();
+        Game game = readRecords();
         LoadGame.close();
         return game;
     }

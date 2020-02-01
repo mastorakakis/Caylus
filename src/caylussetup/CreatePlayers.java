@@ -54,16 +54,16 @@ public class CreatePlayers {
     protected static void addUserPlayers(int numberOfUserPlayers, List<Player> players) {
         switch (numberOfUserPlayers) {
             case 5:
-                Player OrangePlayer = new UserPlayer(Color.ORANGE);
+                Player OrangePlayer = new UserPlayer(Color.GREEN);
                 players.add(OrangePlayer);
             case 4:
-                Player bluePlayer = new UserPlayer(Color.BLACK);
+                Player bluePlayer = new UserPlayer(Color.BLUE);
                 players.add(bluePlayer);
             case 3:
-                Player blackPlayer = new UserPlayer(Color.BLUE);
+                Player blackPlayer = new UserPlayer(Color.BLACK);
                 players.add(blackPlayer);
             case 2:
-                Player redPlayer = new UserPlayer(Color.GREEN);
+                Player redPlayer = new UserPlayer(Color.ORANGE);
                 players.add(redPlayer);
             case 1:
                 Player greenPlayer = new UserPlayer(Color.RED);
@@ -78,16 +78,16 @@ public class CreatePlayers {
                 Player OrangePlayer = new ComPlayer(Color.RED);
                 players.add(OrangePlayer);
             case 4:
-                Player bluePlayer = new ComPlayer(Color.GREEN);
+                Player bluePlayer = new ComPlayer(Color.ORANGE);
                 players.add(bluePlayer);
             case 3:
-                Player blackPlayer = new ComPlayer(Color.BLUE);
+                Player blackPlayer = new ComPlayer(Color.BLACK);
                 players.add(blackPlayer);
             case 2:
-                Player redPlayer = new ComPlayer(Color.BLACK);
+                Player redPlayer = new ComPlayer(Color.BLUE);
                 players.add(redPlayer);
             case 1:
-                Player greenPlayer = new ComPlayer(Color.ORANGE);
+                Player greenPlayer = new ComPlayer(Color.GREEN);
                 players.add(greenPlayer);
         }
     }

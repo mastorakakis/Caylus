@@ -7,7 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.NoSuchElementException;
 
-public class SaveFile {
+public class SaveGame {
 
     private static ObjectOutputStream output;
 
@@ -42,8 +42,8 @@ public class SaveFile {
     }
 
     public static void save(Game game) {
-        SaveFile.openFile();
-        SaveFile.addRecords(game);
-        SaveFile.close();
+        SaveGame.openFile();
+        SaveGame.addRecords(game);
+        SaveGame.close();
     }
 }

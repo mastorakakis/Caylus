@@ -29,8 +29,7 @@ public class Phase4 {
                                 player, sc);
                         // if not enough money
                         if (choice2 > player.getMoney()) {
-                            System.out.println(player.getColor()
-                                    + " doen't have enough money");
+                            System.out.println("Not enough money");
                             continue; // ask again
                         }// move provost
                         if (choice == 1) {

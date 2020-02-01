@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Bailiff implements Serializable {
 
     private static Bailiff bailiffInstance = new Bailiff();
-    private static int position = 11;
+    private static int position = 12;
 
     // constructor private
     public Bailiff() {

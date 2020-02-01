@@ -56,6 +56,7 @@ public class Phase5 {
                 block.setWorkers(new ArrayList<Player>());
             } // end of if
         } // end of for
+        // remove workers from non activating buildings
         for (int i = 7; i < game.getRoad().size(); i++) {
             Block block = game.getRoad().get(i);
             if (block.getBuilding() != null && block.getWorkers().size() > 0) {
