@@ -10,7 +10,7 @@ public class ResidentialBuilding extends Building {
 
     private final String name = "Residential Building";
     private final int buildPoints = 2;
-    private final int buildMoney = 1;
+    private int buildMoney = 1;
     private final Resources buildResources = new Resources(0, 0, 0, 1, 0);
     private final int incomeMoney = 1;
 
@@ -33,6 +33,10 @@ public class ResidentialBuilding extends Building {
     @Override
     public String getName() {
         return name;
+    }
+
+    public void setBuildMoney(int buildMoney) {
+        this.buildMoney = buildMoney;
     }
 
     public int getIncomeMoney() {

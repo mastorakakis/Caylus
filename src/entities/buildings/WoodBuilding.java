@@ -147,7 +147,7 @@ public class WoodBuilding extends Building {
                 }
                 break;
             } while (true);
-        } // wood sawmill
+        } // if wood sawmill
         else if (this.getName().equals("Wood Sawmill")) {
             System.out.println("Activating Wood Sawmill");
             player.tradeMoneyResources(activationResources, activationMoney,
@@ -163,7 +163,7 @@ public class WoodBuilding extends Building {
             }
             player.setWorkers(player.getWorkers() + 1);
             System.out.println(player.getColor() + " Worker=" + player.getWorkers());
-            return player.buildStone(stoneList, sc);
+            return player.buildStone(game, stoneList, sc);
         } // if lawyer
         else if (this.getName().equals("Lawyer")) {
             System.out.println("Activating Lawyer");
@@ -173,10 +173,6 @@ public class WoodBuilding extends Building {
             if (player.getMoney() >= building.getBuildMoney()
                     && player.getResources().compareTo(building
                             .getBuildResources()) >= 0) {
-                // pay
-                player.tradeMoneyResources(building.getBuildResources(),
-                        -building.getBuildMoney(), Action.SUBTRACT);
-                player.setPoints(player.getPoints() + building.getBuildPoints());
                 player.setWorkers(player.getWorkers() + 1);
                 System.out.println(player.getColor() + " Worker=" + player.getWorkers());
                 // build

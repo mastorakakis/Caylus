@@ -85,13 +85,14 @@ public class Castle extends Building implements Serializable {
                     System.out.println(player.getColor() + " Worker=" + player.getWorkers());
                 }
             } // end of for
-            earnFavor(castlePlayers, numberOfBuildings);
+            earnFavor(game, castlePlayers, numberOfBuildings, sc);
         }
         return null;
     }
 
     // first player with most buildings wins a favor
-    public void earnFavor(List<Player> castlePlayers, List<Integer> numOfBuildings) {
+    public void earnFavor(Game game, List<Player> castlePlayers, List<Integer> numOfBuildings,
+            Scanner sc) {
         int max = numOfBuildings.get(0);
         Player maxPlayer = castlePlayers.get(0);
         for (int i = 0; i < castlePlayers.size(); i++) {
@@ -104,6 +105,9 @@ public class Castle extends Building implements Serializable {
             maxPlayer.setFavors(maxPlayer.getFavors() + buildFavor);
             System.out.println(maxPlayer.getColor() + " earns " + buildFavor
                     + " favor");
+
+            // use favor
+            game.getFavorTable().useFavor(game, maxPlayer, sc);
         }
     }
 

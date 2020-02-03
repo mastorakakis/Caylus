@@ -17,8 +17,9 @@ public class Phase6 {
         // remove workers from castle
         castleBlock.setWorkers(new ArrayList());
         // check if building of castle is finished
-        Phase7.checkSectionScoring(game);
+        Phase7.checkSectionScoring(game, sc);
         for (Player player : game.getPlayerList()) {
+            player.newFavorTableIndex();
             System.out.println(player);
         }
     }

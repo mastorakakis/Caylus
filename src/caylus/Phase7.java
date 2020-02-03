@@ -10,12 +10,12 @@ public class Phase7 {
 
     public static void play(Game game, Scanner sc) {
         System.out.println("\nPhase 7: End of turn");
-        moveBailiff(game);
+        moveBailiff(game, sc);
 
     }
 
     // move bailiff
-    public static void moveBailiff(Game game) {
+    public static void moveBailiff(Game game, Scanner sc) {
         int bailiffPosition = game.getBailiff().getPosition();
         int provostPosition = game.getProvost().getPosition();
         if (bailiffPosition < provostPosition) {
@@ -27,8 +27,9 @@ public class Phase7 {
         System.out.println("Bailiff new position=" + game.getBailiff().getPosition());
         System.out.println("Provost new position=" + game.getProvost().getPosition());
 
-        checkSectionScoring(game);
+        checkSectionScoring(game, sc);
         for (Player player : game.getPlayerList()) {
+            player.newFavorTableIndex();
             System.out.println(player);
         }
     }
@@ -64,26 +65,26 @@ public class Phase7 {
     }
 
     // if available scoreGame section
-    public static void checkSectionScoring(Game game) {
+    public static void checkSectionScoring(Game game, Scanner sc) {
         if (game.getBailiff().getPosition() >= game.DUNGEON_SCORING
                 || game.getCastle().getDungeon().getBuildSpaces().size() == 6) {
             if (!game.getCastle().getDungeon().isScored()) {
                 System.out.println("Scoring Dungeon");
-                game.getCastle().getDungeon().scoreSection(game);
+                game.getCastle().getDungeon().scoreSection(game, sc);
             }
         }
         if (game.getBailiff().getPosition() >= game.WALLS_SCORING
                 || game.getCastle().getWalls().getBuildSpaces().size() == 10) {
             if (!game.getCastle().getWalls().isScored()) {
                 System.out.println("Scoring the Walls");
-                game.getCastle().getWalls().scoreSection(game);
+                game.getCastle().getWalls().scoreSection(game, sc);
             }
         }
         if (game.getBailiff().getPosition() >= game.TOWERS_SCORING
                 || game.getCastle().getTowers().getBuildSpaces().size() == 14) {
             if (!game.getCastle().getTowers().isScored()) {
                 System.out.println("Scoring the Towers");
-                game.getCastle().getTowers().scoreSection(game);
+                game.getCastle().getTowers().scoreSection(game, sc);
             }
         }
     }

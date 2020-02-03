@@ -84,7 +84,8 @@ public class SpecialBuilding extends Building implements BoardBulding {
                 player.setFavors(player.getFavors() + this.activationFavors);
                 System.out.println(player.getColor() + " earns "
                         + this.activationFavors + " favor");
-                // TODO Go to favors table
+                // use favor
+                game.getFavorTable().useFavor(game, player, sc);
             } else {
                 System.out.println("Not enough money or resources");
             }

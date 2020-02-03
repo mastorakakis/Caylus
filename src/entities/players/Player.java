@@ -13,9 +13,7 @@ import enums.Color;
 import enums.Action;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 import utilities.Functions;
 
@@ -24,7 +22,7 @@ public abstract class Player implements Serializable {
     private Color color;
     private int points;
     private int money; // players initial amount depends on order of play
-    private Resources resources = new Resources(2, 1, 0, 0, 0); // start with 2 food 1 wood
+    private Resources resources = new Resources(2, 1, 0, 0, 0); // start with 2 food 1 wood //TODO reset
     private int favors;
     private int workers = 6; // player has six workers;
     private String[] favorTableOptions = {"Points Line", "Money Line",
@@ -131,7 +129,6 @@ public abstract class Player implements Serializable {
             System.out.println(buildings.get(choice - 1).getName());
             if (resources.compareTo(buildings.get(choice - 1).getBuildResources()) < 0) {
                 System.out.println("Not enough resources to build.");
-                continue;
             } else {// pay resources
                 tradeMoneyResources(buildings.get(choice - 1).getBuildResources(), 0,
                         Action.SUBTRACT);
@@ -144,7 +141,7 @@ public abstract class Player implements Serializable {
     }
 
     // build stone, select resources & money & favors, restore resources
-    public Building buildStone(List<StoneBuilding> buildings, Scanner sc) {
+    public Building buildStone(Game game, List<StoneBuilding> buildings, Scanner sc) {
         int choice = 0;
         do {
             String message = this.color + " select building\n"
@@ -165,6 +162,10 @@ public abstract class Player implements Serializable {
                 // get points and favors
                 this.points += buildings.get(choice - 1).getBuildPoints();
                 this.favors += buildings.get(choice - 1).getBuildFavors();
+                if (favors > 0) {
+                    // use favor
+                    game.getFavorTable().useFavor(game, this, sc);
+                }
             }
         } while (choice == 0);
         return buildings.get(choice - 1);
@@ -183,6 +184,10 @@ public abstract class Player implements Serializable {
         if (choice != max) {
             Block block = game.getRoad()
                     .get(availableBuildingsList.get(choice - 1));
+            // pay
+            tradeMoneyResources(building.getBuildResources(),
+                    -building.getBuildMoney(), Action.SUBTRACT);
+            points += building.getBuildPoints();
             // if building has a worker save it in temp to transform later
             if (block.getWorkers().size() > 0) {
                 block.setTempBuilding(building);
@@ -200,7 +205,7 @@ public abstract class Player implements Serializable {
         else {
             tradeMoneyResources(building.getBuildResources(),
                     -building.getBuildMoney(), Action.ADD);
-            setPoints(points - building.getBuildPoints());
+            points -= building.getBuildPoints();
         }
         return null;
     }
@@ -226,6 +231,10 @@ public abstract class Player implements Serializable {
                 // get points and favors
                 this.points += buildings.get(choice - 1).getBuildPoints();
                 this.favors += buildings.get(choice - 1).getBuildFavors();
+                if (favors > 0) {
+                    // use favor
+                    game.getFavorTable().useFavor(game, this, sc);
+                }
             }
         } while (choice == 0);
         PrestigeBuilding prestigeBuilding = buildings.get(choice - 1);

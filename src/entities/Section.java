@@ -4,6 +4,7 @@ import caylus.Game;
 import entities.players.Player;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Scanner;
 
 public class Section implements Serializable {
 
@@ -66,7 +67,7 @@ public class Section implements Serializable {
     }// end of getters setters
 
     // score section
-    public void scoreSection(Game game) {
+    public void scoreSection(Game game, Scanner sc) {
         for (Player player : game.getPlayerList()) {
             int numberOfHouses = 0;
             for (Player house : buildSpaces) {
@@ -86,6 +87,7 @@ public class Section implements Serializable {
                 player.setFavors(player.getFavors() + this.scoreFavors);
                 System.out.println(player.getColor() + " earns "
                         + scoreFavors + " favors");
+                game.getFavorTable().useFavor(game, player, sc);
             } else if (this == game.getCastle().getWalls()) {
                 switch (numberOfHouses) {
                     case 1:
@@ -95,11 +97,13 @@ public class Section implements Serializable {
                         player.setFavors(player.getFavors() + this.scoreFavors + 1);
                         System.out.println(player.getColor() + " earns "
                                 + (scoreFavors + 1) + " favors");
+                        game.getFavorTable().useFavor(game, player, sc);
                         break;
                     default:
                         player.setFavors(player.getFavors() + this.scoreFavors + 2);
                         System.out.println(player.getColor() + " earns "
                                 + (scoreFavors + 2) + " favors");
+                        game.getFavorTable().useFavor(game, player, sc);
                 }
             } else if (this == game.getCastle().getTowers()) {
                 switch (numberOfHouses) {
@@ -109,17 +113,20 @@ public class Section implements Serializable {
                         player.setFavors(player.getFavors() + this.scoreFavors);
                         System.out.println(player.getColor() + " earns "
                                 + scoreFavors + " favors");
+                        game.getFavorTable().useFavor(game, player, sc);
                         break;
                     case 4:
                     case 5:
                         player.setFavors(player.getFavors() + this.scoreFavors + 1);
                         System.out.println(player.getColor() + " earns "
                                 + (scoreFavors + 1) + " favors");
+                        game.getFavorTable().useFavor(game, player, sc);
                         break;
                     default:
                         player.setFavors(player.getFavors() + this.scoreFavors + 2);
                         System.out.println(player.getColor() + " earns "
                                 + (scoreFavors + 2) + " favors");
+                        game.getFavorTable().useFavor(game, player, sc);
                 }
             }
         }

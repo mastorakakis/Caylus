@@ -5,8 +5,6 @@ import caylussetup.SetUpGame;
 import entities.FavorTable;
 import entities.buildings.Castle;
 import entities.players.Player;
-import entities.players.UserPlayer;
-import enums.Color;
 import enums.Status;
 import java.util.List;
 import java.util.Scanner;
@@ -21,9 +19,7 @@ public class CaylusMain {
     public static void main(String[] args) throws InterruptedException {
 
         System.out.println("C A Y L U S");
-////////////////////////////////////////////////////////////////////////////////
 //        for (int i = 0; i < 1000; i++) {
-
         Game game = new Game();
 //        if (Functions.inputValidation(1, 2, "\n1)Start new Game\t2)Load Game",
 //                new UserPlayer(Color.BLUE), sc) == 2) {
@@ -42,60 +38,46 @@ public class CaylusMain {
 //        }
 ////////////////////////////////////////////////////////////////////////////////
 
-//        Status gameStatus = Status.CONTIUNE;
-//        do {
-////            if (Functions.inputValidation(1, 2, "Save Game\n1)Yes\t2)No",
-////                    new UserPlayer(Color.BLUE), sc) == 1) {
-////                SaveGame.save(game);
-////            }
-//            Phase1.play(game, sc);
-//            System.out.println("");
-//
-//            Phase2.play(game, sc);
-//            System.out.println("");
-////            if (Functions.inputValidation(1, 2, "Save Game\n1)Yes\t2)No",
-////                    new UserPlayer(Color.BLUE), sc) == 1) {
-////                SaveGame.save(game);
-////            }
-//            Phase3.play(game, sc);
-//            System.out.println("");
-////            if (Functions.inputValidation(1, 2, "Save Game\n1)Yes\t2)No",
-////                    new UserPlayer(Color.BLUE), sc) == 1) {
-////                SaveGame.save(game);
-////            }
-//            Phase4.play(game, sc);
-//            System.out.println("");
-////            if (Functions.inputValidation(1, 2, "Save Game\n1)Yes\t2)No",
-////                    new UserPlayer(Color.BLUE), sc) == 1) {
-////                SaveGame.save(game);
-////            }
-//            Phase5.play(game, sc);
-//            System.out.println("");
-////            if (Functions.inputValidation(1, 2, "Save Game\n1)Yes\t2)No",
-////                    new UserPlayer(Color.BLUE), sc) == 1) {
-////                SaveGame.save(game);
-////            }
-//            Phase6.play(game, sc);
-//            System.out.println("");
-//            if (game.getCastle().getTowers().isScored()) {
-//                gameStatus = Status.FINISH;
+        Status gameStatus = Status.CONTIUNE;
+        do {
+//            if (Functions.inputValidation(1, 2, "Save Game\n1)Yes\t2)No",
+//                    new UserPlayer(Color.BLUE), sc) == 1) {
+//                SaveGame.save(game);
 //            }
-//            if (gameStatus == Status.CONTIUNE) {
-//                Phase7.play(game, sc);
-//                System.out.println("");
-//                if (game.getCastle().getTowers().isScored()) {
-//                    gameStatus = Status.FINISH;
-//                }
-//            }
-//
-//        } while (gameStatus == Status.CONTIUNE);
-//        List<Player> winners = Phase7.scoreGame(game);
-//        System.out.println("\nWinners:");
-//        for (Player winner : winners) {
-//            System.out.println(winner);
-//        }
-        Player player = game.getPlayerList().get(0);
-        player.getFavorTableOptions()[1] = null;
-        favorTable.selectFavorLine(game, (UserPlayer) player, sc);
+            Phase1.play(game, sc);
+            System.out.println("");
+
+            Phase2.play(game, sc);
+            System.out.println("");
+
+            Phase3.play(game, sc);
+            System.out.println("");
+
+            Phase4.play(game, sc);
+            System.out.println("");
+
+            Phase5.play(game, sc);
+            System.out.println("");
+
+            Phase6.play(game, sc);
+            System.out.println("");
+            if (game.getCastle().getTowers().isScored()) {
+                gameStatus = Status.FINISH;
+            }
+            if (gameStatus == Status.CONTIUNE) {
+                Phase7.play(game, sc);
+                System.out.println("");
+                if (game.getCastle().getTowers().isScored()) {
+                    gameStatus = Status.FINISH;
+                }
+            }
+
+        } while (gameStatus == Status.CONTIUNE);
+        List<Player> winners = Phase7.scoreGame(game);
+        System.out.println("\nWinners:");
+        for (Player winner : winners) {
+            System.out.println(winner);
+        }
     } // end of main
 }
+//}

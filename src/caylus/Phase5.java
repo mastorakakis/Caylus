@@ -86,6 +86,7 @@ public class Phase5 {
         }
         System.out.println("");
         for (Player player : game.getPlayerList()) {
+            player.newFavorTableIndex();
             System.out.println(player);
         }
     }

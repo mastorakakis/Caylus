@@ -56,6 +56,7 @@ public class Phase4 {
         }// end of for
         game.getBridge().setPositionList(new ArrayList<>());
         for (Player player : game.getPlayerList()) {
+            player.newFavorTableIndex();
             System.out.println(player);
         }
     }

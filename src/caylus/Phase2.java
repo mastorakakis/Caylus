@@ -34,6 +34,7 @@ public class Phase2 {
             }
         }
         for (Player player : game.getPlayerList()) {
+            player.newFavorTableIndex();
             System.out.println(player);
         }
     }
