@@ -81,7 +81,7 @@ public class Resources implements Comparable, Serializable {
     }// end of getters setters
 
     // modifying resourses +1
-    public void modifyResources(int selection, Scanner sc) {
+    public void modifyResources(int selection) {
         switch (selection) {
             case 1:
                 this.setFood(++food);

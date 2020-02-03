@@ -11,10 +11,8 @@ import java.util.List;
 import java.util.Scanner;
 import utilities.Functions;
 
-// Singleton Pattern
 public class Castle extends Building implements Serializable {
 
-    private static Castle castleInstance = new Castle("Castle");
     private Section dungeon = new Section("Dungeon", new ArrayList(), 5, 1, 2);
     private Section walls = new Section("Walls", new ArrayList(), 4, 1, 3);
     private Section towers = new Section("Towers", new ArrayList(), 3, 1, 4);
@@ -22,15 +20,11 @@ public class Castle extends Building implements Serializable {
     private int penaltyBuildPoints = 2;
 
     // constructor private
-    private Castle(String name) {
+    public Castle(String name) {
         super(name);
     }
 
     // getters setters
-    public static Castle getCastleInstance() {
-        return castleInstance;
-    }
-
     public Section getDungeon() {
         return dungeon;
     }
@@ -83,10 +77,12 @@ public class Castle extends Building implements Serializable {
                     } // end of while
                     // return worker
                     player.setWorkers(player.getWorkers() + 1);
+                    System.out.println(player.getColor() + " Worker=" + player.getWorkers());
                 } else {// if not enough resources
                     System.out.println("Not enough resources");
                     loosePoints(player, numberOfBuildings);
                     player.setWorkers(player.getWorkers() + 1);
+                    System.out.println(player.getColor() + " Worker=" + player.getWorkers());
                 }
             } // end of for
             earnFavor(castlePlayers, numberOfBuildings);
@@ -171,7 +167,7 @@ public class Castle extends Building implements Serializable {
                 if (choice == 6) {
                     return null;
                 } else { // else modify resources
-                    payResources.modifyResources(choice, sc);
+                    payResources.modifyResources(choice);
                 }
             } // if valid return resources
             if (validBatch(payResources)) {

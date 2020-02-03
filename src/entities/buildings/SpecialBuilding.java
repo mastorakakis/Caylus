@@ -105,12 +105,13 @@ public class SpecialBuilding extends Building implements BoardBulding {
             // increase players' available workers
             for (Player p : workers) {
                 p.setWorkers(p.getWorkers() + 1);
+                System.out.println(player.getColor() + " Worker=" + p.getWorkers());
             }
             return null;
         } // increase player's available workers
 
         player.setWorkers(player.getWorkers() + 1);
-
+        System.out.println(player.getColor() + " Worker=" + player.getWorkers());
         return null;
     }
 }

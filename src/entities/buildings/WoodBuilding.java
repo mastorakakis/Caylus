@@ -77,9 +77,9 @@ public class WoodBuilding extends Building {
                     + " select resources\n1)2 Food\n2)1 Cloth";
             int choice = Functions.inputValidation(1, 2, message, player, sc);
             choice = choice == 2 ? 4 : 1;
-            activationResources.modifyResources(choice, sc);
+            activationResources.modifyResources(choice);
             if (choice == 1) { // if choice 1 add one more resource
-                activationResources.modifyResources(choice, sc);
+                activationResources.modifyResources(choice);
             }// treade resources
             player.tradeMoneyResources(activationResources, activationMoney,
                     Action.ADD);
@@ -91,9 +91,9 @@ public class WoodBuilding extends Building {
                     + " select resources\n1)1 Food\n2)2 Cloth";
             int choice = Functions.inputValidation(1, 2, message, player, sc);
             choice = choice == 2 ? 4 : 1;
-            activationResources.modifyResources(choice, sc);
+            activationResources.modifyResources(choice);
             if (choice == 4) {
-                activationResources.modifyResources(choice, sc);
+                activationResources.modifyResources(choice);
             }
             player.tradeMoneyResources(activationResources, activationMoney,
                     Action.ADD);
@@ -106,7 +106,7 @@ public class WoodBuilding extends Building {
                         + "1)Food\n2)Wood\n3)Stone\n4)Cloth\n5)Don't trade";
                 int choice = Functions.inputValidation(1, 5, message, player, sc);
                 if (choice != 5) { // if have enough resources
-                    this.activationResources.modifyResources(choice, sc);
+                    this.activationResources.modifyResources(choice);
                     if (player.getResources().compareTo(this.activationResources) < 0) {
                         System.out.println("Not enough resources to trade");
                         this.activationResources = new Resources();
@@ -138,7 +138,7 @@ public class WoodBuilding extends Building {
                                     + "1)Food\n2)Wood\n3)Stone\n4)Cloth";
                             int choice2 = Functions.inputValidation(1, 4, message2,
                                     player, sc);
-                            activationResources.modifyResources(choice2, sc);
+                            activationResources.modifyResources(choice2);
                         }
                         player.tradeMoneyResources(activationResources,
                                 activationMoney, Action.ADD);
@@ -162,6 +162,7 @@ public class WoodBuilding extends Building {
                 }
             }
             player.setWorkers(player.getWorkers() + 1);
+            System.out.println(player.getColor() + " Worker=" + player.getWorkers());
             return player.buildStone(stoneList, sc);
         } // if lawyer
         else if (this.getName().equals("Lawyer")) {
@@ -173,15 +174,17 @@ public class WoodBuilding extends Building {
                     && player.getResources().compareTo(building
                             .getBuildResources()) >= 0) {
                 // pay
-                player.tradeMoneyResources(this.buildResources,
+                player.tradeMoneyResources(building.getBuildResources(),
                         -building.getBuildMoney(), Action.SUBTRACT);
                 player.setPoints(player.getPoints() + building.getBuildPoints());
                 player.setWorkers(player.getWorkers() + 1);
+                System.out.println(player.getColor() + " Worker=" + player.getWorkers());
                 // build
                 return player.buildResidential(game, building, sc);
             }
         }
         player.setWorkers(player.getWorkers() + 1);
+        System.out.println(player.getColor() + " Worker=" + player.getWorkers());
         return null;
     }
 

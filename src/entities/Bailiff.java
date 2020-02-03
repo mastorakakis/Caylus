@@ -4,26 +4,21 @@ import java.io.Serializable;
 
 public class Bailiff implements Serializable {
 
-    private static Bailiff bailiffInstance = new Bailiff();
-    private static int position = 12;
+    private int position = 12;
 
     // constructor private
     public Bailiff() {
     }
 
     // getters setters
-    public static Bailiff getBailiffInstance() {
-        return bailiffInstance;
-    }
-
-    public static int getPosition() {
+    public int getPosition() {
         return position;
     }
 
-    public static void setPosition(int position) {
+    public void setPosition(int position) {
         if (position < 7 || position > 34) {
             throw new IllegalArgumentException("Bailiff's movement if out of limits");
         }
-        Bailiff.position = position;
+        this.position = position;
     } // end of getters setters
 }

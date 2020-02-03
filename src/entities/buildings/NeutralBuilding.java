@@ -48,7 +48,7 @@ public class NeutralBuilding extends Building {
             // choose resources
             int choice = Functions.inputValidation(1, 2, message, player, sc);
             choice = choice == 2 ? 4 : 1;
-            activationResources.modifyResources(choice, sc);
+            activationResources.modifyResources(choice);
             // collect chosen resources
             player.tradeMoneyResources(activationResources, activationMoney,
                     Action.ADD);
@@ -61,7 +61,7 @@ public class NeutralBuilding extends Building {
             String message = player.getColor()
                     + " select resource\n1)1 Food\n2)1 Wood";
             int choice = Functions.inputValidation(1, 2, message, player, sc);
-            activationResources.modifyResources(choice, sc);
+            activationResources.modifyResources(choice);
             // collect resource
             player.tradeMoneyResources(activationResources, activationMoney,
                     Action.ADD);
@@ -75,7 +75,7 @@ public class NeutralBuilding extends Building {
                         + "1)Food\n2)Wood\n3)Stone\n4)Cloth\n5)Don't trade";
                 int choice = Functions.inputValidation(1, 5, message, player, sc);
                 if (choice != 5) { // if trade
-                    this.activationResources.modifyResources(choice, sc);
+                    this.activationResources.modifyResources(choice);
                     // if not enough resources
                     if (player.getResources().compareTo(this.activationResources) < 0) {
                         System.out.println("Not enough resources to trade.");
@@ -99,9 +99,11 @@ public class NeutralBuilding extends Building {
                 }
             }
             player.setWorkers(player.getWorkers() + 1);
+            System.out.println(player.getColor() + " Worker=" + player.getWorkers());
             return player.buildWood(woodList, sc);
         }
         player.setWorkers(player.getWorkers() + 1);
+        System.out.println(player.getColor() + " Worker=" + player.getWorkers());
         return null;
     }
 

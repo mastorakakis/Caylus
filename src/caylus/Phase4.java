@@ -4,6 +4,7 @@ import static caylus.Game.WARNING;
 import entities.players.Player;
 import entities.players.UserPlayer;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import utilities.Functions;
@@ -53,6 +54,7 @@ public class Phase4 {
             System.out.println("Provost new position = "
                     + (game.getProvost().getPosition()));
         }// end of for
+        game.getBridge().setPositionList(new ArrayList<>());
         for (Player player : game.getPlayerList()) {
             System.out.println(player);
         }

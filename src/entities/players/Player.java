@@ -13,7 +13,9 @@ import enums.Color;
 import enums.Action;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import utilities.Functions;
 
@@ -25,6 +27,8 @@ public abstract class Player implements Serializable {
     private Resources resources = new Resources(2, 1, 0, 0, 0); // start with 2 food 1 wood
     private int favors;
     private int workers = 6; // player has six workers;
+    private String[] favorTableOptions = {"Points Line", "Money Line",
+        "Resources Line", "Build Line"};
 
     // constructor
     public Player(Color color) {
@@ -44,9 +48,6 @@ public abstract class Player implements Serializable {
         return money;
     }
 
-//    public void setResources(Resources resources) {
-//        this.resources = resources;
-//    }
     public int getFavors() {
         return favors;
     }
@@ -60,6 +61,10 @@ public abstract class Player implements Serializable {
             throw new IllegalArgumentException("Amount of money cannot be negative");
         }
         this.money = money;
+    }
+
+    public String[] getFavorTableOptions() {
+        return favorTableOptions;
     }
 
     public Resources getResources() {
@@ -83,13 +88,21 @@ public abstract class Player implements Serializable {
 
     public void setWorkers(int workers) {
         if (workers < 0) {
-            throw new IllegalArgumentException(this.color + "Negative number of workers");
+            throw new IllegalArgumentException(this.color + " Negative number of workers");
         }
         if (workers > 6) {
-            throw new IllegalArgumentException(this.color + "Workers maximun number 6");
+            throw new IllegalArgumentException(this.color + " Workers maximun number 6");
         }
         this.workers = workers;
     }// end of getters setters
+
+    public void newFavorTableIndex() {
+        favorTableOptions = new String[4];
+        favorTableOptions[0] = "Points Line";
+        favorTableOptions[1] = "Money Line";
+        favorTableOptions[2] = "Resources Line";
+        favorTableOptions[3] = "Build Line";
+    }
 
     // build wood, collect resources & money, restore resources
     public Building buildWood(List<WoodBuilding> buildings, Scanner sc) {
@@ -113,7 +126,7 @@ public abstract class Player implements Serializable {
                         + " costs 1 wood plus 1 resource of choice\n"
                         + "1)Food\n2)Wood\n3)Stone\n4)Cloth\n5)Gold", this, sc);
                 // increase selected building resource cost
-                buildings.get(choice - 1).getBuildResources().modifyResources(choice2, sc);
+                buildings.get(choice - 1).getBuildResources().modifyResources(choice2);
             }// check if resources are enough
             System.out.println(buildings.get(choice - 1).getName());
             if (resources.compareTo(buildings.get(choice - 1).getBuildResources()) < 0) {
@@ -134,7 +147,7 @@ public abstract class Player implements Serializable {
     public Building buildStone(List<StoneBuilding> buildings, Scanner sc) {
         int choice = 0;
         do {
-            String message = this.color + "select building\n"
+            String message = this.color + " select building\n"
                     + Functions.printOptions(buildings);
             int max = buildings.size() + 1;
             choice = Functions.inputValidation(1, max, message, this, sc);
@@ -180,6 +193,8 @@ public abstract class Player implements Serializable {
                 }
                 // transform block building
                 block.setBuilding(building);
+                // set player house
+                block.setHouse(this);
             }
         } // if pass get money and resources back
         else {
@@ -222,8 +237,9 @@ public abstract class Player implements Serializable {
         int max = availableBuildingsList.size() + 1; // plus one for pass
         int choice2 = Functions.inputValidation(1, max, color
                 + " select building or pass\n" + message, this, sc);
+        Block block;
         if (choice2 != max) {
-            Block block = game.getRoad()
+            block = game.getRoad()
                     .get(availableBuildingsList.get(choice2 - 1));
             block.setBuilding(prestigeBuilding);
         } else { // take back resources
@@ -233,6 +249,8 @@ public abstract class Player implements Serializable {
             this.favors -= prestigeBuilding.getBuildFavors();
             return null;
         }
+        // set player house
+        block.setHouse(this);
         return prestigeBuilding;
     }
 
@@ -245,7 +263,8 @@ public abstract class Player implements Serializable {
             // if building neutral or craft not Lawyer and belongs to player
             if (building != null && !building.getName().equals("Lawyer")) {
                 if (building instanceof NeutralBuilding
-                        || ((building instanceof WoodBuilding || building instanceof StoneBuilding)
+                        || ((building instanceof WoodBuilding
+                        || building instanceof StoneBuilding)
                         && block.getHouse() == this)) {
                     indexList.add(i);
                 }

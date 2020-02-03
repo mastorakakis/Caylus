@@ -23,7 +23,7 @@ public class Phase1 {
                     PrestigeBuilding pb = (PrestigeBuilding) building;
                     player = block.getHouse(); // owner of the house
                     // collect income
-                    player.setMoney(player.getMoney() + pb.getIncomeMoney());
+                    player.setMoney(player.getMoney() + 1);
                     System.out.println(player.getColor() + " earns 1 denier");
                 } // if  hotel
                 else if (building.getName().equals("Hotel")) {

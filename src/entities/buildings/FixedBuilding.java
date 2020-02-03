@@ -57,6 +57,7 @@ public class FixedBuilding extends Building implements BoardBulding {
             if (player.getMoney() < activationMoney) {
                 System.out.println("Not enough money to trade");
                 player.setWorkers(player.getWorkers() + 1);
+                System.out.println("Workers=" + player.getWorkers());
                 return null;
             } // if enough money
             else {
@@ -65,7 +66,7 @@ public class FixedBuilding extends Building implements BoardBulding {
                         + "1)Food\n2)Wood\n3)Stone\n4)Cloth";
                 int choice = Functions.inputValidation(1, 4, message,
                         player, sc);
-                activationResources.modifyResources(choice, sc);
+                activationResources.modifyResources(choice);
             } // collect resources
             player.tradeMoneyResources(activationResources,
                     activationMoney, Action.ADD);
@@ -73,7 +74,7 @@ public class FixedBuilding extends Building implements BoardBulding {
             this.activationResources = new Resources();
         } // if fixed carpenter
         else if (this.getName().equals("Fixed Carpenter")) {
-            System.out.println("Activating Carpenter");
+            System.out.println("Activating Fixed Carpenter");
             List<WoodBuilding> woodList = new ArrayList();
             for (Building building : game.getBuildingList()) {
                 if (building instanceof WoodBuilding) {
@@ -81,6 +82,7 @@ public class FixedBuilding extends Building implements BoardBulding {
                 }
             }
             player.setWorkers(player.getWorkers() + 1);
+            System.out.println(player.getColor() + " Workers=" + player.getWorkers());
             return player.buildWood(woodList, sc);
 
         } // if gold mine
@@ -90,6 +92,7 @@ public class FixedBuilding extends Building implements BoardBulding {
             player.tradeMoneyResources(activationResources, activationMoney, Action.ADD);
         }
         player.setWorkers(player.getWorkers() + 1);
+        System.out.println(player.getColor() + " Worker=" + player.getWorkers());
         return null;
     }
 

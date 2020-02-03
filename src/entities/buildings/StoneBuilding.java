@@ -115,9 +115,9 @@ public class StoneBuilding extends Building {
                 int choice = Functions.inputValidation(1, 3, message, player, sc);
                 if (choice != 3) {
                     activationMoney = 2;
-                    activationResources.modifyResources(5, sc);
+                    activationResources.modifyResources(5);
                     if (choice == 2) {
-                        activationResources.modifyResources(5, sc);
+                        activationResources.modifyResources(5);
                         activationMoney = 5;
                     }
                     if (player.getMoney() < activationMoney) {
@@ -172,7 +172,7 @@ public class StoneBuilding extends Building {
                                 + "to trade\n1)Food\n2)Wood\n3)Stone\n4)Cloth";
                         int choice2 = Functions.inputValidation(1, 4, message2,
                                 player, sc);
-                        this.activationResources.modifyResources(choice2, sc);
+                        this.activationResources.modifyResources(choice2);
                     }
                     if (player.getResources().compareTo(activationResources) < 0) {
                         System.out.println("Not enough resources to trade");
@@ -183,9 +183,9 @@ public class StoneBuilding extends Building {
                         player.tradeMoneyResources(activationResources,
                                 activationMoney, Action.SUBTRACT);
                         this.activationResources = new Resources();
-                        activationResources.modifyResources(5, sc);
+                        activationResources.modifyResources(5);
                         if (gold == 2) {
-                            activationResources.modifyResources(5, sc);
+                            activationResources.modifyResources(5);
                         }
                         player.tradeMoneyResources(activationResources,
                                 activationMoney, Action.ADD);
@@ -203,9 +203,9 @@ public class StoneBuilding extends Building {
                 int choice = Functions.inputValidation(1, 3, message, player, sc);
                 if (choice != 3) {
                     int points = 5;
-                    activationResources.modifyResources(5, sc);
+                    activationResources.modifyResources(5);
                     if (choice == 2) {
-                        activationResources.modifyResources(5, sc);
+                        activationResources.modifyResources(5);
                         points = 9;
                     }
                     if (player.getResources().compareTo(activationResources) < 0) {
@@ -230,10 +230,10 @@ public class StoneBuilding extends Building {
                 int choice = Functions.inputValidation(1, 3, message, player, sc);
                 if (choice != 3) {
                     int points = 4;
-                    activationResources.modifyResources(4, sc);
-                    activationResources.modifyResources(4, sc);
+                    activationResources.modifyResources(4);
+                    activationResources.modifyResources(4);
                     if (choice == 2) {
-                        activationResources.modifyResources(4, sc);
+                        activationResources.modifyResources(4);
                         points = 6;
                     }
                     if (player.getResources().compareTo(activationResources) < 0) {
@@ -259,6 +259,7 @@ public class StoneBuilding extends Building {
                 }
             }
             player.setWorkers(player.getWorkers() + 1);
+            System.out.println(player.getColor() + " Worker=" + player.getWorkers());
             return player.buildPrestige(game, buildings, sc);
 
         } // if architect b
@@ -271,9 +272,11 @@ public class StoneBuilding extends Building {
                 }
             }
             player.setWorkers(player.getWorkers() + 1);
+            System.out.println(player.getColor() + " Worker=" + player.getWorkers());
             return player.buildPrestige(game, buildings, sc);
         }
         player.setWorkers(player.getWorkers() + 1);
+        System.out.println(player.getColor() + " Worker=" + player.getWorkers());
         return null;
     }
 

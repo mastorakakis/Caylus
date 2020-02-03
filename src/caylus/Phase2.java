@@ -1,7 +1,6 @@
 package caylus;
 
 import entities.Block;
-import entities.buildings.Bridge;
 import entities.buildings.Building;
 import entities.buildings.Inn;
 import entities.buildings.PrestigeBuilding;
@@ -27,7 +26,7 @@ public class Phase2 {
                         || player.getMoney() < game.getBridge().getPositionList().size() + 1
                         || player.getWorkers() == 0) {
                     // add player to bridge ( = pass)
-                    Bridge.playerPass(player);
+                    game.getBridge().playerPass(player);
                     System.out.println("(Not enough workers or money)");
                 } else {
                     placeWorker(game, player, sc);
@@ -54,7 +53,7 @@ public class Phase2 {
         // if -pass-
         if (choice == max) {
             // add player to bridge ( = pass)
-            Bridge.playerPass(player);
+            game.getBridge().playerPass(player);
             return; // to not pay according to end of method
         } // if Inn and has no worker there
         Block block = game.getRoad().get(availableBuildingList.get(choice - 1));
@@ -70,10 +69,10 @@ public class Phase2 {
             System.out.println(player.getColor() + " places worker in "
                     + block.getBuilding().getName());
             // if house belongs to other player he gets a point
-            if (block.getHouse() != null && block.getHouse() != player) {
-                block.getHouse().setPoints(block.getHouse().getPoints() + 1);
-                System.out.println(block.getHouse().getColor() + " earns 1 point");
-            }
+//            if (block.getHouse() != null && block.getHouse() != player) {
+//                block.getHouse().setPoints(block.getHouse().getPoints() + 1);
+//                System.out.println(block.getHouse().getColor() + " earns 1 point");
+//            }
         } // if player hasn't passed thus not coming from gate pay proper amount
         if (!game.getBridge().getPositionList().contains(player)) {
             // if building belongs to player or player has worker in inn right side
@@ -93,7 +92,8 @@ public class Phase2 {
         }
         // reduce number of workers
         player.setWorkers(player.getWorkers() - 1);
-        System.out.println(player.getColor() + " Money=" + player.getMoney());
+        System.out.println(player.getColor() + " Money=" + player.getMoney()
+                + " Workers=" + player.getWorkers());
     }
 
     // return index list with available buildings for the player to place workers

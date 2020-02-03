@@ -1,12 +1,15 @@
 package caylus;
 
+import caylussetup.CreatePlayers;
 import caylussetup.SetUpGame;
+import entities.FavorTable;
+import entities.buildings.Castle;
 import entities.players.Player;
+import entities.players.UserPlayer;
+import enums.Color;
 import enums.Status;
 import java.util.List;
 import java.util.Scanner;
-import utilities.LoadGame;
-import utilities.SaveGame;
 
 /**
  * @author Παναγιώτης Μαστορακάκης
@@ -16,120 +19,83 @@ public class CaylusMain {
     public static final Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) throws InterruptedException {
+
         System.out.println("C A Y L U S");
-        Game game;
+////////////////////////////////////////////////////////////////////////////////
+//        for (int i = 0; i < 1000; i++) {
 
-//        game = LoadGame.load();
-        game = new Game();
-        game.setPlayerList(SetUpGame.players(sc));
-        game.setRoad(SetUpGame.road());
-        game.setBuildingList(SetUpGame.buildingsList());
+        Game game = new Game();
+//        if (Functions.inputValidation(1, 2, "\n1)Start new Game\t2)Load Game",
+//                new UserPlayer(Color.BLUE), sc) == 2) {
+//            game = LoadGame.load();
+//        } else {
+        CreatePlayers cp = new CreatePlayers();
+        SetUpGame sug = new SetUpGame();
+        FavorTable favorTable = new FavorTable();
+        favorTable.createPlayerFavorTable();
 
-        Status gameStatus = Status.CONTIUNE;
-        do {
-            Phase1.play(game, sc);
-            System.out.println("");
+        game.setPlayerList(cp.getPlayers(sc));
+        game.setFavorTable(favorTable);
+        game.setRoad(sug.getRoad());
+        game.setBuildingList(sug.getBuildingList());
+        game.setCastle((Castle) game.getRoad().get(0).getBuilding());
+//        }
+////////////////////////////////////////////////////////////////////////////////
 
-            Phase2.play(game, sc);
-            System.out.println("");
-
-            Phase3.play(game, sc);
-            System.out.println("");
-
-            Phase4.play(game, sc);
-            System.out.println("");
-
-            Phase5.play(game, sc);
-            System.out.println("");
-
-            Phase6.play(game, sc);
-            System.out.println("");
-            if (game.getCastle().getTowers().isScored()) {
-                gameStatus = Status.FINISH;
-            }
-            Phase7.play(game, sc);
-            System.out.println("");
-            if (game.getCastle().getTowers().isScored()) {
-                gameStatus = Status.FINISH;
-            }
-        } while (gameStatus == Status.CONTIUNE);
-
-        System.out.println("Winners:");
-        List<Player> winners = EndOfGame.score(game);
-        for (Player winner : winners) {
-            System.out.println(winner);
-        }
-        //        System.out.println("\nGame Finished");
-        //        Player player1 = game.getPlayerList().get(0);
-        //        Player player2 = game.getPlayerList().get(1);
-        //        Player player3 = game.getPlayerList().get(2);
-        //
-        //        player1.setPoints(1);
-        //        player2.setPoints(1);
-        //        player3.setPoints(1);
-        //
-        //        player1.setWorkers(5);
-        //        player2.setWorkers(5);
-        //        player3.setWorkers(5);
-        //
-        //        player2.getResources().setFood(3);
-        //        player2.getResources().setWood(2);
-        //        player2.getResources().setStone(2);
-        //        player2.getResources().setCloth(2);
-        //        player2.getResources().setGold(1);
-        //        player3.getResources().setFood(3);
-        //        player3.getResources().setWood(2);
-        //        player3.getResources().setStone(2);
-        //        player3.getResources().setCloth(2);
-        //        player3.getResources().setGold(1);
-        //
-        //        game.getRoad().get(0).getWorkers().add(player1);
-        //        game.getRoad().get(0).getWorkers().add(player2);
-        //        game.getRoad().get(0).getWorkers().add(player3);
-        //
-        //        game.getCastle().getDungeon().getBuildSpaces().add(player1);
-        //        game.getCastle().getDungeon().getBuildSpaces().add(player1);
-        //        game.getCastle().getDungeon().getBuildSpaces().add(player1);
-        //        game.getCastle().getDungeon().getBuildSpaces().add(player1);
-        //        game.getCastle().getDungeon().getBuildSpaces().add(player2);
-        //        game.getCastle().getDungeon().getBuildSpaces().add(player3);
-        //
-        //        game.getCastle().getTowers().getBuildSpaces().add(player1);
-        //        game.getCastle().getTowers().getBuildSpaces().add(player1);
-        //        game.getCastle().getTowers().getBuildSpaces().add(player1);
-        //        game.getCastle().getTowers().getBuildSpaces().add(player1);
-        //        game.getCastle().getTowers().getBuildSpaces().add(player1);
-        //        game.getCastle().getTowers().getBuildSpaces().add(player1);
-        //        game.getCastle().getTowers().getBuildSpaces().add(player3);
-        //        game.getCastle().getTowers().getBuildSpaces().add(player3);
-        //        game.getCastle().getTowers().getBuildSpaces().add(player3);
-        //        game.getCastle().getTowers().getBuildSpaces().add(player2);
-        //        game.getCastle().getTowers().getBuildSpaces().add(player2);
-        //        game.getCastle().getTowers().getBuildSpaces().add(player2);
-        //        game.getCastle().getTowers().getBuildSpaces().add(player2);
-        //
-        //        game.getCastle().getDungeon().setScored(true);
-        //        game.getCastle().getWalls().setScored(true);
-        //            Phase1.play(game, sc);
-        //            System.out.println("");
-        //
-        //            Phase2.play(game, sc);
-        //            System.out.println("");
-        //
-        //            Phase3.play(game, sc);
-        //            System.out.println("");
-        //
-        //            Phase4.play(game, sc);
-        //            System.out.println("");
-        //
-        //            Phase5.play(game, sc);
-        //            System.out.println("");
-        //
-        //            Phase6.play(game, sc);
-        //            System.out.println("");
-        //
-        //            Phase7.play(game, sc);
-        //            System.out.println("");
-    } //        SaveGame.save(game);
-
+//        Status gameStatus = Status.CONTIUNE;
+//        do {
+////            if (Functions.inputValidation(1, 2, "Save Game\n1)Yes\t2)No",
+////                    new UserPlayer(Color.BLUE), sc) == 1) {
+////                SaveGame.save(game);
+////            }
+//            Phase1.play(game, sc);
+//            System.out.println("");
+//
+//            Phase2.play(game, sc);
+//            System.out.println("");
+////            if (Functions.inputValidation(1, 2, "Save Game\n1)Yes\t2)No",
+////                    new UserPlayer(Color.BLUE), sc) == 1) {
+////                SaveGame.save(game);
+////            }
+//            Phase3.play(game, sc);
+//            System.out.println("");
+////            if (Functions.inputValidation(1, 2, "Save Game\n1)Yes\t2)No",
+////                    new UserPlayer(Color.BLUE), sc) == 1) {
+////                SaveGame.save(game);
+////            }
+//            Phase4.play(game, sc);
+//            System.out.println("");
+////            if (Functions.inputValidation(1, 2, "Save Game\n1)Yes\t2)No",
+////                    new UserPlayer(Color.BLUE), sc) == 1) {
+////                SaveGame.save(game);
+////            }
+//            Phase5.play(game, sc);
+//            System.out.println("");
+////            if (Functions.inputValidation(1, 2, "Save Game\n1)Yes\t2)No",
+////                    new UserPlayer(Color.BLUE), sc) == 1) {
+////                SaveGame.save(game);
+////            }
+//            Phase6.play(game, sc);
+//            System.out.println("");
+//            if (game.getCastle().getTowers().isScored()) {
+//                gameStatus = Status.FINISH;
+//            }
+//            if (gameStatus == Status.CONTIUNE) {
+//                Phase7.play(game, sc);
+//                System.out.println("");
+//                if (game.getCastle().getTowers().isScored()) {
+//                    gameStatus = Status.FINISH;
+//                }
+//            }
+//
+//        } while (gameStatus == Status.CONTIUNE);
+//        List<Player> winners = Phase7.scoreGame(game);
+//        System.out.println("\nWinners:");
+//        for (Player winner : winners) {
+//            System.out.println(winner);
+//        }
+        Player player = game.getPlayerList().get(0);
+        player.getFavorTableOptions()[1] = null;
+        favorTable.selectFavorLine(game, (UserPlayer) player, sc);
+    } // end of main
 }

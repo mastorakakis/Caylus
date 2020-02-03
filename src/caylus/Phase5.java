@@ -3,6 +3,8 @@ package caylus;
 import entities.Block;
 import entities.Resources;
 import entities.buildings.Building;
+import entities.buildings.PrestigeBuilding;
+import entities.buildings.ResidentialBuilding;
 import entities.buildings.StoneBuilding;
 import entities.buildings.WoodBuilding;
 import entities.players.Player;
@@ -30,8 +32,12 @@ public class Phase5 {
                         && block.getBuilding() instanceof StoneBuilding) {
                     payRent(block, sc);
                 }
+                Building newBuilding = null;
                 // activate building / if return not null -> build
-                Building newBuilding = building.activate(game, block.getWorkers(), sc);
+                if (!(building instanceof ResidentialBuilding
+                        || building instanceof PrestigeBuilding)) {
+                    newBuilding = building.activate(game, block.getWorkers(), sc);
+                }
                 // if building returned
                 if (newBuilding != null) {
                     // if stone or wood building
@@ -55,6 +61,9 @@ public class Phase5 {
                 // empty block workers
                 block.setWorkers(new ArrayList<Player>());
             } // end of if
+            if (i > 22 && block.getBuilding() == null) {
+                break;
+            }
         } // end of for
         // remove workers from non activating buildings
         for (int i = 7; i < game.getRoad().size(); i++) {
@@ -67,8 +76,12 @@ public class Phase5 {
                     block.setTempBuilding(null);
                 } // retunr all workers if buildings not activated
                 player.setWorkers(player.getWorkers() + 1);
+                System.out.println(player.getColor() + " Worker=" + player.getWorkers());
                 // empty block workers
                 block.setWorkers(new ArrayList<Player>());
+            }
+            if (i > 22 && block.getBuilding() == null) {
+                break;
             }
         }
         System.out.println("");
@@ -98,7 +111,7 @@ public class Phase5 {
                     + " select resource\n1)1 Food\n2)1 Wood";
             choice = Functions.inputValidation(1, 2, message, block.getHouse(), sc);
         }
-        rentResources.modifyResources(choice, sc);
+        rentResources.modifyResources(choice);
         block.getHouse().tradeMoneyResources(rentResources, 0,
                 Action.ADD);
         ((StoneBuilding) block.getBuilding())

@@ -1,9 +1,5 @@
 package caylussetup;
 
-import caylus.Game;
-import static caylussetup.SetUpGame.MAX_PLAYERS;
-import static caylussetup.SetUpGame.MIN_PLAYERS;
-import static caylussetup.SetUpGame.MIN_USER_PLAYERS;
 import entities.players.ComPlayer;
 import entities.players.Player;
 import entities.players.UserPlayer;
@@ -11,12 +7,75 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import enums.Color;
+import java.util.ArrayList;
 import utilities.Functions;
 
 public class CreatePlayers {
 
-    // shuffles the player list and initializes the players' amount of money
-    protected static void randomOrderList(List<Player> players) {
+    public static final int MIN_PLAYERS = 2;
+    public static final int MIN_USER_PLAYERS = 0;
+    public static final int MAX_PLAYERS = 5;
+
+    // creates a list of playerList in random order
+    public List<Player> getPlayers(Scanner sc) {
+        List<Player> playerList = new ArrayList();
+        int numberOfComPlayers = 0;
+        // select number of user getPlayers
+        int numberOfUserPlayers = 3;//numberOfUserPlayers(sc);
+        // if number of getPlayers is not max ask for com getPlayers
+        if (numberOfUserPlayers != MAX_PLAYERS) {
+            numberOfComPlayers = 0;//numberOfComPlayers(sc, numberOfUserPlayers);
+        }// add user getPlayers to the list if there are any
+        if (numberOfUserPlayers != 0) {
+            addUserPlayers(numberOfUserPlayers, playerList);
+        }// add com getPlayers to the list if there are any
+        if (numberOfComPlayers != 0) {
+            addComPlayers(numberOfComPlayers, playerList);
+        }
+        randomOrderList(playerList); // randomize order
+        return playerList;
+    }
+
+    // returns number of user getPlayers
+    private int numberOfUserPlayers(Scanner sc) {
+        int userPlayers = Functions.inputValidation(MIN_USER_PLAYERS, MAX_PLAYERS,
+                "Select number of user players", null, sc);
+        return userPlayers;
+    }
+
+    // returns number of com getPlayers.
+    private int numberOfComPlayers(Scanner sc, int numberOfUserPlayers) {
+        int max = MAX_PLAYERS - numberOfUserPlayers;
+        int min = numberOfUserPlayers < MIN_PLAYERS ? MIN_PLAYERS
+                - numberOfUserPlayers : 0;
+        int players = Functions.inputValidation(min, max,
+                "Select number of COM players", null, sc);
+        return players;
+    }
+
+    // adds user getPlayers to the list
+    private void addUserPlayers(int numberOfUserPlayers, List<Player> players) {
+        switch (numberOfUserPlayers) {
+            case 5:
+                Player OrangePlayer = new UserPlayer(Color.ORANGE);
+                players.add(OrangePlayer);
+            case 4:
+                Player bluePlayer = new UserPlayer(Color.BLACK);
+                players.add(bluePlayer);
+            case 3:
+                Player blackPlayer = new UserPlayer(Color.BLUE);
+                players.add(blackPlayer);
+            case 2:
+                Player redPlayer = new UserPlayer(Color.GREEN);
+                players.add(redPlayer);
+            case 1:
+                Player greenPlayer = new UserPlayer(Color.RED);
+                players.add(greenPlayer);
+        }
+    }
+
+    // shuffles the player list and initializes the getPlayers' amount of money
+    private void randomOrderList(List<Player> players) {
         Collections.shuffle(players);
         for (int i = 0; i < players.size(); i++) {
             switch (i) {
@@ -34,60 +93,23 @@ public class CreatePlayers {
         }
     }
 
-    // returns number of user players
-    protected static int numberOfUserPlayers(Scanner sc) {
-        int userPlayers = Functions.inputValidation(MIN_USER_PLAYERS, MAX_PLAYERS,
-                "Select number of user players", null, sc);
-        return userPlayers;
-    }
-
-    // returns number of com players.
-    protected static int numberOfComPlayers(Scanner sc, int numberOfUserPlayers) {
-        int max = MAX_PLAYERS - numberOfUserPlayers;
-        int min = numberOfUserPlayers < MIN_PLAYERS ? MIN_PLAYERS - numberOfUserPlayers : 0;
-        int players = Functions.inputValidation(min, max,
-                "Select number of COM players", null, sc);
-        return players;
-    }
-
-    // adds user players to the list
-    protected static void addUserPlayers(int numberOfUserPlayers, List<Player> players) {
-        switch (numberOfUserPlayers) {
-            case 5:
-                Player OrangePlayer = new UserPlayer(Color.GREEN);
-                players.add(OrangePlayer);
-            case 4:
-                Player bluePlayer = new UserPlayer(Color.BLUE);
-                players.add(bluePlayer);
-            case 3:
-                Player blackPlayer = new UserPlayer(Color.BLACK);
-                players.add(blackPlayer);
-            case 2:
-                Player redPlayer = new UserPlayer(Color.ORANGE);
-                players.add(redPlayer);
-            case 1:
-                Player greenPlayer = new UserPlayer(Color.RED);
-                players.add(greenPlayer);
-        }
-    }
-
-    // adds com players to the list
-    protected static void addComPlayers(int numberOfComPlayers, List<Player> players) {
+    // adds com getPlayers to the list
+    private void addComPlayers(int numberOfComPlayers, List<Player> players) {
         switch (numberOfComPlayers) {
             case 5:
                 Player OrangePlayer = new ComPlayer(Color.RED);
                 players.add(OrangePlayer);
             case 4:
-                Player bluePlayer = new ComPlayer(Color.ORANGE);
+                Player bluePlayer = new ComPlayer(Color.GREEN);
                 players.add(bluePlayer);
             case 3:
-                Player blackPlayer = new ComPlayer(Color.BLACK);
+                Player blackPlayer = new ComPlayer(Color.BLUE);
                 players.add(blackPlayer);
             case 2:
-                Player redPlayer = new ComPlayer(Color.BLUE);
+                Player redPlayer = new ComPlayer(Color.BLACK);
                 players.add(redPlayer);
             case 1:
-                Player greenPlayer = new ComPlayer(Color.GREEN);
+                Player greenPlayer = new ComPlayer(Color.ORANGE);
                 players.add(greenPlayer);
         }
     }

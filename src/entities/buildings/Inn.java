@@ -11,23 +11,17 @@ import java.util.List;
 import java.util.Scanner;
 import utilities.Functions;
 
-// Singleton pattern
 public class Inn extends SpecialBuilding implements Serializable {
 
-    private static Inn innInstance = new Inn("Inn");
     private static Player[] innPosition = new Player[2];
     private static int activationMoney = 1;
 
     // constructor private
-    private Inn(String name) {
+    public Inn(String name) {
         super(name);
     }
 
     // getters setters
-    public static Inn getInnInstance() {
-        return innInstance;
-    }
-
     public Player[] getInnPosition() {
         return innPosition;
     }// end of getters setters
@@ -39,6 +33,8 @@ public class Inn extends SpecialBuilding implements Serializable {
         if (innPosition[0] != null) {
             if (innPosition[1] != null) {
                 innPosition[1].setWorkers(innPosition[1].getWorkers() + 1);
+                System.out.println(innPosition[1].getColor() + " Workers="
+                        + innPosition[1].getWorkers());
             }
             innPosition[1] = innPosition[0];
             innPosition[0] = null;
@@ -51,6 +47,8 @@ public class Inn extends SpecialBuilding implements Serializable {
             if (choice == 1) {
                 // return worker to player
                 innPosition[1].setWorkers(innPosition[1].getWorkers() + 1);
+                System.out.println(innPosition[1].getColor() + " Workers="
+                        + innPosition[1].getWorkers());
                 innPosition[1] = null;
                 System.out.println("Removing worker");
             } else {

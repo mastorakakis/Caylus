@@ -2,6 +2,7 @@ package caylus;
 
 import entities.Bailiff;
 import entities.Block;
+import entities.FavorTable;
 import entities.Provost;
 import entities.buildings.Bridge;
 import entities.buildings.Building;
@@ -21,10 +22,11 @@ public class Game implements Serializable {
     private List<Player> playerList;
     private List<Block> road;
     private List<Building> buildingList;
-    private Castle castle = Castle.getCastleInstance();
-    private Bridge bridge = Bridge.getBridgeInstance();
-    private Bailiff bailiff = Bailiff.getBailiffInstance();
-    private Provost provost = Provost.getProvostInstance();
+    private FavorTable favorTable;
+    private Castle castle = new Castle("Castle");
+    private Bridge bridge = new Bridge();
+    private Bailiff bailiff = new Bailiff();
+    private Provost provost = new Provost();
 
     // getters setters
     public List<Player> getPlayerList() {
@@ -40,9 +42,9 @@ public class Game implements Serializable {
     }
 
     public void setPlayerList(List<Player> playerList) {
-        if (playerList.size() < 2) {
-            throw new IllegalArgumentException("The game is for 2-5 players");
-        }
+//        if (playerList.size() < 2) {
+//            throw new IllegalArgumentException("The game is for 2-5 players");
+//        } // TODO
         this.playerList = playerList;
     }
 
@@ -62,12 +64,24 @@ public class Game implements Serializable {
         return bailiff;
     }
 
+    public void setCastle(Castle castle) {
+        this.castle = castle;
+    }
+
     public Inn getInn() {
         if (road.get(6).getBuilding() instanceof Inn) {
             return (Inn) road.get(6).getBuilding();
         } else {
             throw new NullPointerException("Inn not found");
         }
+    }
+
+    public FavorTable getFavorTable() {
+        return favorTable;
+    }
+
+    public void setFavorTable(FavorTable favorTable) {
+        this.favorTable = favorTable;
     }
 
     public List<Building> getBuildingList() {
