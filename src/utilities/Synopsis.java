@@ -74,6 +74,13 @@ public class Synopsis {
             System.out.println(game.getInn().getInnPosition()[1].getColor()
                     + " has a worker in Inn");
         }
+        // neutral buildings positions
+        System.out.println("\nNeutral Buildings positions");
+        for (int i = 7; i < 13; i++) {
+            System.out.println(game.getRoad().get(i).getBuilding().getName()
+                    + "[" + i + "]");
+        }
+
         // new buildings
         System.out.println("\nNew buildings");
         for (int i = 7; i < game.getRoad().size(); i++) {
