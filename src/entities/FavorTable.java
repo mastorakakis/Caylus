@@ -62,7 +62,7 @@ public class FavorTable implements Serializable {
 
     // select build favor
     private void selectBuildFavor(Game game, Player player, Scanner sc) {
-        StringBuilder message = new StringBuilder("Select Build Favor");
+        StringBuilder message = new StringBuilder(player.getColor() + " select Build Favor");
         int i;
         // print options
         for (i = 0; i < buildLine.length; i++) {
@@ -139,7 +139,7 @@ public class FavorTable implements Serializable {
 
     // select resource favor
     private void selectResourceFavor(Player player, Scanner sc) {
-        StringBuilder message = new StringBuilder("Select Resource Favor");
+        StringBuilder message = new StringBuilder(player.getColor() + " select Resource Favor");
         int i;
         // print options from the String array for the player
         for (i = 0; i < resourcesLine.length; i++) {
@@ -205,7 +205,7 @@ public class FavorTable implements Serializable {
 
     // select money favor
     private void selectMoneyFavor(Player player, Scanner sc) {
-        StringBuilder message = new StringBuilder("Select Money Favor");
+        StringBuilder message = new StringBuilder(player.getColor() + " select Money Favor");
         int i;
         // print options for user
         for (i = 0; i < moneyLine.length; i++) {
@@ -224,12 +224,13 @@ public class FavorTable implements Serializable {
 
     // select point favor
     private void selectPointFavor(Player player, Scanner sc) {
-        StringBuilder message = new StringBuilder("Select Point Favor");
+        StringBuilder message = new StringBuilder(player.getColor() + " select Point Favor");
         int i;
         // print options
         for (i = 0; i < pointsLine.length; i++) {
             if (playerFavorTable[0][i].contains(player)) {
-                message.append(String.format("\n%d)%s", i + 1, pointsLine[i]));
+                String word = i == 0 ? "point" : "points";
+                message.append(String.format("\n%d)%s %s", i + 1, pointsLine[i], word));
             }
             if (!playerFavorTable[0][i].contains(player)) {
                 break;
@@ -249,7 +250,7 @@ public class FavorTable implements Serializable {
                 indexList.add(i);
             }
         }
-        String message = "Select Favor Line"
+        String message = player.getColor() + " select Favor Line"
                 + printIndexedOptions(indexList, playerFavorOptions);
         // select line
         int choice = Functions.inputValidation(1, indexList.size(), message, player, sc);

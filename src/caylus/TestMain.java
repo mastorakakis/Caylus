@@ -46,39 +46,32 @@ public class TestMain { // TODO delete class
             player2.getResources().setGold(10);
             player2.setPoints(10);
 
-            game.getCastle().getTowers().getBuildSpaces().add(player);
-            game.getCastle().getTowers().getBuildSpaces().add(player);
-            game.getCastle().getTowers().getBuildSpaces().add(player);
-            game.getCastle().getTowers().getBuildSpaces().add(player);
-            game.getCastle().getTowers().getBuildSpaces().add(player);
-            game.getCastle().getTowers().getBuildSpaces().add(player);
-            game.getCastle().getTowers().getBuildSpaces().add(player);
-            game.getCastle().getTowers().getBuildSpaces().add(player);
-            game.getCastle().getTowers().getBuildSpaces().add(player);
-            game.getCastle().getTowers().getBuildSpaces().add(player);
-            game.getCastle().getTowers().getBuildSpaces().add(player);
-            game.getCastle().getTowers().getBuildSpaces().add(player);
-            game.getCastle().getTowers().getBuildSpaces().add(player2);
+            player.setWorkers(4);
+            player2.setWorkers(4);
 
-            game.getCastle().getDungeon().setScored(true);
-            game.getCastle().getWalls().setScored(true);
-            do {
+            game.getRoad().get(1).getWorkers().add(player);
+            game.getRoad().get(2).getWorkers().add(player2);
 
-                player.setWorkers(5);
-                player2.setWorkers(5);
+            game.getBridge().getPositionList().add(player);
+            game.getBridge().getPositionList().add(player2);
 
-                game.getRoad().get(0).getWorkers().add(player);
-                game.getRoad().get(0).getWorkers().add(player2);
+            Phase3.play(game, sc);
+            System.out.println("");
 
-                Phase6.play(game, sc);
-                System.out.println("");
+            Phase4.play(game, sc);
+            System.out.println("");
 
-                Phase7.play(game, sc);
-                System.out.println("");
-                if (game.getCastle().getTowers().isScored()) {
-                    gameStatus = Status.FINISH;
-                }
-            } while (gameStatus == Status.CONTINUE);
+            Phase5.play(game, sc);
+            System.out.println("");
+
+            Phase6.play(game, sc);
+            System.out.println("");
+
+            Phase7.play(game, sc);
+            System.out.println("");
+            if (game.getCastle().getTowers().isScored()) {
+                gameStatus = Status.FINISH;
+            }
             List<Player> winners = Phase7.scoreGame(game);
             System.out.println("\nWinners:");
             for (Player winner : winners) {

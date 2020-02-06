@@ -98,6 +98,7 @@ public class Phase2 {
                     }
                 }
             }
+            break;
         }
         // if Inn and has no worker there
         if (block.getBuilding().getName().equals("Inn")) {
