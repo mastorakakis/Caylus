@@ -13,6 +13,7 @@ import java.util.Scanner;
 import utilities.Functions;
 import utilities.LoadGame;
 import utilities.SaveGame;
+import utilities.Synopsis;
 
 /**
  * @author Παναγιώτης Μαστορακάκης
@@ -27,6 +28,7 @@ public class CaylusMain {
         if (Functions.inputValidation(1, 2, "\n1)Start new Game\t2)Load Game",
                 new UserPlayer(Color.BLUE), sc) == 2) {
             game = LoadGame.load();
+            Synopsis.print(game);
         } else {
             CreatePlayers cp = new CreatePlayers();
             SetUpGame sug = new SetUpGame();
