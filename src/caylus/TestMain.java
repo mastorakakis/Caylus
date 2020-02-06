@@ -36,6 +36,7 @@ public class TestMain { // TODO delete class
             player.getResources().setWood(10);
             player.getResources().setStone(10);
             player.getResources().setGold(10);
+            player.setPoints(10);
             Player player2 = game.getPlayerList().get(1);
             player2.setMoney(10);
             player2.getResources().setCloth(10);
@@ -43,6 +44,7 @@ public class TestMain { // TODO delete class
             player2.getResources().setWood(10);
             player2.getResources().setStone(10);
             player2.getResources().setGold(10);
+            player2.setPoints(10);
 
             game.getCastle().getTowers().getBuildSpaces().add(player);
             game.getCastle().getTowers().getBuildSpaces().add(player);
@@ -56,7 +58,7 @@ public class TestMain { // TODO delete class
             game.getCastle().getTowers().getBuildSpaces().add(player);
             game.getCastle().getTowers().getBuildSpaces().add(player);
             game.getCastle().getTowers().getBuildSpaces().add(player);
-            game.getCastle().getTowers().getBuildSpaces().add(player);
+            game.getCastle().getTowers().getBuildSpaces().add(player2);
 
             game.getCastle().getDungeon().setScored(true);
             game.getCastle().getWalls().setScored(true);

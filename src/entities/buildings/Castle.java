@@ -42,20 +42,23 @@ public class Castle extends Building implements Serializable {
         // if workers in the castle
         if (!castlePlayers.isEmpty()) {
             List<Integer> numberOfBuildings = new ArrayList();
+            // for every player in the castle
             for (int i = 0; i < castlePlayers.size(); i++) {
                 Player player = castlePlayers.get(i);
+                // add zero integer
                 numberOfBuildings.add(0);
                 // if player has 3 different resources
                 if (hasResourceBatch(player)) {
                     System.out.println(player.getColor() + " building of the Castle "
                             + "costs 3 different resource cubes (1 is food)");
                     while (true) {
-                        // select valid resources
+                        // select valid compination of resources
                         Resources payResources = selectResources(player, sc);
+                        // if don't build loose points
                         if (payResources == null) {
                             loosePoints(player, numberOfBuildings);
                             break;
-                        } // if not enough resources
+                        } // if not enough resources try again
                         if (player.getResources().compareTo(payResources) < 0) {
                             System.out.println("Invalid payment");
                             continue;
@@ -73,6 +76,8 @@ public class Castle extends Building implements Serializable {
                             if (choice == 2) {
                                 break;
                             }
+                        } else {
+                            break;
                         }
                     } // end of while
                     // return worker
@@ -105,7 +110,6 @@ public class Castle extends Building implements Serializable {
             maxPlayer.setFavors(maxPlayer.getFavors() + buildFavor);
             System.out.println(maxPlayer.getColor() + " earns " + buildFavor
                     + " favor");
-
             // use favor
             game.getFavorTable().useFavor(game, maxPlayer, sc);
         }
@@ -116,7 +120,7 @@ public class Castle extends Building implements Serializable {
         if (numOfBuildings.get(numOfBuildings.size() - 1) == 0) {
             if (player.getPoints() < 2) {
                 player.setPoints(0);
-            } else { // TODO if has resources but game is finished
+            } else {
                 player.setPoints(player.getPoints() - penaltyBuildPoints);
             }
             System.out.println(player.getColor() + " looses "
