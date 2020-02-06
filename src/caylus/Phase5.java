@@ -39,6 +39,7 @@ public class Phase5 {
                 if (!(building instanceof ResidentialBuilding
                         || building instanceof PrestigeBuilding)) {
                     newBuilding = building.activate(game, block.getWorkers(), sc);
+                    System.out.println(""); // maybe delete
                 }
                 // if building returned
                 if (newBuilding != null) {

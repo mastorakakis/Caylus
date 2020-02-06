@@ -92,6 +92,7 @@ public class Phase2 {
                         System.out.println("Not enough workers or money");
                         System.out.println(player.getColor() + " you can only place "
                                 + "a worker in one of your own buildings");
+                        continue;
                     } else {
                         player.setMoney(newBalance);
                         break;
