@@ -169,15 +169,10 @@ public class WoodBuilding extends Building {
             System.out.println("Activating Lawyer");
             // create residential building
             ResidentialBuilding building = new ResidentialBuilding();
-            // if enough money and resources
-            if (player.getMoney() >= building.getBuildMoney()
-                    && player.getResources().compareTo(building
-                            .getBuildResources()) >= 0) {
-                player.setWorkers(player.getWorkers() + 1);
-                System.out.println(player.getColor() + " Worker=" + player.getWorkers());
-                // build
-                return player.buildResidential(game, building, sc);
-            }
+            player.setWorkers(player.getWorkers() + 1);
+            System.out.println(player.getColor() + " Worker=" + player.getWorkers());
+            // build
+            return player.buildResidential(game, building, sc);
         }
         player.setWorkers(player.getWorkers() + 1);
         System.out.println(player.getColor() + " Worker=" + player.getWorkers());

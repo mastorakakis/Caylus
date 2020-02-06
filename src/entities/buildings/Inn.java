@@ -2,19 +2,16 @@ package entities.buildings;
 
 // Singleton Pattern
 import caylus.Game;
-import static caylus.Game.WARNING;
 import entities.players.Player;
-import entities.players.UserPlayer;
 import java.io.Serializable;
-import java.security.SecureRandom;
 import java.util.List;
 import java.util.Scanner;
 import utilities.Functions;
 
 public class Inn extends SpecialBuilding implements Serializable {
 
-    private static Player[] innPosition = new Player[2];
-    private static int activationMoney = 1;
+    private Player[] innPosition = new Player[2];
+    private int activationMoney = 1;
 
     // constructor private
     public Inn(String name) {

@@ -141,4 +141,3 @@ public class SetUpGame {
         return road;
     }
 }
-// TODO delete number of user players 5 and com players 3

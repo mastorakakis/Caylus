@@ -44,7 +44,7 @@ public class Game implements Serializable {
     public void setPlayerList(List<Player> playerList) {
 //        if (playerList.size() < 2) {
 //            throw new IllegalArgumentException("The game is for 2-5 players");
-//        } // TODO
+//        } TODO delete
         this.playerList = playerList;
     }
 

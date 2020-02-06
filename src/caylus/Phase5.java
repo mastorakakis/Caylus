@@ -3,6 +3,7 @@ package caylus;
 import entities.Block;
 import entities.Resources;
 import entities.buildings.Building;
+import entities.buildings.NeutralBuilding;
 import entities.buildings.PrestigeBuilding;
 import entities.buildings.ResidentialBuilding;
 import entities.buildings.StoneBuilding;
@@ -18,6 +19,7 @@ public class Phase5 {
 
     public static void play(Game game, Scanner sc) {
         System.out.println("\nPhase 5: Activation of the Buildings");
+        System.out.println("------------------------------------");
         // activating neutral buildings
         for (int i = 7; i < game.getRoad().size(); i++) {
             Block block = game.getRoad().get(i);
@@ -51,7 +53,7 @@ public class Phase5 {
                                 block1.setBuilding(newBuilding);
                                 block1.setHouse(block.getWorkers().get(0));
                                 System.out.println(block1.getHouse().getColor()
-                                        + " build " + block1.getBuilding().getName());
+                                        + " built " + block1.getBuilding().getName());
                                 break;
                             }
                         } // remove building from list
@@ -65,13 +67,19 @@ public class Phase5 {
                 break;
             }
         } // end of for
-        // remove workers from non activating buildings
+        // remove workers from non activating buildings / build temp building
         for (int i = 7; i < game.getRoad().size(); i++) {
             Block block = game.getRoad().get(i);
             if (block.getBuilding() != null && block.getWorkers().size() > 0) {
                 Player player = block.getWorkers().get(0);
                 // if there is a building waiting to be transformed
                 if (block.getTempBuilding() != null) {
+                    // wood and stone buildings go back to the list
+                    if (!(block.getBuilding() instanceof NeutralBuilding)) {
+                        // add craft building back to building list
+                        game.getBuildingList().add(block.getBuilding());
+                    }
+                    // transform block building
                     block.setBuilding(block.getTempBuilding());
                     block.setTempBuilding(null);
                 } // retunr all workers if buildings not activated
@@ -90,26 +98,26 @@ public class Phase5 {
             System.out.println(player);
         }
     }
-
     // owner choose/ collect resource, reset resource
+
     public static void payRent(Block block, Scanner sc) {
         Resources rentResources = ((StoneBuilding) block.getBuilding())
                 .getActivationRentResources();
         int choice = 0;
         if (block.getBuilding().getName().equals("Stone Farm")) {
             String message = block.getHouse().getColor()
-                    + " select resource\n1)1 Food\n2)1 Cloth";
+                    + " select resource cube\n1)1 Food\n2)1 Cloth";
             choice = Functions.inputValidation(1, 2, message, block.getHouse(), sc);
             choice = choice == 2 ? 4 : 1;
         } else if (block.getBuilding().getName().equals("Workshop")) {
             String message = block.getHouse().getColor()
-                    + " select resource\n1)1 Stone\n2)1 Cloth";
+                    + " select resource cube\n1)1 Stone\n2)1 Cloth";
             choice = Functions.inputValidation(1, 2, message, block.getHouse(), sc);
             choice = choice == 2 ? 4 : 3;
         } // if park
         else if (block.getBuilding().getName().equals("Park")) {
             String message = block.getHouse().getColor()
-                    + " select resource\n1)1 Food\n2)1 Wood";
+                    + " select resource cube\n1)1 Food\n2)1 Wood";
             choice = Functions.inputValidation(1, 2, message, block.getHouse(), sc);
         }
         rentResources.modifyResources(choice);

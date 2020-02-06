@@ -10,8 +10,8 @@ public class Phase7 {
 
     public static void play(Game game, Scanner sc) {
         System.out.println("\nPhase 7: End of turn");
+        System.out.println("--------------------");
         moveBailiff(game, sc);
-
     }
 
     // move bailiff

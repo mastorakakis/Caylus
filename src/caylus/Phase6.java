@@ -11,6 +11,7 @@ public class Phase6 {
 
     public static void play(Game game, Scanner sc) {
         System.out.println("\nPhase 6: Building of the Castle");
+        System.out.println("-------------------------------");
         Block castleBlock = game.getRoad().get(0);
         Building castle = game.getRoad().get(0).getBuilding();
         castle.activate(game, castleBlock.getWorkers(), sc);
@@ -18,6 +19,7 @@ public class Phase6 {
         castleBlock.setWorkers(new ArrayList());
         // check if building of castle is finished
         Phase7.checkSectionScoring(game, sc);
+        System.out.println("");
         for (Player player : game.getPlayerList()) {
             player.newFavorTableIndex();
             System.out.println(player);

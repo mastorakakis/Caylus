@@ -1,13 +1,10 @@
 package entities.buildings;
 
 import caylus.Game;
-import static caylus.Game.WARNING;
 import interfaces.BoardBulding;
 import entities.Resources;
 import entities.players.Player;
-import entities.players.UserPlayer;
 import enums.Action;
-import java.security.SecureRandom;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;

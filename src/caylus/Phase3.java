@@ -1,7 +1,6 @@
 package caylus;
 
 import entities.Block;
-import entities.buildings.Building;
 import entities.players.Player;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -11,6 +10,7 @@ public class Phase3 {
 
     public static void play(Game game, Scanner sc) {
         System.out.println("\nPhase 3: Activating Special Buildings");
+        System.out.println("-------------------------------------");
         // for every block
         for (int i = 1; i <= 6; i++) {
             Block block = game.getRoad().get(i);
@@ -25,6 +25,7 @@ public class Phase3 {
                 block.setWorkers(new ArrayList<Player>());
             }
         }
+        System.out.println("");
         for (Player player : game.getPlayerList()) {
             player.newFavorTableIndex();
             System.out.println(player);

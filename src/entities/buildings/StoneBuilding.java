@@ -1,7 +1,6 @@
 package entities.buildings;
 
 import caylus.Game;
-import static caylus.Game.WARNING;
 import entities.Resources;
 import entities.players.Player;
 import enums.Action;

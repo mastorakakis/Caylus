@@ -48,7 +48,7 @@ public class Castle extends Building implements Serializable {
                 // if player has 3 different resources
                 if (hasResourceBatch(player)) {
                     System.out.println(player.getColor() + " building of the Castle "
-                            + "costs three different resources (one is food)");
+                            + "costs 3 different resource cubes (1 is food)");
                     while (true) {
                         // select valid resources
                         Resources payResources = selectResources(player, sc);
@@ -164,7 +164,7 @@ public class Castle extends Building implements Serializable {
             Resources payResources = new Resources(1, 0, 0, 0, 0);
             // choose three resources
             for (int i = 0; i < 2; i++) {
-                String message = "Select a resource"
+                String message = "Select a resource cube"
                         + "\n2)Wood\n3)Stone\n4)Cloth\n5)Gold\n6)Don't build";
                 int choice = Functions.inputValidation(2, 6, message, player, sc);
                 // if don't build return

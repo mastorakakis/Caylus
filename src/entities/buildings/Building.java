@@ -8,7 +8,6 @@ import java.util.Scanner;
 
 public abstract class Building implements Serializable {
 
-//    private String name = "";
     private String name;
 
     // constructor

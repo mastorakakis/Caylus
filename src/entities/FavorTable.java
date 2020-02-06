@@ -113,7 +113,7 @@ public class FavorTable implements Serializable {
                     block.setBuilding(newBuilding);
                     block.setHouse(player);
                     System.out.println(player.getColor()
-                            + " build " + block.getBuilding().getName());
+                            + " built " + block.getBuilding().getName());
                     break;
                 }
             } // remove building from list
@@ -157,7 +157,7 @@ public class FavorTable implements Serializable {
             // select 1 stone or 1 wood
         } else if (choice == 2) {
             String message2 = player.getColor()
-                    + " select resource\n1)1 Stone\n2)1 Wood";
+                    + " select resource cube\n1)1 Stone\n2)1 Wood";
             int choice2 = Functions.inputValidation(1, 2, message2, player, sc);
             choice2 = choice2 == 1 ? 3 : 2;
             resourcesLine[choice - 1].modifyResources(choice2);
@@ -167,7 +167,7 @@ public class FavorTable implements Serializable {
             resourcesLine[choice - 1] = new Resources();
         } else {
             do { // select resource to give away
-                String message3 = player.getColor() + " select one Resource to trade\n"
+                String message3 = player.getColor() + " select resource cube to trade\n"
                         + "1)Food\n2)Wood\n3)Stone\n4)Cloth\n5)Don't trade";
                 int choice3 = Functions.inputValidation(1, 5, message3, player, sc);
                 if (choice != 5) { // if trade
@@ -186,7 +186,7 @@ public class FavorTable implements Serializable {
                     // select 2 resource cubes
                     for (int j = 0; j < 2; j++) {
                         String message4 = player.getColor()
-                                + " select one Resource to collect\n"
+                                + " select 1 resource cube to collect\n"
                                 + "1)Food\n2)Wood\n3)Stone\n4)Cloth";
                         int choice4 = Functions.inputValidation(1, 4, message4,
                                 player, sc);

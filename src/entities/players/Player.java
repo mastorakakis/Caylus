@@ -22,7 +22,7 @@ public abstract class Player implements Serializable {
     private Color color;
     private int points;
     private int money; // players initial amount depends on order of play
-    private Resources resources = new Resources(2, 1, 0, 0, 0); // start with 2 food 1 wood //TODO reset
+    private Resources resources = new Resources(2, 1, 0, 0, 0); // start with 2 food 1 wood
     private int favors;
     private int workers = 6; // player has six workers;
     private String[] favorTableOptions = {"Points Line", "Money Line",
@@ -136,7 +136,7 @@ public abstract class Player implements Serializable {
                 this.points += buildings.get(choice - 1).getBuildPoints();
                 break;
             }
-        } while (choice == 0);
+        } while (true);
         return buildings.get(choice - 1);
     }
 
@@ -184,36 +184,46 @@ public abstract class Player implements Serializable {
         if (choice != max) {
             Block block = game.getRoad()
                     .get(availableBuildingsList.get(choice - 1));
-            // pay
-            tradeMoneyResources(building.getBuildResources(),
-                    -building.getBuildMoney(), Action.SUBTRACT);
-            points += building.getBuildPoints();
-            // if building has a worker save it in temp to transform later
-            if (block.getWorkers().size() > 0) {
-                block.setTempBuilding(building);
-            } else { // wood and stone buildings go back to the list
-                if (!(block.getBuilding() instanceof NeutralBuilding)) {
-                    // add craft building to building list
-                    game.getBuildingList().add(block.getBuilding());
+            // if enough money and resources
+            if (this.money >= building.getBuildMoney()
+                    && this.resources.compareTo(building
+                            .getBuildResources()) >= 0) {
+                // pay
+                tradeMoneyResources(building.getBuildResources(),
+                        -building.getBuildMoney(), Action.SUBTRACT);
+                points += building.getBuildPoints();
+
+                // if building has a worker save it in temp to transform later
+                if (block.getWorkers().size() > 0) {
+                    block.setTempBuilding(building);
+                    block.setHouse(this);
+                } else {
+                    // wood and stone buildings go back to the list
+                    if (!(block.getBuilding() instanceof NeutralBuilding)) {
+                        // add craft building back to building list
+                        game.getBuildingList().add(block.getBuilding());
+                    }
+                    // transform block building
+                    block.setBuilding(building);
+                    // because neutral have no house
+                    block.setHouse(this);
                 }
-                // transform block building
-                block.setBuilding(building);
-                // set player house
-                block.setHouse(this);
             }
-        } // if pass get money and resources back
-        else {
-            tradeMoneyResources(building.getBuildResources(),
-                    -building.getBuildMoney(), Action.ADD);
-            points -= building.getBuildPoints();
         }
         return null;
     }
 
     public Building buildPrestige(Game game, List<PrestigeBuilding> buildings, Scanner sc) {
-        int choice = 0;
+        int choice;
+        List<Integer> availableBuildingsList
+                = getAvailableResidentialBuildings(game.getRoad());
+        // if no available residential buildings return null
+        if (availableBuildingsList.isEmpty()) {
+            System.out.println("There are no Residential Buildings to tranform");
+            return null;
+        }
         do {
-            String message = this.color + "select Prestige building\n"
+            String message = this.color + " select Prestige building\n"
                     + Functions.printOptions(buildings);
             int max = buildings.size() + 1;
             choice = Functions.inputValidation(1, max, message, this, sc);
@@ -224,42 +234,32 @@ public abstract class Player implements Serializable {
             // check if resources are enough
             if (resources.compareTo(buildings.get(choice - 1).getBuildResources()) < 0) {
                 System.out.println("Not enough resources to build.");
-                choice = 0;
             } else {
-                tradeMoneyResources(buildings.get(choice - 1).getBuildResources(), 0,
-                        Action.SUBTRACT); // pay resources
-                // get points and favors
-                this.points += buildings.get(choice - 1).getBuildPoints();
-                this.favors += buildings.get(choice - 1).getBuildFavors();
-                if (favors > 0) {
-                    // use favor
-                    game.getFavorTable().useFavor(game, this, sc);
-                }
+                break;
             }
-        } while (choice == 0);
+        } while (true);
         PrestigeBuilding prestigeBuilding = buildings.get(choice - 1);
-
-        List<Integer> availableBuildingsList
-                = getAvailableResidentialBuildings(game.getRoad());
         String message = Functions.printIndexedOptions(availableBuildingsList,
                 game.getRoad());
         int max = availableBuildingsList.size() + 1; // plus one for pass
         int choice2 = Functions.inputValidation(1, max, color
                 + " select building or pass\n" + message, this, sc);
-        Block block;
         if (choice2 != max) {
-            block = game.getRoad()
+            Block block = game.getRoad()
                     .get(availableBuildingsList.get(choice2 - 1));
             block.setBuilding(prestigeBuilding);
-        } else { // take back resources
-            tradeMoneyResources(prestigeBuilding.getBuildResources(), 0, Action.ADD); // pay resources
-            // give back points and favors
-            this.points -= prestigeBuilding.getBuildPoints();
-            this.favors -= prestigeBuilding.getBuildFavors();
+            tradeMoneyResources(buildings.get(choice - 1).getBuildResources(), 0,
+                    Action.SUBTRACT); // pay resources
+            // get points and favors
+            this.points += buildings.get(choice - 1).getBuildPoints();
+            this.favors += buildings.get(choice - 1).getBuildFavors();
+            if (favors > 0) {
+                // use favor
+                game.getFavorTable().useFavor(game, this, sc);
+            }
+        } else {
             return null;
         }
-        // set player house
-        block.setHouse(this);
         return prestigeBuilding;
     }
 
@@ -308,8 +308,8 @@ public abstract class Player implements Serializable {
 
     @Override
     public String toString() {
-        return "Player " + color + ":\n\tPoints=" + points + " Money=" + money
-                + " Favors=" + favors + " Workers=" + workers + "\n\t"
-                + resources;
+        return color + ":\tMoney=" + money + " Workers=" + workers
+                + " Favors=" + favors + " Points=" + points
+                + "\n\t" + resources;
     }
 }

@@ -11,7 +11,9 @@ import java.util.Scanner;
 public class Phase1 {
 
     public static void play(Game game, Scanner sc) {
-        System.out.println("\nPhase 1: Collecting Income\nAll players earn 2 deniers");
+        System.out.println("\nPhase 1: Collecting Income");
+        System.out.println("------------------------------------------------------");
+        System.out.println("All players earn 2 deniers");
         // collect income from library and hotel
         for (Block block : game.getRoad()) {
             Player player;
@@ -34,10 +36,10 @@ public class Phase1 {
                     System.out.println(player.getColor() + " earns 2 deniers");
                 } // if residential building
                 else if (building instanceof ResidentialBuilding) {
-                    ResidentialBuilding pb = (ResidentialBuilding) building;
+                    ResidentialBuilding rb = (ResidentialBuilding) building;
                     player = block.getHouse(); // owner of the house
                     // collect income
-                    player.setMoney(player.getMoney() + pb.getIncomeMoney());
+                    player.setMoney(player.getMoney() + rb.getIncomeMoney());
                     System.out.println(player.getColor() + " earns 1 denier");
                 }
             }

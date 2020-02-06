@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class Gate extends SpecialBuilding implements Serializable {
 
-    private static List<Player> positionList = new ArrayList();
+    private List<Player> positionList = new ArrayList();
 
     // constructor private
     public Gate(String name) {
