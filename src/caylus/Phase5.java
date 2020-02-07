@@ -28,18 +28,17 @@ public class Phase5 {
                     // and provost is not placed behind the block
                     && i <= game.getProvost().getPosition()) {
                 Building building = block.getBuilding();
-                // if stone building belongs to other pay rent resources
-                if (block.getHouse() != null
-                        && block.getHouse() != block.getWorkers().get(0)
-                        && block.getBuilding() instanceof StoneBuilding) {
-                    payRent(block, sc);
-                }
                 Building newBuilding = null;
                 // activate building / if return not null -> build
                 if (!(building instanceof ResidentialBuilding
                         || building instanceof PrestigeBuilding)) {
                     newBuilding = building.activate(game, block.getWorkers(), sc);
-                    System.out.println(""); // maybe delete
+                }
+                // if stone building belongs to other pay rent resources
+                if (block.getHouse() != null
+                        && block.getHouse() != block.getWorkers().get(0)
+                        && block.getBuilding() instanceof StoneBuilding) {
+                    payRent(block, sc);
                 }
                 // if building returned
                 if (newBuilding != null) {
@@ -69,6 +68,7 @@ public class Phase5 {
             }
         } // end of for
         // remove workers from non activating buildings / build temp building
+        System.out.println("\nReturning workers from non activated buildings");
         for (int i = 7; i < game.getRoad().size(); i++) {
             Block block = game.getRoad().get(i);
             if (block.getBuilding() != null && block.getWorkers().size() > 0) {
@@ -83,7 +83,9 @@ public class Phase5 {
                     // transform block building
                     block.setBuilding(block.getTempBuilding());
                     block.setTempBuilding(null);
-                } // retunr all workers if buildings not activated
+                    System.out.println(player.getColor() + " build "
+                            + block.getBuilding().getName());
+                } // return all workers if buildings not activated
                 player.setWorkers(player.getWorkers() + 1);
                 System.out.println(player.getColor() + " Worker=" + player.getWorkers());
                 // empty block workers

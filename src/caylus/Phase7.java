@@ -26,8 +26,9 @@ public class Phase7 {
         game.getProvost().setPosition(game.getBailiff().getPosition());
         System.out.println("Bailiff new position=" + game.getBailiff().getPosition());
         System.out.println("Provost new position=" + game.getProvost().getPosition());
-
+        System.out.println("");
         checkSectionScoring(game, sc);
+        System.out.println("");
         for (Player player : game.getPlayerList()) {
             player.newFavorTableIndex();
             System.out.println(player);

@@ -66,12 +66,12 @@ public class WoodBuilding extends Building {
         Player player = workers.get(0);
         // if wood quarry
         if (this.getName().equals("Wood Quarry")) {
-            System.out.println("Activating Wood Quarry");
+            System.out.println("\nActivating Wood Quarry");
             player.tradeMoneyResources(activationResources, activationMoney,
                     Action.ADD); // collect resources
         } // if wood farm A
         else if (this.getName().equals("Wood Farm A")) {
-            System.out.println("Activating Farm A");
+            System.out.println("\nActivating Farm A");
             // choose resource
             String message = player.getColor()
                     + " select resources\n1)2 Food\n2)1 Cloth";
@@ -86,7 +86,7 @@ public class WoodBuilding extends Building {
             this.activationResources = new Resources();
         } // if wood farm B
         else if (this.getName().equals("Wood Farm B")) {
-            System.out.println("Activating Wood Farm B");
+            System.out.println("\nActivating Wood Farm B");
             String message = player.getColor()
                     + " select resources\n1)1 Food\n2)2 Cloth";
             int choice = Functions.inputValidation(1, 2, message, player, sc);
@@ -100,7 +100,7 @@ public class WoodBuilding extends Building {
             this.activationResources = new Resources();
         } // if wood market place
         else if (this.getName().equals("Wood Market Place")) {
-            System.out.println("Activating Wood Market Place");
+            System.out.println("\nActivating Wood Market Place");
             do { // choose resource
                 String message = player.getColor() + " select one Resource to trade\n"
                         + "1)Food\n2)Wood\n3)Stone\n4)Cloth\n5)Don't trade";
@@ -121,7 +121,7 @@ public class WoodBuilding extends Building {
             } while (true);
         } // if wood peddler
         else if (this.getName().equals("Wood Peddler")) {
-            System.out.println("Activating Wood Peddler");
+            System.out.println("\nActivating Wood Peddler");
             do { // choose amount
                 String message = player.getColor() + " select amount of money "
                         + "to spend\n1)1 denier\n2)2 deniers\n3)Don't trade";
@@ -149,12 +149,12 @@ public class WoodBuilding extends Building {
             } while (true);
         } // if wood sawmill
         else if (this.getName().equals("Wood Sawmill")) {
-            System.out.println("Activating Wood Sawmill");
+            System.out.println("\nActivating Wood Sawmill");
             player.tradeMoneyResources(activationResources, activationMoney,
                     Action.ADD);
         } // if mason
         else if (this.getName().equals("Mason")) {
-            System.out.println("Activating Mason");
+            System.out.println("\nActivating Mason");
             List<StoneBuilding> stoneList = new ArrayList();
             for (Building building : game.getBuildingList()) {
                 if (building instanceof StoneBuilding) {
@@ -166,7 +166,7 @@ public class WoodBuilding extends Building {
             return player.buildStone(game, stoneList, sc);
         } // if lawyer
         else if (this.getName().equals("Lawyer")) {
-            System.out.println("Activating Lawyer");
+            System.out.println("\nActivating Lawyer");
             // create residential building
             ResidentialBuilding building = new ResidentialBuilding();
             player.setWorkers(player.getWorkers() + 1);

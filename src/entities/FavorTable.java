@@ -19,9 +19,9 @@ public class FavorTable implements Serializable {
     private int[] pointsLine = {1, 2, 3, 4, 5};
     private int[] moneyLine = {3, 4, 5, 6, 7};
     private Resources[] resourcesLine = {new Resources(1, 0, 0, 0, 0), new Resources(),
-        new Resources(0, 0, 0, 4, 0), new Resources(), new Resources(0, 0, 0, 0, 1)};
+        new Resources(0, 0, 0, 1, 0), new Resources(), new Resources(0, 0, 0, 0, 1)};
     private String[] resourcesLineStrings = {"1 Food", "1 Wood or 1 Stone", "1 Cloth",
-        "Trade 1 Resource for 2 others (apart from Gold)", "1 Gold"};
+        "Trade 1 resource cube for 2 others (apart from Gold)", "1 Gold"};
     private String buildLine[] = {"Empty", "Build Wood Building with 1 less Wood",
         "Build Stone Building with 1 less stone",
         "Build Residential Building with 1 less denier", "Build Prestige"};
@@ -41,6 +41,7 @@ public class FavorTable implements Serializable {
         }
         int max = player.getFavors();
         for (int i = max; i > 0; i--) {
+            player.setFavors(player.getFavors() - 1);
             String choice = selectFavorLine(game, player, sc);
             switch (choice) {
                 case "Points Line":
@@ -55,8 +56,8 @@ public class FavorTable implements Serializable {
                 case "Build Line":
                     selectBuildFavor(game, player, sc);
                     break;
+                default:
             }
-            player.setFavors(player.getFavors() - 1);
         }
     }
 

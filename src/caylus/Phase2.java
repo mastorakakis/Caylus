@@ -117,7 +117,7 @@ public class Phase2 {
         // if house belongs to other the owner gets one point
         if (block.getHouse() != null && block.getHouse() != player) {
             block.getHouse().setPoints(block.getHouse().getPoints() + 1);
-            System.out.println(block.getHouse() + " earns 1 point");
+            System.out.println(block.getHouse().getColor() + " earns 1 point");
         }
         // reduce number of workers
         player.setWorkers(player.getWorkers() - 1);
@@ -129,6 +129,21 @@ public class Phase2 {
     protected static List<Integer> getAvailableBuildings(List<Block> road,
             Player player, Game game) {
         List<Integer> indexList = new ArrayList();
+        // if not enough money and not in Inn return only buildings player owns
+        if (player.getMoney() < game.getBridge().getPositionList().size() + 1
+                && game.getInn().getInnPosition()[1] != player) {
+            for (int i = 0; i < road.size(); i++) {
+                Block block = road.get(i);
+                Building building = road.get(i).getBuilding();
+                if (building != null && (!(building instanceof PrestigeBuilding)
+                        || !(building instanceof ResidentialBuilding))
+                        && block.getHouse() == player
+                        && block.getWorkers().isEmpty()) {
+                    indexList.add(i);
+                }
+            }
+            return indexList;
+        }
         for (int i = 0; i < road.size(); i++) { // for every block of the road
             Block block = road.get(i);
             Building building = road.get(i).getBuilding();

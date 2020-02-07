@@ -52,7 +52,7 @@ public class FixedBuilding extends Building implements BoardBulding {
         Player player = workers.get(0);
         // if fixed peddler
         if (this.getName().equals("Fixed Peddler")) {
-            System.out.println("Activating Fixed Peddler");
+            System.out.println("\nActivating Fixed Peddler");
             // if not enough money
             if (player.getMoney() < activationMoney) {
                 System.out.println("Not enough money to trade");
@@ -74,7 +74,7 @@ public class FixedBuilding extends Building implements BoardBulding {
             this.activationResources = new Resources();
         } // if fixed carpenter
         else if (this.getName().equals("Fixed Carpenter")) {
-            System.out.println("Activating Fixed Carpenter");
+            System.out.println("\nActivating Fixed Carpenter");
             List<WoodBuilding> woodList = new ArrayList();
             for (Building building : game.getBuildingList()) {
                 if (building instanceof WoodBuilding) {
@@ -87,7 +87,7 @@ public class FixedBuilding extends Building implements BoardBulding {
 
         } // if gold mine
         else {
-            System.out.println("Activating Gold Mine");
+            System.out.println("\nActivating Gold Mine");
             // collect resources
             player.tradeMoneyResources(activationResources, activationMoney, Action.ADD);
         }

@@ -38,14 +38,14 @@ public class SpecialBuilding extends Building implements BoardBulding {
         Player player = workers.get(0);
         // if trading post
         if (this.getName().equals("Trading Post")) {
-            System.out.println("Activating Trading Post");
+            System.out.println("\nActivating Trading Post");
             // collect income
             player.setMoney(player.getMoney() + this.activationMoney);
             System.out.println(player.getColor() + " earns "
                     + this.activationMoney + " deniers");
         } // if merchant's guild
         else if (this.getName().equals("Merchant's Guild")) {
-            System.out.println("Activating Merchant's Guild");
+            System.out.println("\nActivating Merchant's Guild");
             while (true) {
                 int provostPosition = game.getProvost().getPosition();
                 try {
@@ -71,7 +71,7 @@ public class SpecialBuilding extends Building implements BoardBulding {
         }// if joust field
         else if (this.getName()
                 .equals("Joust Field")) {
-            System.out.println("Activating Joust Field");
+            System.out.println("\nActivating Joust Field");
             // if player has  money and resources
             if (player.getMoney() >= this.activationMoney
                     && player.getResources().compareTo(activationResources) >= 0) {
@@ -89,7 +89,7 @@ public class SpecialBuilding extends Building implements BoardBulding {
         } // if stables
         else if (this.getName()
                 .equals("Stables")) {
-            System.out.println("Activating Stables");
+            System.out.println("\nActivating Stables");
             System.out.println("Changing playing order");
             // remove all players in Stables from game playerList
             Iterator<Player> iterator = game.getPlayerList().iterator();

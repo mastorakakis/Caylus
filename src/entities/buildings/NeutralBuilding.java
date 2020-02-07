@@ -30,19 +30,19 @@ public class NeutralBuilding extends Building {
         Player player = workers.get(0);
         // if neutral quarry
         if (this.getName().equals("Neutral Quarry")) {
-            System.out.println("Activating Neutral Quarry");
+            System.out.println("\nActivating Neutral Quarry");
             // get resources
             player.tradeMoneyResources(activationResources, activationMoney,
                     Action.ADD);
         } // if neutral sawmill
         else if (this.getName().equals("Neutral Sawmill")) {
-            System.out.println("Activating Neutral Sawmill");
+            System.out.println("\nActivating Neutral Sawmill");
             // collect resource
             player.tradeMoneyResources(activationResources, activationMoney,
                     Action.ADD);
         } // if neutral farm
         else if (this.getName().equals("Neutral Farm")) {
-            System.out.println("Activating Neutral Farm");
+            System.out.println("\nActivating Neutral Farm");
             String message = player.getColor()
                     + " select resource\n1)1 Food\n2)1 Cloth";
             // choose resources
@@ -56,7 +56,7 @@ public class NeutralBuilding extends Building {
             this.activationResources = new Resources();
         } // if forest
         else if (this.getName().equals("Forest")) {
-            System.out.println("Activating Forest");
+            System.out.println("\nActivating Forest");
             // choose resource
             String message = player.getColor()
                     + " select resource\n1)1 Food\n2)1 Wood";
@@ -69,7 +69,7 @@ public class NeutralBuilding extends Building {
             this.activationResources = new Resources();
         } // if neutral market place
         else if (this.getName().equals("Neutral Market Place")) {
-            System.out.println("Activating Neutral Market Place");
+            System.out.println("\nActivating Neutral Market Place");
             do { // choose resource to trade
                 String message = player.getColor() + " select one Resource to trade\n"
                         + "1)Food\n2)Wood\n3)Stone\n4)Cloth\n5)Don't trade";
@@ -91,7 +91,7 @@ public class NeutralBuilding extends Building {
                 }
             } while (true);
         } else if (this.getName().equals("Neutral Carpenter")) {
-            System.out.println("Activating Neutral Carpenter");
+            System.out.println("\nActivating Neutral Carpenter");
             List<WoodBuilding> woodList = new ArrayList();
             for (Building building : game.getBuildingList()) {
                 if (building instanceof WoodBuilding) {
@@ -103,7 +103,8 @@ public class NeutralBuilding extends Building {
             return player.buildWood(woodList, sc);
         }
         player.setWorkers(player.getWorkers() + 1);
-        System.out.println(player.getColor() + " Worker=" + player.getWorkers());
+        System.out.println(player.getColor() + " Worker=" + player.getWorkers()
+                + " Money=" + player.getMoney());
         return null;
     }
 

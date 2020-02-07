@@ -163,6 +163,7 @@ public abstract class Player implements Serializable {
                 this.points += buildings.get(choice - 1).getBuildPoints();
                 this.favors += buildings.get(choice - 1).getBuildFavors();
                 if (favors > 0) {
+                    String word = favors == 1 ? " favor" : " favors";
                     // use favor
                     game.getFavorTable().useFavor(game, this, sc);
                 }
@@ -207,7 +208,11 @@ public abstract class Player implements Serializable {
                     block.setBuilding(building);
                     // because neutral have no house
                     block.setHouse(this);
+                    System.out.println(this.color + " build "
+                            + building.getName());
                 }
+            } else {
+                System.out.println("Not enough money or resources");
             }
         }
         return null;
@@ -248,6 +253,7 @@ public abstract class Player implements Serializable {
             Block block = game.getRoad()
                     .get(availableBuildingsList.get(choice2 - 1));
             block.setBuilding(prestigeBuilding);
+            System.out.println(this.color + " built " + prestigeBuilding.getName());
             tradeMoneyResources(buildings.get(choice - 1).getBuildResources(), 0,
                     Action.SUBTRACT); // pay resources
             // get points and favors

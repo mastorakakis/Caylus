@@ -6,6 +6,7 @@ import caylussetup.SetUpGame;
 import entities.FavorTable;
 import entities.Resources;
 import entities.buildings.Castle;
+import entities.buildings.ResidentialBuilding;
 import entities.buildings.WoodBuilding;
 import entities.players.Player;
 import enums.Status;
@@ -32,45 +33,35 @@ public class TestMain { // TODO delete class
             Status gameStatus = Status.CONTINUE;
 
             Player player = game.getPlayerList().get(0);
-            player.setMoney(1);
-            player.getResources().setCloth(10);
-            player.getResources().setFood(10);
-            player.getResources().setWood(10);
-            player.getResources().setStone(10);
-            player.getResources().setGold(10);
-            player.setPoints(10);
-            Player player2 = game.getPlayerList().get(1);
-            player2.setMoney(1);
-            player2.getResources().setCloth(10);
-            player2.getResources().setFood(10);
-            player2.getResources().setWood(10);
-            player2.getResources().setStone(10);
-            player2.getResources().setGold(10);
-            player2.setPoints(10);
-            Player player3 = game.getPlayerList().get(2);
 
-            player.setWorkers(4);
-            player2.setWorkers(4);
-            player3.setWorkers(4);
+            player.getResources().setStone(2);
+            player.getResources().setGold(1);
+            player.getResources().setWood(2);
+            player.getResources().setCloth(2);
 
-            game.getBridge().getPositionList().add(player3);
-            game.getRoad().get(15).setBuilding(new WoodBuilding(4, new Resources(1, 1, 0, 0, 0),
-                    0, new Resources(0, 0, 0, 0, 0), "Mason"));
-            game.getRoad().get(15).setHouse(player);
+            player.setWorkers(3);
 
-            game.getInn().getInnPosition()[1] = player2;
+            game.getCastle().getDungeon().setScored(true);
+            game.getCastle().getWalls().setScored(true);
 
-            Phase2.play(game, sc);
-            System.out.println("");
+            game.getFavorTable().getPlayerFavorTable()[2][4].add(player);
+            game.getFavorTable().getPlayerFavorTable()[3][3].add(player);
+            game.getFavorTable().getPlayerFavorTable()[3][2].add(player);
+            game.getFavorTable().getPlayerFavorTable()[3][1].add(player);
+            game.getFavorTable().getPlayerFavorTable()[3][0].add(player);
 
-            Phase3.play(game, sc);
-            System.out.println("");
+            game.getBailiff().setPosition(29);
+            game.getProvost().setPosition(29);
 
-            Phase4.play(game, sc);
-            System.out.println("");
+            game.getRoad().get(12).setBuilding(new ResidentialBuilding());
+            game.getRoad().get(12).setHouse(player);
 
-            Phase5.play(game, sc);
-            System.out.println("");
+            game.getCastle().getTowers().getBuildSpaces().add(player);
+            game.getCastle().getTowers().getBuildSpaces().add(player);
+            game.getCastle().getTowers().getBuildSpaces().add(player);
+            game.getCastle().getTowers().getBuildSpaces().add(player);
+
+            game.getRoad().get(0).getWorkers().add(player);
 
             Phase6.play(game, sc);
             System.out.println("");

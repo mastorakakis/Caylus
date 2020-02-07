@@ -92,22 +92,22 @@ public class StoneBuilding extends Building {
         Player player = workers.get(0);
         // if park get resources
         if (this.getName().equals("Park")) {
-            System.out.println("Activating Park");
+            System.out.println("\nActivating Park");
             player.tradeMoneyResources(activationResources, activationMoney,
                     Action.ADD);
         } // if stone farm get resources
         if (this.getName().equals("Stone Farm")) {
-            System.out.println("Activating Stone Farm");
+            System.out.println("\nActivating Stone Farm");
             player.tradeMoneyResources(activationResources, activationMoney,
                     Action.ADD);
         } // if workshop get resources
         if (this.getName().equals("Workshop")) {
-            System.out.println("Activating Workshop");
+            System.out.println("\nActivating Workshop");
             player.tradeMoneyResources(activationResources, activationMoney,
                     Action.ADD);
         } // if bank
         if (this.getName().equals("Bank")) {
-            System.out.println("Activating Bank");
+            System.out.println("\nActivating Bank");
             do { // choose amount
                 String message = player.getColor() + " select amount of money "
                         + "to trade\n1)2 deniers\n2)5 deniers\n3)Don't trade";
@@ -132,7 +132,7 @@ public class StoneBuilding extends Building {
             } while (true);
         } // if church
         if (this.getName().equals("Church")) {
-            System.out.println("Activating Church");
+            System.out.println("\nActivating Church");
             do { // choose amount
                 String message = player.getColor() + " select amount of money "
                         + "to trade\n1)2 deniers\n2)4 deniers\n3)Don't trade";
@@ -158,7 +158,7 @@ public class StoneBuilding extends Building {
             } while (true);
         } // if alchemist
         if (this.getName().equals("Alchemist")) {
-            System.out.println("Activating Alchemist");
+            System.out.println("\nActivating Alchemist");
             do { // choose amount of resources
                 String message = player.getColor() + " select number of resources "
                         + "to trade\n1)2 resources\n2)4 resources\n3)Don't trade";
@@ -195,7 +195,7 @@ public class StoneBuilding extends Building {
             } while (true);
         } // if jewler
         if (this.getName().equals("Jeweler")) {
-            System.out.println("Activating Jeweler");
+            System.out.println("\nActivating Jeweler");
             do { // choose amount of resources
                 String message = player.getColor() + " select number of resources "
                         + "to trade\n1)1 Gold\n2)2 Gold\n3)Don't trade";
@@ -222,7 +222,7 @@ public class StoneBuilding extends Building {
             } while (true);
         } // if tailor
         if (this.getName().equals("Tailor")) {
-            System.out.println("Activating Tailor");
+            System.out.println("\nActivating Tailor");
             do { // choose amount of resources
                 String message = player.getColor() + " select number of resources "
                         + "to trade\n1)2 Cloth\n2)3 Cloth\n3)Don't trade";
@@ -250,7 +250,7 @@ public class StoneBuilding extends Building {
             } while (true);
         } // if architect a
         if (this.getName().equals("Architect A")) {
-            System.out.println("Activating Architect A");
+            System.out.println("\nActivating Architect A");
             List<PrestigeBuilding> buildings = new ArrayList();
             for (Building building : game.getBuildingList()) {
                 if (building instanceof PrestigeBuilding) {
@@ -263,7 +263,7 @@ public class StoneBuilding extends Building {
 
         } // if architect b
         if (this.getName().equals("Architect B")) {
-            System.out.println("Activating Architect B");
+            System.out.println("\nActivating Architect B");
             List<PrestigeBuilding> buildings = new ArrayList();
             for (Building building : game.getBuildingList()) {
                 if (building instanceof PrestigeBuilding) {

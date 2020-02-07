@@ -32,7 +32,7 @@ public class Bridge implements Serializable {
         // if coming from gate player already passed
         if (!positionList.contains(player)) {
             positionList.add(player); // add player to bridge
-            System.out.println(player.getColor() + " passes");
+            System.out.println("\n" + player.getColor() + " passes");
             if (positionList.size() == 1) { // if player is first
                 player.setMoney(player.getMoney() + 1); // player earns 1 denier
                 System.out.println(player.getColor() + " earns 1 denier");
