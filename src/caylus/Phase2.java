@@ -59,7 +59,7 @@ public class Phase2 {
         // get available buildings to place workers
         List<Integer> availableBuildingList
                 = getAvailableBuildings(game.getRoad(), player, game);
-        String message // string of availabale options for the user
+        String message // string of available options for the user
                 = Functions.printIndexedOptions(availableBuildingList, game.getRoad());
         int max = availableBuildingList.size() + 1; // plus one for pass
         System.out.println("\n" + player.getColor() + " Money=" + player.getMoney()

@@ -21,10 +21,10 @@ public class CreatePlayers {
         List<Player> playerList = new ArrayList();
         int numberOfComPlayers = 0;
         // select number of user getPlayers
-        int numberOfUserPlayers = 1; //numberOfUserPlayers(sc); // todo
+        int numberOfUserPlayers = 1;//numberOfUserPlayers(sc); // todo
         // if number of getPlayers is not max ask for com getPlayers
         if (numberOfUserPlayers != MAX_PLAYERS) {
-            numberOfComPlayers = 0; //numberOfComPlayers(sc, numberOfUserPlayers); // todo
+            numberOfComPlayers = 0;//numberOfComPlayers(sc, numberOfUserPlayers); // todo
         }// add user getPlayers to the list if there are any
         if (numberOfUserPlayers != 0) {
             addUserPlayers(numberOfUserPlayers, playerList);

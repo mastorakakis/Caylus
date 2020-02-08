@@ -108,10 +108,19 @@ public class Castle extends Building implements Serializable {
         }
         if (max > 0) {
             maxPlayer.setFavors(maxPlayer.getFavors() + buildFavor);
+            System.out.println(maxPlayer.getColor() + " placed the most houses in"
+                    + " the Castle during this turn");
             System.out.println(maxPlayer.getColor() + " earns " + buildFavor
                     + " favor");
             // use favor
-            game.getFavorTable().useFavor(game, maxPlayer, sc);
+            int maxFavor = maxPlayer.getFavors();
+            if (maxPlayer.getFavors() > 4) {
+                maxFavor = 4;
+            }
+            maxPlayer.setFavors(0);
+            for (int i = maxFavor; i > 0; i--) {
+                game.getFavorTable().useFavor(game, maxPlayer, sc);
+            }
         }
     }
 
@@ -131,6 +140,7 @@ public class Castle extends Building implements Serializable {
     // build houses in the castle and return true
     public boolean buildSection(Player player) {
         // if dungeon not full or scored
+
         if (dungeon.getBuildSpaces().size() < 6 && !dungeon.isScored()) {
             // build house
             dungeon.getBuildSpaces().add(player);

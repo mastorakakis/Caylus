@@ -26,21 +26,24 @@ public class Phase1 {
                     player = block.getHouse(); // owner of the house
                     // collect income
                     player.setMoney(player.getMoney() + 1);
-                    System.out.println(player.getColor() + " earns 1 denier");
+                    System.out.println(player.getColor() + " earns 1 denier from "
+                            + building.getName());
                 } // if  hotel
                 else if (building.getName().equals("Hotel")) {
                     PrestigeBuilding pb = (PrestigeBuilding) building;
                     player = block.getHouse(); // owner of the house
                     // collect income
                     player.setMoney(player.getMoney() + pb.getIncomeMoney());
-                    System.out.println(player.getColor() + " earns 2 deniers");
+                    System.out.println(player.getColor() + " earns 2 deniers from "
+                            + building.getName());
                 } // if residential building
                 else if (building instanceof ResidentialBuilding) {
                     ResidentialBuilding rb = (ResidentialBuilding) building;
                     player = block.getHouse(); // owner of the house
                     // collect income
                     player.setMoney(player.getMoney() + rb.getIncomeMoney());
-                    System.out.println(player.getColor() + " earns 1 denier");
+                    System.out.println(player.getColor() + " earns 1 denier from "
+                            + rb.getName());
                 }
             }
         }

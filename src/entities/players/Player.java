@@ -125,6 +125,7 @@ public abstract class Player implements Serializable {
                         + "1)Food\n2)Wood\n3)Stone\n4)Cloth\n5)Gold", this, sc);
                 // increase selected building resource cost
                 buildings.get(choice - 1).getBuildResources().modifyResources(choice2);
+                System.out.println("");
             }// check if resources are enough
             System.out.println(buildings.get(choice - 1).getName());
             if (resources.compareTo(buildings.get(choice - 1).getBuildResources()) < 0) {
@@ -132,8 +133,11 @@ public abstract class Player implements Serializable {
             } else {// pay resources
                 tradeMoneyResources(buildings.get(choice - 1).getBuildResources(), 0,
                         Action.SUBTRACT);
-                // get the pointss
+                System.out.println(color + " built " + buildings.get(choice - 1).getName());
+                // get the points
                 this.points += buildings.get(choice - 1).getBuildPoints();
+                System.out.println(color + " earns "
+                        + buildings.get(choice - 1).getBuildPoints() + " points");
                 break;
             }
         } while (true);
@@ -152,6 +156,8 @@ public abstract class Player implements Serializable {
             if (choice == max) {
                 return null;
             }
+            StoneBuilding stoneBuilding = buildings.get(choice - 1);
+            System.out.println(stoneBuilding);
             // check if resources are enough
             if (resources.compareTo(buildings.get(choice - 1).getBuildResources()) < 0) {
                 System.out.println("Not enough resources to build.");
@@ -159,13 +165,24 @@ public abstract class Player implements Serializable {
             } else {
                 tradeMoneyResources(buildings.get(choice - 1).getBuildResources(), 0,
                         Action.SUBTRACT); // pay resources
+                System.out.println(color + " built " + stoneBuilding.getName());
                 // get points and favors
                 this.points += buildings.get(choice - 1).getBuildPoints();
+                System.out.println(color + " earns "
+                        + stoneBuilding.getBuildPoints() + " points");
                 this.favors += buildings.get(choice - 1).getBuildFavors();
                 if (favors > 0) {
-                    String word = favors == 1 ? " favor" : " favors";
+                    System.out.println(color + " earns "
+                            + stoneBuilding.getBuildFavors() + " favor");
                     // use favor
-                    game.getFavorTable().useFavor(game, this, sc);
+                    int maxFavor = this.getFavors();
+                    if (this.getFavors() > 4) {
+                        maxFavor = 4;
+                    }
+                    this.setFavors(0);
+                    for (int i = maxFavor; i > 0; i--) {
+                        game.getFavorTable().useFavor(game, this, sc);
+                    }
                 }
             }
         } while (choice == 0);
@@ -193,7 +210,6 @@ public abstract class Player implements Serializable {
                 tradeMoneyResources(building.getBuildResources(),
                         -building.getBuildMoney(), Action.SUBTRACT);
                 points += building.getBuildPoints();
-
                 // if building has a worker save it in temp to transform later
                 if (block.getWorkers().size() > 0) {
                     block.setTempBuilding(building);
@@ -208,8 +224,10 @@ public abstract class Player implements Serializable {
                     block.setBuilding(building);
                     // because neutral have no house
                     block.setHouse(this);
-                    System.out.println(this.color + " build "
+                    System.out.println(this.color + " built "
                             + building.getName());
+                    System.out.println(color + " earns " + building.getBuildPoints()
+                            + " points");
                 }
             } else {
                 System.out.println("Not enough money or resources");
@@ -248,20 +266,32 @@ public abstract class Player implements Serializable {
                 game.getRoad());
         int max = availableBuildingsList.size() + 1; // plus one for pass
         int choice2 = Functions.inputValidation(1, max, color
-                + " select building or pass\n" + message, this, sc);
+                + " select Residential building to transform or pass\n" + message, this, sc);
         if (choice2 != max) {
             Block block = game.getRoad()
                     .get(availableBuildingsList.get(choice2 - 1));
             block.setBuilding(prestigeBuilding);
             System.out.println(this.color + " built " + prestigeBuilding.getName());
-            tradeMoneyResources(buildings.get(choice - 1).getBuildResources(), 0,
+            tradeMoneyResources(prestigeBuilding.getBuildResources(), 0,
                     Action.SUBTRACT); // pay resources
             // get points and favors
-            this.points += buildings.get(choice - 1).getBuildPoints();
-            this.favors += buildings.get(choice - 1).getBuildFavors();
+            this.points += prestigeBuilding.getBuildPoints();
+            System.out.println(color + " earns " + prestigeBuilding.getBuildPoints()
+                    + " points");
+            this.favors += prestigeBuilding.getBuildFavors();
             if (favors > 0) {
-                // use favor
-                game.getFavorTable().useFavor(game, this, sc);
+                String word = prestigeBuilding.getBuildFavors() == 1 ? " favor" : " favors";
+                System.out.println(color + " earns "
+                        + prestigeBuilding.getBuildFavors() + word);
+                // use favors
+                int maxFavor = this.getFavors();
+                if (this.getFavors() > 4) {
+                    maxFavor = 4;
+                }
+                this.setFavors(0);
+                for (int i = maxFavor; i > 0; i--) {
+                    game.getFavorTable().useFavor(game, this, sc);
+                }
             }
         } else {
             return null;

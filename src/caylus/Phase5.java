@@ -83,8 +83,11 @@ public class Phase5 {
                     // transform block building
                     block.setBuilding(block.getTempBuilding());
                     block.setTempBuilding(null);
-                    System.out.println(player.getColor() + " build "
+                    System.out.println(player.getColor() + " built "
                             + block.getBuilding().getName());
+                    System.out.println(player.getColor() + " earns "
+                            + ((ResidentialBuilding) block.getBuilding()).getBuildPoints()
+                            + " points");
                 } // return all workers if buildings not activated
                 player.setWorkers(player.getWorkers() + 1);
                 System.out.println(player.getColor() + " Worker=" + player.getWorkers());

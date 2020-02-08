@@ -24,7 +24,7 @@ public class FavorTable implements Serializable {
         "Trade 1 resource cube for 2 others (apart from Gold)", "1 Gold"};
     private String buildLine[] = {"Empty", "Build Wood Building with 1 less Wood",
         "Build Stone Building with 1 less stone",
-        "Build Residential Building with 1 less denier", "Build Prestige"};
+        "Build Residential Building with 1 less denier", "Build Prestige Building"};
     private List<Player>[][] playerFavorTable = new List[4][5];
 
     //constructor
@@ -36,28 +36,28 @@ public class FavorTable implements Serializable {
     }
 
     public void useFavor(Game game, Player player, Scanner sc) {
-        if (player.getFavors() > 4) {
-            player.setFavors(4);
-        }
-        int max = player.getFavors();
-        for (int i = max; i > 0; i--) {
-            player.setFavors(player.getFavors() - 1);
-            String choice = selectFavorLine(game, player, sc);
-            switch (choice) {
-                case "Points Line":
-                    selectPointFavor(player, sc);
-                    break;
-                case "Money Line":
-                    selectMoneyFavor(player, sc);
-                    break;
-                case "Resources Line":
-                    selectResourceFavor(player, sc);
-                    break;
-                case "Build Line":
-                    selectBuildFavor(game, player, sc);
-                    break;
-                default:
-            }
+//        if (player.getFavors() > 4) {
+//            player.setFavors(4);
+//        }
+//        int max = player.getFavors();
+//        for (int i = max; i > 0; i--) {
+//            player.setFavors(player.getFavors() - 1);
+        String choice = selectFavorLine(game, player, sc);
+        switch (choice) {
+            case "Points Line":
+                selectPointFavor(player, sc);
+                break;
+            case "Money Line":
+                selectMoneyFavor(player, sc);
+                break;
+            case "Resources Line":
+                selectResourceFavor(player, sc);
+                break;
+            case "Build Line":
+                selectBuildFavor(game, player, sc);
+                break;
+            default:
+//            }
         }
     }
 
@@ -113,8 +113,6 @@ public class FavorTable implements Serializable {
                 if (block.getBuilding() == null) {
                     block.setBuilding(newBuilding);
                     block.setHouse(player);
-                    System.out.println(player.getColor()
-                            + " built " + block.getBuilding().getName());
                     break;
                 }
             } // remove building from list
@@ -211,7 +209,7 @@ public class FavorTable implements Serializable {
         // print options for user
         for (i = 0; i < moneyLine.length; i++) {
             if (playerFavorTable[1][i].contains(player)) {
-                message.append(String.format("\n%d)%s", i + 1, moneyLine[i]));
+                message.append(String.format("\n%d)%s deniers", i + 1, moneyLine[i]));
             }
             if (!playerFavorTable[1][i].contains(player)) {
                 break;
@@ -236,8 +234,10 @@ public class FavorTable implements Serializable {
             if (!playerFavorTable[0][i].contains(player)) {
                 break;
             }
-        } // add selected points to player
+        }
         int choice = Functions.inputValidation(1, i, message.toString(), player, sc);
+        // add selected points to player
+        player.setPoints(player.getPoints() + pointsLine[choice - 1]);
         System.out.println(player.getColor() + " Points=" + player.getPoints());
     }
 
@@ -251,7 +251,7 @@ public class FavorTable implements Serializable {
                 indexList.add(i);
             }
         }
-        String message = player.getColor() + " select Favor Line"
+        String message = "\n" + player.getColor() + " select Favor Line"
                 + printIndexedOptions(indexList, playerFavorOptions);
         // select line
         int choice = Functions.inputValidation(1, indexList.size(), message, player, sc);

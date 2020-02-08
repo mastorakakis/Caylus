@@ -86,8 +86,15 @@ public class Section implements Serializable {
             } else if (numberOfHouses == 2) {
                 player.setFavors(player.getFavors() + this.scoreFavors);
                 System.out.println(player.getColor() + " earns "
-                        + scoreFavors + " favors");
-                game.getFavorTable().useFavor(game, player, sc);
+                        + scoreFavors + " favor");
+                int max = player.getFavors();
+                if (player.getFavors() > 4) {
+                    max = 4;
+                }
+                player.setFavors(0);
+                for (int i = max; i > 0; i--) {
+                    game.getFavorTable().useFavor(game, player, sc);
+                }
             } else if (this == game.getCastle().getWalls()) {
                 switch (numberOfHouses) {
                     case 1:
@@ -97,13 +104,27 @@ public class Section implements Serializable {
                         player.setFavors(player.getFavors() + this.scoreFavors + 1);
                         System.out.println(player.getColor() + " earns "
                                 + (scoreFavors + 1) + " favors");
-                        game.getFavorTable().useFavor(game, player, sc);
+                        int max = player.getFavors();
+                        if (player.getFavors() > 4) {
+                            max = 4;
+                        }
+                        player.setFavors(0);
+                        for (int i = max; i > 0; i--) {
+                            game.getFavorTable().useFavor(game, player, sc);
+                        }
                         break;
                     default:
                         player.setFavors(player.getFavors() + this.scoreFavors + 2);
                         System.out.println(player.getColor() + " earns "
                                 + (scoreFavors + 2) + " favors");
-                        game.getFavorTable().useFavor(game, player, sc);
+                        max = player.getFavors();
+                        if (player.getFavors() > 4) {
+                            max = 4;
+                        }
+                        player.setFavors(0);
+                        for (int i = max; i > 0; i--) {
+                            game.getFavorTable().useFavor(game, player, sc);
+                        }
                 }
             } else if (this == game.getCastle().getTowers()) {
                 switch (numberOfHouses) {
@@ -112,21 +133,42 @@ public class Section implements Serializable {
                     case 3:
                         player.setFavors(player.getFavors() + this.scoreFavors);
                         System.out.println(player.getColor() + " earns "
-                                + scoreFavors + " favors");
-                        game.getFavorTable().useFavor(game, player, sc);
+                                + scoreFavors + " favor");
+                        int max = player.getFavors();
+                        if (player.getFavors() > 4) {
+                            max = 4;
+                        }
+                        player.setFavors(0);
+                        for (int i = max; i > 0; i--) {
+                            game.getFavorTable().useFavor(game, player, sc);
+                        }
                         break;
                     case 4:
                     case 5:
                         player.setFavors(player.getFavors() + this.scoreFavors + 1);
                         System.out.println(player.getColor() + " earns "
                                 + (scoreFavors + 1) + " favors");
-                        game.getFavorTable().useFavor(game, player, sc);
+                        max = player.getFavors();
+                        if (player.getFavors() > 4) {
+                            max = 4;
+                        }
+                        player.setFavors(0);
+                        for (int i = max; i > 0; i--) {
+                            game.getFavorTable().useFavor(game, player, sc);
+                        }
                         break;
                     default:
                         player.setFavors(player.getFavors() + this.scoreFavors + 2);
                         System.out.println(player.getColor() + " earns "
                                 + (scoreFavors + 2) + " favors");
-                        game.getFavorTable().useFavor(game, player, sc);
+                        max = player.getFavors();
+                        if (player.getFavors() > 4) {
+                            max = 4;
+                        }
+                        player.setFavors(0);
+                        for (int i = max; i > 0; i--) {
+                            game.getFavorTable().useFavor(game, player, sc);
+                        }
                 }
             }
         }

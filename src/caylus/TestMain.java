@@ -32,6 +32,8 @@ public class TestMain { // TODO delete class
 
             Status gameStatus = Status.CONTINUE;
 
+            System.out.println("");
+
             Player player = game.getPlayerList().get(0);
 
             player.getResources().setStone(2);
@@ -44,7 +46,6 @@ public class TestMain { // TODO delete class
             game.getCastle().getDungeon().setScored(true);
             game.getCastle().getWalls().setScored(true);
 
-            game.getFavorTable().getPlayerFavorTable()[2][4].add(player);
             game.getFavorTable().getPlayerFavorTable()[3][3].add(player);
             game.getFavorTable().getPlayerFavorTable()[3][2].add(player);
             game.getFavorTable().getPlayerFavorTable()[3][1].add(player);
@@ -60,11 +61,9 @@ public class TestMain { // TODO delete class
             game.getCastle().getTowers().getBuildSpaces().add(player);
             game.getCastle().getTowers().getBuildSpaces().add(player);
             game.getCastle().getTowers().getBuildSpaces().add(player);
+            game.getCastle().getTowers().getBuildSpaces().add(player);
 
             game.getRoad().get(0).getWorkers().add(player);
-
-            Phase6.play(game, sc);
-            System.out.println("");
 
             Phase7.play(game, sc);
             System.out.println("");
