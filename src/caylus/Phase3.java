@@ -21,7 +21,7 @@ public class Phase3 {
                     && (game.getInn().getInnPosition()[0] != null || game.getInn().getInnPosition()[1] != null))) {
                 // activate building
                 block.getBuilding().activate(game, block.getWorkers(), sc);
-                System.out.println(""); // todo maybe delete
+                System.out.println("");
                 // remove workers
                 block.setWorkers(new ArrayList<Player>());
             }

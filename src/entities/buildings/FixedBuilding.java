@@ -1,7 +1,6 @@
 package entities.buildings;
 
 import caylus.Game;
-import interfaces.BoardBulding;
 import entities.Resources;
 import entities.players.Player;
 import enums.Action;
@@ -10,7 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 import utilities.Functions;
 
-public class FixedBuilding extends Building implements BoardBulding {
+public class FixedBuilding extends Building {
 
     private int activationMoney;
     private Resources activationResources;
