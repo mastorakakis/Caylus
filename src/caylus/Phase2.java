@@ -129,9 +129,10 @@ public class Phase2 {
     protected static List<Integer> getAvailableBuildings(List<Block> road,
             Player player, Game game) {
         List<Integer> indexList = new ArrayList();
-        // if not enough money and not in Inn return only buildings player owns
+        // if not enough money and not in Inn not from gate - return only buildings player owns
         if (player.getMoney() < game.getBridge().getPositionList().size() + 1
-                && game.getInn().getInnPosition()[1] != player) {
+                && game.getInn().getInnPosition()[1] != player
+                && !game.getRoad().get(1).getWorkers().contains(player)) {
             for (int i = 0; i < road.size(); i++) {
                 Block block = road.get(i);
                 Building building = road.get(i).getBuilding();
