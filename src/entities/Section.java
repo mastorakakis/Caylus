@@ -95,6 +95,20 @@ public class Section implements Serializable {
                 for (int i = max; i > 0; i--) {
                     game.getFavorTable().useFavor(game, player, sc);
                 }
+            } else if (this == game.getCastle().getDungeon()) {
+                if (numberOfHouses > 2) {
+                    player.setFavors(player.getFavors() + this.scoreFavors);
+                    System.out.println(player.getColor() + " earns "
+                            + scoreFavors + " favor");
+                    int max = player.getFavors();
+                    if (player.getFavors() > 4) {
+                        max = 4;
+                    }
+                    player.setFavors(0);
+                    for (int i = max; i > 0; i--) {
+                        game.getFavorTable().useFavor(game, player, sc);
+                    }
+                }
             } else if (this == game.getCastle().getWalls()) {
                 switch (numberOfHouses) {
                     case 1:

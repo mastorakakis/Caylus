@@ -52,8 +52,8 @@ public class Phase5 {
                                 // build for appropriate player
                                 block1.setBuilding(newBuilding);
                                 block1.setHouse(block.getWorkers().get(0));
-                                System.out.println(block1.getHouse().getColor()
-                                        + " built " + block1.getBuilding().getName());
+//                                System.out.println(block1.getHouse().getColor()
+//                                        + " built " + block1.getBuilding().getName());
                                 break;
                             }
                         } // remove building from list

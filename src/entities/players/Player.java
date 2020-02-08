@@ -157,7 +157,7 @@ public abstract class Player implements Serializable {
                 return null;
             }
             StoneBuilding stoneBuilding = buildings.get(choice - 1);
-            System.out.println(stoneBuilding);
+            System.out.println(stoneBuilding.getName());
             // check if resources are enough
             if (resources.compareTo(buildings.get(choice - 1).getBuildResources()) < 0) {
                 System.out.println("Not enough resources to build.");

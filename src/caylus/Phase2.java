@@ -136,8 +136,9 @@ public class Phase2 {
             for (int i = 0; i < road.size(); i++) {
                 Block block = road.get(i);
                 Building building = road.get(i).getBuilding();
-                if (building != null && (!(building instanceof PrestigeBuilding)
-                        || !(building instanceof ResidentialBuilding))
+                if (building != null
+                        && !(building instanceof PrestigeBuilding
+                        || building instanceof ResidentialBuilding)
                         && block.getHouse() == player
                         && block.getWorkers().isEmpty()) {
                     indexList.add(i);
@@ -149,8 +150,9 @@ public class Phase2 {
             Block block = road.get(i);
             Building building = road.get(i).getBuilding();
             // residential & prestige buildings and empty blocks are not available
-            if (building != null && (!(building instanceof PrestigeBuilding)
-                    || !(building instanceof ResidentialBuilding))) {
+            if (building != null
+                    && !(building instanceof PrestigeBuilding
+                    || building instanceof ResidentialBuilding)) {
                 // if stables don't have player or full
                 if (building.getName().equals("Stables")
                         && block.getWorkers().size() < 3

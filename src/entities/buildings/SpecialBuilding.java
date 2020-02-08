@@ -109,7 +109,7 @@ public class SpecialBuilding extends Building {
             // increase players' available workers
             for (Player p : workers) {
                 p.setWorkers(p.getWorkers() + 1);
-                System.out.println(player.getColor() + " Worker=" + p.getWorkers());
+                System.out.println(p.getColor() + " Worker=" + p.getWorkers());
             }
             return null;
         } // increase player's available workers
