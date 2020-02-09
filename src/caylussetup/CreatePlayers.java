@@ -17,7 +17,7 @@ public class CreatePlayers {
     public static final int MAX_PLAYERS = 5;
 
     // creates a list of playerList in random order
-    public List<Player> getPlayers(Scanner sc) {
+    public static List<Player> getPlayers(Scanner sc) {
         List<Player> playerList = new ArrayList();
         int numberOfComPlayers = 0;
         // select number of user getPlayers
@@ -37,14 +37,14 @@ public class CreatePlayers {
     }
 
     // returns number of user getPlayers
-    private int numberOfUserPlayers(Scanner sc) {
+    private static int numberOfUserPlayers(Scanner sc) {
         int userPlayers = Functions.inputValidation(MIN_USER_PLAYERS, MAX_PLAYERS,
                 "Select number of USER players", null, sc);
         return userPlayers;
     }
 
     // returns number of com getPlayers.
-    private int numberOfComPlayers(Scanner sc, int numberOfUserPlayers) {
+    private static int numberOfComPlayers(Scanner sc, int numberOfUserPlayers) {
         int max = MAX_PLAYERS - numberOfUserPlayers;
         int min = numberOfUserPlayers < MIN_PLAYERS ? MIN_PLAYERS
                 - numberOfUserPlayers : 0;
@@ -54,7 +54,7 @@ public class CreatePlayers {
     }
 
     // adds user getPlayers to the list
-    private void addUserPlayers(int numberOfUserPlayers, List<Player> players) {
+    private static void addUserPlayers(int numberOfUserPlayers, List<Player> players) {
         switch (numberOfUserPlayers) {
             case 5:
                 Player OrangePlayer = new UserPlayer(Color.GREEN);
@@ -75,7 +75,7 @@ public class CreatePlayers {
     }
 
     // shuffles the player list and initializes the getPlayers' amount of money
-    private void randomOrderList(List<Player> players) {
+    private static void randomOrderList(List<Player> players) {
         Collections.shuffle(players);
         for (int i = 0; i < players.size(); i++) {
             switch (i) {
@@ -94,7 +94,7 @@ public class CreatePlayers {
     }
 
     // adds com getPlayers to the list
-    private void addComPlayers(int numberOfComPlayers, List<Player> players) {
+    private static void addComPlayers(int numberOfComPlayers, List<Player> players) {
         switch (numberOfComPlayers) {
             case 5:
                 Player OrangePlayer = new ComPlayer(Color.RED);

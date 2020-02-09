@@ -1,15 +1,17 @@
 package caylus;
 
 import entities.players.Player;
+import interfaces.Phase;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import utilities.Functions;
 
 // the provost's move
-public class Phase4 {
+public class Phase4 implements Phase {
 
-    public static void play(Game game, Scanner sc) {
+    @Override
+    public void play(Game game, Scanner sc) {
         System.out.println("\nPhase 4: The Provost's Move");
         System.out.println("---------------------------");
         List<Player> playerList = game.getBridge().getPositionList();

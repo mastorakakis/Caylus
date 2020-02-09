@@ -5,12 +5,14 @@ import entities.buildings.Building;
 import entities.buildings.PrestigeBuilding;
 import entities.buildings.ResidentialBuilding;
 import entities.players.Player;
+import interfaces.Phase;
 import java.util.Scanner;
 
 // collecting income
-public class Phase1 {
+public class Phase1 implements Phase {
 
-    public static void play(Game game, Scanner sc) {
+    @Override
+    public void play(Game game, Scanner sc) {
         System.out.println("\nPhase 1: Collecting Income");
         System.out.println("------------------------------------------------------");
         System.out.println("All players earn 2 deniers");

@@ -2,13 +2,15 @@ package caylus;
 
 import entities.Block;
 import entities.players.Player;
+import interfaces.Phase;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 // activating special buildings
-public class Phase3 {
+public class Phase3 implements Phase {
 
-    public static void play(Game game, Scanner sc) {
+    @Override
+    public void play(Game game, Scanner sc) {
         System.out.println("\nPhase 3: Activating Special Buildings");
         System.out.println("-------------------------------------");
         // for every block

@@ -15,7 +15,7 @@ public class Synopsis {
         System.out.println("");
         // favor table
         List<Player>[][] playerFavorTable = game.getFavorTable().getPlayerFavorTable();
-        System.out.println("Favor table");
+        System.out.println("Favors table");
         for (Player player : game.getPlayerList()) {
             System.out.print(player.getColor() + ": ");
             for (int i = 0; i < playerFavorTable.length; i++) {

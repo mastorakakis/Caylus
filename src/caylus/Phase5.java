@@ -10,14 +10,16 @@ import entities.buildings.StoneBuilding;
 import entities.buildings.WoodBuilding;
 import entities.players.Player;
 import enums.Action;
+import interfaces.Phase;
 import java.util.ArrayList;
 import java.util.Scanner;
 import utilities.Functions;
 
 // activation of the buildings
-public class Phase5 {
+public class Phase5 implements Phase {
 
-    public static void play(Game game, Scanner sc) {
+    @Override
+    public void play(Game game, Scanner sc) {
         System.out.println("\nPhase 5: Activation of the Buildings");
         System.out.println("------------------------------------");
         // activating buildings

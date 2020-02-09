@@ -1,5 +1,12 @@
 package caylussetup;
 
+import caylus.Phase1;
+import caylus.Phase2;
+import caylus.Phase3;
+import caylus.Phase4;
+import caylus.Phase5;
+import caylus.Phase6;
+import caylus.Phase7;
 import entities.Block;
 import entities.Resources;
 import entities.buildings.Building;
@@ -12,14 +19,26 @@ import entities.buildings.PrestigeBuilding;
 import entities.buildings.SpecialBuilding;
 import entities.buildings.StoneBuilding;
 import entities.buildings.WoodBuilding;
+import interfaces.Phase;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class SetUpGame {
 
-    public List<Building> getBuildingList() {
+    public static List<Phase> createPhases() {
+        List<Phase> phases = new ArrayList();
+        phases.add(new Phase1());
+        phases.add(new Phase2());
+        phases.add(new Phase3());
+        phases.add(new Phase4());
+        phases.add(new Phase5());
+        phases.add(new Phase6());
+        phases.add(new Phase7());
+        return phases;
+    }
 
+    public static List<Building> getBuildingList() {
         // buildings list available for building
         List<Building> buildingsList = new ArrayList();
         buildingsList.add(new WoodBuilding(2, new Resources(1, 1, 0, 0, 0),
@@ -89,7 +108,7 @@ public class SetUpGame {
         return buildingsList;
     }
 
-    public List<Block> getRoad() {
+    public static List<Block> getRoad() {
 
         List<Block> road = new ArrayList(34);
         //neutral buildings

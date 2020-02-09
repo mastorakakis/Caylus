@@ -2,13 +2,15 @@ package caylus;
 // end of turn
 
 import entities.players.Player;
+import interfaces.Phase;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Phase7 {
+public class Phase7 implements Phase {
 
-    public static void play(Game game, Scanner sc) {
+    @Override
+    public void play(Game game, Scanner sc) {
         System.out.println("\nPhase 7: End of turn");
         System.out.println("--------------------");
         moveBailiff(game, sc);

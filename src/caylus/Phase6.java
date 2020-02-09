@@ -3,13 +3,15 @@ package caylus;
 import entities.Block;
 import entities.buildings.Building;
 import entities.players.Player;
+import interfaces.Phase;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 // building of the castle
-public class Phase6 {
+public class Phase6 implements Phase {
 
-    public static void play(Game game, Scanner sc) {
+    @Override
+    public void play(Game game, Scanner sc) {
         System.out.println("\nPhase 6: Building of the Castle");
         System.out.println("-------------------------------");
         Block castleBlock = game.getRoad().get(0);
