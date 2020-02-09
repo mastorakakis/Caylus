@@ -1,5 +1,7 @@
-package caylussetup;
+package setup;
 
+import static caylus.CaylusMain.sc;
+import caylus.Game;
 import caylus.Phase1;
 import caylus.Phase2;
 import caylus.Phase3;
@@ -8,6 +10,7 @@ import caylus.Phase5;
 import caylus.Phase6;
 import caylus.Phase7;
 import entities.Block;
+import entities.FavorTable;
 import entities.Resources;
 import entities.buildings.Building;
 import entities.buildings.Castle;
@@ -25,6 +28,18 @@ import java.util.Collections;
 import java.util.List;
 
 public class SetUpGame {
+
+    public static Game newGame() {
+        Game game = new Game();
+        FavorTable favorTable = new FavorTable();
+        favorTable.createPlayerFavorTable();
+        game.setPlayerList(CreatePlayers.getPlayers(sc));
+        game.setFavorTable(favorTable);
+        game.setRoad(SetUpGame.getRoad());
+        game.setBuildingList(SetUpGame.getBuildingList());
+        game.setCastle((Castle) game.getRoad().get(0).getBuilding());
+        return game;
+    }
 
     public static List<Phase> createPhases() {
         List<Phase> phases = new ArrayList();

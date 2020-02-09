@@ -1,9 +1,6 @@
 package caylus;
 
-import caylussetup.CreatePlayers;
-import caylussetup.SetUpGame;
-import entities.FavorTable;
-import entities.buildings.Castle;
+import setup.SetUpGame;
 import entities.players.Player;
 import entities.players.UserPlayer;
 import enums.Color;
@@ -25,25 +22,17 @@ public class CaylusMain {
 
     public static void main(String[] args) throws InterruptedException {
         System.out.println("C A Y L U S");
-        Game game = new Game();
+        Game game;
         List<Phase> phases = SetUpGame.createPhases();
         if (Functions.inputValidation(1, 2, "\n1)Start new Game\t2)Load Game",
-                new UserPlayer(Color.BLUE), sc) == 2) {
-            game = LoadGame.load();
-
-            Synopsis.print(game);
+                new UserPlayer(Color.BLUE), sc) == 1) {
+            game = SetUpGame.newGame(); // new game
         } else {
-            FavorTable favorTable = new FavorTable();
-            favorTable.createPlayerFavorTable();
-            game.setPlayerList(CreatePlayers.getPlayers(sc));
-            game.setFavorTable(favorTable);
-            game.setRoad(SetUpGame.getRoad());
-            game.setBuildingList(SetUpGame.getBuildingList());
-            game.setCastle((Castle) game.getRoad().get(0).getBuilding());
+            game = LoadGame.load(); // load game
+            Synopsis.print(game);
         }
-////////////////////////////////////////////////////////////////////////////////
         Status gameStatus = Status.CONTINUE;
-        do {
+        do { // play
             for (Phase phase : phases) {
                 if (gameStatus == Status.CONTINUE) {
                     phase.play(game, sc);
@@ -51,18 +40,12 @@ public class CaylusMain {
                 if (game.getCastle().getTowers().isScored()) {
                     gameStatus = Status.FINISH;
                 }
-            }
+            } // save game
             if (Functions.inputValidation(1, 2, "\nSave Game\n1)Yes\t2)No",
                     new UserPlayer(Color.BLUE), sc) == 1) {
                 SaveGame.save(game);
             }
         } while (gameStatus == Status.CONTINUE);
-        List<Player> winners = Phase7.scoreGame(game);
-
-        System.out.println(
-                "\nWinners:");
-        for (Player winner : winners) {
-            System.out.println(winner);
-        }
+        GameEnd.score(game);
     } // end of main
 } // end of Class
