@@ -48,6 +48,7 @@ public class SpecialBuilding extends Building {
             while (true) {
                 int provostPosition = game.getProvost().getPosition();
                 try {
+                    System.out.println("Provost position = " + game.getProvost().getPosition());
                     // move provost
                     String message = player.getColor()
                             + " move Provost\n1)Forward 2)Backwards";
@@ -67,6 +68,9 @@ public class SpecialBuilding extends Building {
                 }
             }
             System.out.println("Provost new position = " + game.getProvost().getPosition());
+            player.setWorkers(player.getWorkers() + 1);
+            System.out.println(player.getColor() + " Workers=" + player.getWorkers());
+            return null;
         }// if joust field
         else if (this.getName()
                 .equals("Joust Field")) {
@@ -109,13 +113,12 @@ public class SpecialBuilding extends Building {
             // increase players' available workers
             for (Player p : workers) {
                 p.setWorkers(p.getWorkers() + 1);
-                System.out.println(p.getColor() + " Worker=" + p.getWorkers());
+                System.out.println(p.getColor() + " Workers=" + p.getWorkers());
             }
             return null;
         } // increase player's available workers
-
         player.setWorkers(player.getWorkers() + 1);
-        System.out.println(player.getColor() + " Worker=" + player.getWorkers());
+        System.out.println(player);
         return null;
     }
 }

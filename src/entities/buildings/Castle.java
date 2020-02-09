@@ -82,12 +82,12 @@ public class Castle extends Building implements Serializable {
                     } // end of while
                     // return worker
                     player.setWorkers(player.getWorkers() + 1);
-                    System.out.println(player.getColor() + " Worker=" + player.getWorkers());
+                    System.out.println(player);
                 } else {// if not enough resources
                     System.out.println("Not enough resources");
                     loosePoints(player, numberOfBuildings);
                     player.setWorkers(player.getWorkers() + 1);
-                    System.out.println(player.getColor() + " Worker=" + player.getWorkers());
+                    System.out.println(player.getColor() + " Workers=" + player.getWorkers());
                 }
             } // end of for
             earnFavor(game, castlePlayers, numberOfBuildings, sc);

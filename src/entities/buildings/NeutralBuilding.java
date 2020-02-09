@@ -19,7 +19,8 @@ public class NeutralBuilding extends Building {
     }
 
     // constructor
-    public NeutralBuilding(int activationMoney, Resources activationResources, String name) {
+    public NeutralBuilding(int activationMoney, Resources activationResources,
+            String name) {
         super(name);
         this.activationMoney = activationMoney;
         this.activationResources = activationResources;
@@ -99,12 +100,11 @@ public class NeutralBuilding extends Building {
                 }
             }
             player.setWorkers(player.getWorkers() + 1);
-            System.out.println(player.getColor() + " Worker=" + player.getWorkers());
+            System.out.println(player.getColor() + " Workers=" + player.getWorkers());
             return player.buildWood(woodList, sc);
         }
         player.setWorkers(player.getWorkers() + 1);
-        System.out.println(player.getColor() + " Worker=" + player.getWorkers()
-                + " Money=" + player.getMoney());
+        System.out.println(player);
         return null;
     }
 

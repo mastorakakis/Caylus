@@ -23,7 +23,7 @@ public class Gate extends SpecialBuilding implements Serializable {
         // player gets back one worker
         Player player = workers.get(0);
         player.setWorkers(player.getWorkers() + 1);
-        System.out.println(player.getColor() + " Worker=" + player.getWorkers());
+        System.out.println(player.getColor() + " Workers=" + player.getWorkers());
         // place worker again
         Phase2.placeWorker(game, workers.get(0), sc);
         return null;

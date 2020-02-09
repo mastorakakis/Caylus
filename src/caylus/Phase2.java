@@ -63,7 +63,7 @@ public class Phase2 {
                 = Functions.printIndexedOptions(availableBuildingList, game.getRoad());
         int max = availableBuildingList.size() + 1; // plus one for pass
         System.out.println("\n" + player.getColor() + " Money=" + player.getMoney()
-                + " Worker=" + player.getWorkers());
+                + " Workers=" + player.getWorkers());
         Block block;
         while (true) {
             int choice = Functions.inputValidation(1, max, player.getColor()

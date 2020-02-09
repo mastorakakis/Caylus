@@ -35,7 +35,8 @@ public class Inn extends SpecialBuilding implements Serializable {
             }
             innPosition[1] = innPosition[0];
             innPosition[0] = null;
-            System.out.println("Moving worker to the right position");
+            System.out.println("Moving " + innPosition[1].getColor()
+                    + " worker to the right position");
         } // ask player to remove worker
         else {
             String message = innPosition[1].getColor() + " remove worker from Inn:"

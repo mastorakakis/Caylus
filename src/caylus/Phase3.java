@@ -26,7 +26,7 @@ public class Phase3 {
                 block.setWorkers(new ArrayList<Player>());
             }
         }
-        System.out.println("");
+        System.out.println("New playing order");
         for (Player player : game.getPlayerList()) {
             player.newFavorTableIndex();
             System.out.println(player);

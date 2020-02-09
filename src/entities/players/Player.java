@@ -121,7 +121,7 @@ public abstract class Player implements Serializable {
                 // ask user for resource of choice to spend
                 int choice2 = Functions.inputValidation(1, 5, "Building a "
                         + buildings.get(choice - 1).getName()
-                        + " costs 1 wood plus 1 resource of choice\n"
+                        + " costs 1 wood cube plus 1 cube of choice\n"
                         + "1)Food\n2)Wood\n3)Stone\n4)Cloth\n5)Gold", this, sc);
                 // increase selected building resource cost
                 buildings.get(choice - 1).getBuildResources().modifyResources(choice2);
@@ -138,6 +138,7 @@ public abstract class Player implements Serializable {
                 this.points += buildings.get(choice - 1).getBuildPoints();
                 System.out.println(color + " earns "
                         + buildings.get(choice - 1).getBuildPoints() + " points");
+                System.out.println(this);
                 break;
             }
         } while (true);
@@ -170,6 +171,7 @@ public abstract class Player implements Serializable {
                 this.points += buildings.get(choice - 1).getBuildPoints();
                 System.out.println(color + " earns "
                         + stoneBuilding.getBuildPoints() + " points");
+                System.out.println(this);
                 this.favors += buildings.get(choice - 1).getBuildFavors();
                 if (favors > 0) {
                     System.out.println(color + " earns "
@@ -214,6 +216,9 @@ public abstract class Player implements Serializable {
                 if (block.getWorkers().size() > 0) {
                     block.setTempBuilding(building);
                     block.setHouse(this);
+                    System.out.println(this.color + " will build "
+                            + building.getName() + " after the activation of "
+                            + block.getBuilding().getName());
                 } else {
                     // wood and stone buildings go back to the list
                     if (!(block.getBuilding() instanceof NeutralBuilding)) {
@@ -226,9 +231,10 @@ public abstract class Player implements Serializable {
                     block.setHouse(this);
                     System.out.println(this.color + " built "
                             + building.getName());
-                    System.out.println(color + " earns " + building.getBuildPoints()
-                            + " points");
                 }
+                System.out.println(color + " earns " + building.getBuildPoints()
+                        + " points");
+                System.out.println(this);
             } else {
                 System.out.println("Not enough money or resources");
             }
@@ -278,6 +284,7 @@ public abstract class Player implements Serializable {
             this.points += prestigeBuilding.getBuildPoints();
             System.out.println(color + " earns " + prestigeBuilding.getBuildPoints()
                     + " points");
+            System.out.println(this);
             this.favors += prestigeBuilding.getBuildFavors();
             if (favors > 0) {
                 String word = prestigeBuilding.getBuildFavors() == 1 ? " favor" : " favors";

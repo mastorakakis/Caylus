@@ -20,7 +20,7 @@ public class Phase5 {
     public static void play(Game game, Scanner sc) {
         System.out.println("\nPhase 5: Activation of the Buildings");
         System.out.println("------------------------------------");
-        // activating neutral buildings
+        // activating buildings
         for (int i = 7; i < game.getRoad().size(); i++) {
             Block block = game.getRoad().get(i);
             // if building not null and has worker
@@ -52,13 +52,27 @@ public class Phase5 {
                                 // build for appropriate player
                                 block1.setBuilding(newBuilding);
                                 block1.setHouse(block.getWorkers().get(0));
-//                                System.out.println(block1.getHouse().getColor()
-//                                        + " built " + block1.getBuilding().getName());
                                 break;
                             }
                         } // remove building from list
                         game.getBuildingList().remove(newBuilding);
-                    } // if residential building
+                    }
+                    if (newBuilding instanceof PrestigeBuilding) {
+                        game.getBuildingList().remove(newBuilding);
+                    }
+                }
+                // if there is a residential building waiting to be transformed
+                if (block.getTempBuilding() != null) {
+                    // wood and stone buildings go back to the list
+                    if (!(block.getBuilding() instanceof NeutralBuilding)) {
+                        // add craft building back to building list
+                        game.getBuildingList().add(block.getBuilding());
+                    }
+                    // transform block building
+                    block.setBuilding(block.getTempBuilding());
+                    block.setTempBuilding(null);
+                    System.out.println(block.getHouse().getColor() + " built "
+                            + block.getBuilding().getName());
                 }
                 // empty block workers
                 block.setWorkers(new ArrayList<Player>());
@@ -83,14 +97,11 @@ public class Phase5 {
                     // transform block building
                     block.setBuilding(block.getTempBuilding());
                     block.setTempBuilding(null);
-                    System.out.println(player.getColor() + " built "
+                    System.out.println(block.getHouse().getColor() + " built "
                             + block.getBuilding().getName());
-                    System.out.println(player.getColor() + " earns "
-                            + ((ResidentialBuilding) block.getBuilding()).getBuildPoints()
-                            + " points");
                 } // return all workers if buildings not activated
                 player.setWorkers(player.getWorkers() + 1);
-                System.out.println(player.getColor() + " Worker=" + player.getWorkers());
+                System.out.println(player.getColor() + " Workers=" + player.getWorkers());
                 // empty block workers
                 block.setWorkers(new ArrayList<Player>());
             }

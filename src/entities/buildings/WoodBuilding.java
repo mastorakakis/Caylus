@@ -162,7 +162,7 @@ public class WoodBuilding extends Building {
                 }
             }
             player.setWorkers(player.getWorkers() + 1);
-            System.out.println(player.getColor() + " Worker=" + player.getWorkers());
+            System.out.println(player.getColor() + " Workers=" + player.getWorkers());
             return player.buildStone(game, stoneList, sc);
         } // if lawyer
         else if (this.getName().equals("Lawyer")) {
@@ -170,12 +170,12 @@ public class WoodBuilding extends Building {
             // create residential building
             ResidentialBuilding building = new ResidentialBuilding();
             player.setWorkers(player.getWorkers() + 1);
-            System.out.println(player.getColor() + " Worker=" + player.getWorkers());
+            System.out.println(player.getColor() + " Workers=" + player.getWorkers());
             // build
             return player.buildResidential(game, building, sc);
         }
         player.setWorkers(player.getWorkers() + 1);
-        System.out.println(player.getColor() + " Worker=" + player.getWorkers());
+        System.out.println(player);
         return null;
     }
 

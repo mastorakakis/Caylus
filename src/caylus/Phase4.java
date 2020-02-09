@@ -13,11 +13,14 @@ public class Phase4 {
         System.out.println("\nPhase 4: The Provost's Move");
         System.out.println("---------------------------");
         List<Player> playerList = game.getBridge().getPositionList();
+        System.out.println("Provost position = "
+                + (game.getProvost().getPosition()));
         // for every player in bridge
         for (Player player : playerList) {
             while (true) {
                 int provostPosition = game.getProvost().getPosition();
-                try {// ask player to move provost
+                try {
+                    // ask player to move provost
                     String message = player.getColor()
                             + " move Provost\n1)Forward\t2)Backwards\t3)Don't move";
                     String message2 = "How many blocks\n1)1 block\n2)2 blocks\n3)3 blocks";
@@ -39,6 +42,8 @@ public class Phase4 {
                                     - choice2);
                         }// pay money
                         player.setMoney(player.getMoney() - choice2);
+                        System.out.println(player.getColor()
+                                + " Money=" + player.getMoney());
                         break;
                     } else {
                         break;

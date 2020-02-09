@@ -91,7 +91,7 @@ public class FixedBuilding extends Building {
             player.tradeMoneyResources(activationResources, activationMoney, Action.ADD);
         }
         player.setWorkers(player.getWorkers() + 1);
-        System.out.println(player.getColor() + " Worker=" + player.getWorkers());
+        System.out.println(player);
         return null;
     }
 

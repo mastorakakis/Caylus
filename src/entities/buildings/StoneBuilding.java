@@ -258,7 +258,7 @@ public class StoneBuilding extends Building {
                 }
             }
             player.setWorkers(player.getWorkers() + 1);
-            System.out.println(player.getColor() + " Worker=" + player.getWorkers());
+            System.out.println(player.getColor() + " Workers=" + player.getWorkers());
             return player.buildPrestige(game, buildings, sc);
 
         } // if architect b
@@ -271,11 +271,11 @@ public class StoneBuilding extends Building {
                 }
             }
             player.setWorkers(player.getWorkers() + 1);
-            System.out.println(player.getColor() + " Worker=" + player.getWorkers());
+            System.out.println(player.getColor() + " Workers=" + player.getWorkers());
             return player.buildPrestige(game, buildings, sc);
         }
         player.setWorkers(player.getWorkers() + 1);
-        System.out.println(player.getColor() + " Worker=" + player.getWorkers());
+        System.out.println(player);
         return null;
     }
 
