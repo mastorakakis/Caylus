@@ -1,7 +1,6 @@
 package caylus;
 
 import setup.SetUpGame;
-import entities.players.Player;
 import entities.players.UserPlayer;
 import enums.Color;
 import enums.Status;
