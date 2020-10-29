@@ -36,12 +36,7 @@ public class FavorTable implements Serializable {
     }
 
     public void useFavor(Game game, Player player, Scanner sc) {
-//        if (player.getFavors() > 4) {
-//            player.setFavors(4);
-//        }
-//        int max = player.getFavors();
-//        for (int i = max; i > 0; i--) {
-//            player.setFavors(player.getFavors() - 1); // todo delete
+
         String choice = selectFavorLine(game, player, sc);
         switch (choice) {
             case "Points Line":
@@ -57,7 +52,6 @@ public class FavorTable implements Serializable {
                 selectBuildFavor(game, player, sc);
                 break;
             default:
-//            }
         }
     }
 
